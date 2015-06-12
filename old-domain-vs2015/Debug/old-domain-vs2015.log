@@ -1,0 +1,206 @@
+﻿La génération a démarré 01/06/2015 20:45:11.
+     1>Projet "C:\Users\Mars\Documents\code\realm\old-domain-vs2015\old-domain-vs2015.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I"..\SFML-2.2-vs2015\include" /I..\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main.cpp ..\src\Building.cpp ..\src\Button.cpp ..\src\Citizen.cpp ..\src\City.cpp ..\src\dialog.cpp ..\src\Game_Manager.cpp ..\src\Glissor.cpp ..\src\Grid.cpp ..\src\Hud.cpp ..\src\Key_event.cpp ..\src\Menu.cpp ..\src\My_Sprite.cpp ..\src\My_Text.cpp ..\src\My_window.cpp ..\src\PerlinNoise.cpp ..\src\Skills.cpp ..\src\Sprite_Creator.cpp ..\src\Timer.cpp
+         Timer.cpp
+         Sprite_Creator.cpp
+     1>c:\users\mars\documents\code\realm\src\sprite_creator.cpp(102): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\sprite_creator.cpp(103): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\sprite_creator.cpp(104): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\sprite_creator.cpp(176): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+         Skills.cpp
+         PerlinNoise.cpp
+         My_window.cpp
+     1>c:\users\mars\documents\code\realm\src\my_window.cpp(29): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_window.cpp(95): warning C4244: '+=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_window.cpp(96): warning C4244: '+=' : conversion de 'float' en 'int', perte possible de données
+         My_Text.cpp
+     1>c:\users\mars\documents\code\realm\src\my_text.cpp(74): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+         My_Sprite.cpp
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(52): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(53): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(68): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(103): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(104): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(118): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(120): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(121): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(228): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(239): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(249): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\my_sprite.cpp(250): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+         Menu.cpp
+         Key_event.cpp
+         Hud.cpp
+         Grid.cpp
+         Glissor.cpp
+     1>c:\users\mars\documents\code\realm\src\glissor.cpp(73): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+         Game_Manager.cpp
+     1>c:\users\mars\documents\code\realm\src\game_manager.cpp(34): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\game_manager.cpp(40): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\game_manager.cpp(41): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\game_manager.cpp(142): warning C4305: '=' : troncation de 'double' à 'float'
+     1>c:\users\mars\documents\code\realm\src\game_manager.cpp(147): warning C4305: '=' : troncation de 'double' à 'float'
+     1>c:\users\mars\documents\code\realm\src\game_manager.cpp(166): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\game_manager.cpp(276): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\game_manager.cpp(396): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\game_manager.cpp(397): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
+         dialog.cpp
+         City.cpp
+         Citizen.cpp
+         Button.cpp
+     1>c:\users\mars\documents\code\realm\src\button.cpp(21): warning C4244: 'initialisation' : conversion de 'unsigned int' en 'float', perte possible de données
+     1>c:\users\mars\documents\code\realm\src\button.cpp(22): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+         Building.cpp
+         main.cpp
+     1>c:\users\mars\documents\code\realm\main.cpp(22): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+         Génération de code en cours...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Mars\Documents\code\realm\old-domain-vs2015\Debug\old-domain-vs2015.exe" /INCREMENTAL /NOLOGO /LIBPATH:"..\SFML-2.2-vs2015\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Mars\Documents\code\realm\old-domain-vs2015\Debug\old-domain-vs2015.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Mars\Documents\code\realm\old-domain-vs2015\Debug\old-domain-vs2015.lib" /MACHINE:X86 Debug\main.obj
+         Debug\Building.obj
+         Debug\Button.obj
+         Debug\Citizen.obj
+         Debug\City.obj
+         Debug\dialog.obj
+         Debug\Game_Manager.obj
+         Debug\Glissor.obj
+         Debug\Grid.obj
+         Debug\Hud.obj
+         Debug\Key_event.obj
+         Debug\Menu.obj
+         Debug\My_Sprite.obj
+         Debug\My_Text.obj
+         Debug\My_window.obj
+         Debug\PerlinNoise.obj
+         Debug\Skills.obj
+         Debug\Sprite_Creator.obj
+         Debug\Timer.obj
+     1>main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QAE@PBDABVlocale@std@@@Z) référencé dans la fonction _main
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QAE@PBDABVlocale@std@@@Z)
+     1>main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::String::~String(void)" (__imp_??1String@sf@@QAE@XZ) référencé dans la fonction _main
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::String::~String(void)" (__imp_??1String@sf@@QAE@XZ)
+     1>main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QAE@III@Z) référencé dans la fonction _main
+     1>main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: bool __thiscall sf::Window::isOpen(void)const " (__imp_?isOpen@Window@sf@@QBE_NXZ) référencé dans la fonction _main
+     1>main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Window::setFramerateLimit(unsigned int)" (__imp_?setFramerateLimit@Window@sf@@QAEXI@Z) référencé dans la fonction _main
+     1>main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::View::View(void)" (__imp_??0View@sf@@QAE@XZ) référencé dans la fonction _main
+     1>Game_Manager.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::View::View(void)" (__imp_??0View@sf@@QAE@XZ)
+     1>main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::View::setViewport(class sf::Rect<float> const &)" (__imp_?setViewport@View@sf@@QAEXABV?$Rect@M@2@@Z) référencé dans la fonction _main
+     1>Game_Manager.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::View::setViewport(class sf::Rect<float> const &)" (__imp_?setViewport@View@sf@@QAEXABV?$Rect@M@2@@Z)
+     1>main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::View::reset(class sf::Rect<float> const &)" (__imp_?reset@View@sf@@QAEXABV?$Rect@M@2@@Z) référencé dans la fonction _main
+     1>Game_Manager.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::View::reset(class sf::Rect<float> const &)" (__imp_?reset@View@sf@@QAEXABV?$Rect@M@2@@Z)
+     1>main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::RenderWindow::RenderWindow(class sf::VideoMode,class sf::String const &,unsigned int,struct sf::ContextSettings const &)" (__imp_??0RenderWindow@sf@@QAE@VVideoMode@1@ABVString@1@IABUContextSettings@1@@Z) référencé dans la fonction _main
+     1>main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: virtual __thiscall sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UAE@XZ) référencé dans la fonction _main
+     1>Button.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: static bool __cdecl sf::Mouse::isButtonPressed(enum sf::Mouse::Button)" (__imp_?isButtonPressed@Mouse@sf@@SA_NW4Button@12@@Z) référencé dans la fonction "public: void __thiscall Button::update(int,int)" (?update@Button@@QAEXHH@Z)
+     1>Game_Manager.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: static bool __cdecl sf::Mouse::isButtonPressed(enum sf::Mouse::Button)" (__imp_?isButtonPressed@Mouse@sf@@SA_NW4Button@12@@Z)
+     1>Glissor.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: static bool __cdecl sf::Mouse::isButtonPressed(enum sf::Mouse::Button)" (__imp_?isButtonPressed@Mouse@sf@@SA_NW4Button@12@@Z)
+     1>My_window.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: static bool __cdecl sf::Mouse::isButtonPressed(enum sf::Mouse::Button)" (__imp_?isButtonPressed@Mouse@sf@@SA_NW4Button@12@@Z)
+     1>My_window.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: static class sf::Vector2<int> __cdecl sf::Mouse::getPosition(class sf::Window const &)" (__imp_?getPosition@Mouse@sf@@SA?AV?$Vector2@H@2@ABVWindow@2@@Z)
+     1>Button.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: static class sf::Vector2<int> __cdecl sf::Mouse::getPosition(class sf::Window const &)" (__imp_?getPosition@Mouse@sf@@SA?AV?$Vector2@H@2@ABVWindow@2@@Z)
+     1>Glissor.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: static class sf::Vector2<int> __cdecl sf::Mouse::getPosition(class sf::Window const &)" (__imp_?getPosition@Mouse@sf@@SA?AV?$Vector2@H@2@ABVWindow@2@@Z)
+     1>Key_event.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: static class sf::Vector2<int> __cdecl sf::Mouse::getPosition(class sf::Window const &)" (__imp_?getPosition@Mouse@sf@@SA?AV?$Vector2@H@2@ABVWindow@2@@Z)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: static class sf::Vector2<int> __cdecl sf::Mouse::getPosition(class sf::Window const &)" (__imp_?getPosition@Mouse@sf@@SA?AV?$Vector2@H@2@ABVWindow@2@@Z)
+     1>Button.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: class sf::Vector2<float> __thiscall sf::RenderTarget::mapPixelToCoords(class sf::Vector2<int> const &,class sf::View const &)const " (__imp_?mapPixelToCoords@RenderTarget@sf@@QBE?AV?$Vector2@M@2@ABV?$Vector2@H@2@ABVView@2@@Z) référencé dans la fonction "public: void __thiscall Button::update(int,int)" (?update@Button@@QAEXHH@Z)
+     1>Game_Manager.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Vector2<float> __thiscall sf::RenderTarget::mapPixelToCoords(class sf::Vector2<int> const &,class sf::View const &)const " (__imp_?mapPixelToCoords@RenderTarget@sf@@QBE?AV?$Vector2@M@2@ABV?$Vector2@H@2@ABVView@2@@Z)
+     1>Glissor.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Vector2<float> __thiscall sf::RenderTarget::mapPixelToCoords(class sf::Vector2<int> const &,class sf::View const &)const " (__imp_?mapPixelToCoords@RenderTarget@sf@@QBE?AV?$Vector2@M@2@ABV?$Vector2@H@2@ABVView@2@@Z)
+     1>My_window.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Vector2<float> __thiscall sf::RenderTarget::mapPixelToCoords(class sf::Vector2<int> const &,class sf::View const &)const " (__imp_?mapPixelToCoords@RenderTarget@sf@@QBE?AV?$Vector2@M@2@ABV?$Vector2@H@2@ABVView@2@@Z)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Time::Time(void)" (__imp_??0Time@sf@@QAE@XZ)
+     1>Citizen.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Time::Time(void)" (__imp_??0Time@sf@@QAE@XZ)
+     1>Game_Manager.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Time::Time(void)" (__imp_??0Time@sf@@QAE@XZ)
+     1>Grid.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Time::Time(void)" (__imp_??0Time@sf@@QAE@XZ)
+     1>Hud.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Time::Time(void)" (__imp_??0Time@sf@@QAE@XZ)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: float __thiscall sf::Time::asSeconds(void)const " (__imp_?asSeconds@Time@sf@@QBEMXZ)
+     1>Citizen.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: float __thiscall sf::Time::asSeconds(void)const " (__imp_?asSeconds@Time@sf@@QBEMXZ)
+     1>Game_Manager.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: float __thiscall sf::Time::asSeconds(void)const " (__imp_?asSeconds@Time@sf@@QBEMXZ)
+     1>Grid.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: float __thiscall sf::Time::asSeconds(void)const " (__imp_?asSeconds@Time@sf@@QBEMXZ)
+     1>Hud.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: float __thiscall sf::Time::asSeconds(void)const " (__imp_?asSeconds@Time@sf@@QBEMXZ)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Clock::Clock(void)" (__imp_??0Clock@sf@@QAE@XZ)
+     1>Timer.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Clock::Clock(void)" (__imp_??0Clock@sf@@QAE@XZ)
+     1>Citizen.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Clock::Clock(void)" (__imp_??0Clock@sf@@QAE@XZ)
+     1>Game_Manager.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Clock::Clock(void)" (__imp_??0Clock@sf@@QAE@XZ)
+     1>Grid.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Clock::Clock(void)" (__imp_??0Clock@sf@@QAE@XZ)
+     1>Hud.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Clock::Clock(void)" (__imp_??0Clock@sf@@QAE@XZ)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Time __thiscall sf::Clock::getElapsedTime(void)const " (__imp_?getElapsedTime@Clock@sf@@QBE?AVTime@2@XZ)
+     1>Citizen.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Time __thiscall sf::Clock::getElapsedTime(void)const " (__imp_?getElapsedTime@Clock@sf@@QBE?AVTime@2@XZ)
+     1>Game_Manager.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Time __thiscall sf::Clock::getElapsedTime(void)const " (__imp_?getElapsedTime@Clock@sf@@QBE?AVTime@2@XZ)
+     1>Grid.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Time __thiscall sf::Clock::getElapsedTime(void)const " (__imp_?getElapsedTime@Clock@sf@@QBE?AVTime@2@XZ)
+     1>Hud.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Time __thiscall sf::Clock::getElapsedTime(void)const " (__imp_?getElapsedTime@Clock@sf@@QBE?AVTime@2@XZ)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Time __thiscall sf::Clock::restart(void)" (__imp_?restart@Clock@sf@@QAE?AVTime@2@XZ)
+     1>Citizen.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Time __thiscall sf::Clock::restart(void)" (__imp_?restart@Clock@sf@@QAE?AVTime@2@XZ)
+     1>Game_Manager.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Time __thiscall sf::Clock::restart(void)" (__imp_?restart@Clock@sf@@QAE?AVTime@2@XZ)
+     1>Grid.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Time __thiscall sf::Clock::restart(void)" (__imp_?restart@Clock@sf@@QAE?AVTime@2@XZ)
+     1>Hud.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Time __thiscall sf::Clock::restart(void)" (__imp_?restart@Clock@sf@@QAE?AVTime@2@XZ)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Window::close(void)" (__imp_?close@Window@sf@@QAEXXZ) référencé dans la fonction "private: bool __thiscall Game_Manager::handle_key_events(void)" (?handle_key_events@Game_Manager@@AAE_NXZ)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: bool __thiscall sf::Window::pollEvent(class sf::Event &)" (__imp_?pollEvent@Window@sf@@QAE_NAAVEvent@2@@Z) référencé dans la fonction "private: bool __thiscall Game_Manager::handle_key_events(void)" (?handle_key_events@Game_Manager@@AAE_NXZ)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Window::display(void)" (__imp_?display@Window@sf@@QAEXXZ) référencé dans la fonction "public: void __thiscall Game_Manager::draw(void)" (?draw@Game_Manager@@QAEXXZ)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QAE@EEEE@Z) référencé dans la fonction "public: void __thiscall Game_Manager::draw(void)" (?draw@Game_Manager@@QAEXXZ)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QAE@EEEE@Z)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QAE@EEEE@Z)
+     1>Sprite_Creator.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QAE@EEEE@Z)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Texture::Texture(void)" (__imp_??0Texture@sf@@QAE@XZ) référencé dans la fonction "public: __thiscall Game_Manager::Game_Manager(class sf::RenderWindow *,class sf::View &,int,int)" (??0Game_Manager@@QAE@PAVRenderWindow@sf@@AAVView@2@HH@Z)
+     1>Menu.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Texture::Texture(void)" (__imp_??0Texture@sf@@QAE@XZ)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Texture::Texture(void)" (__imp_??0Texture@sf@@QAE@XZ)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Texture::Texture(void)" (__imp_??0Texture@sf@@QAE@XZ)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Texture::~Texture(void)" (__imp_??1Texture@sf@@QAE@XZ) référencé dans la fonction "public: __thiscall Game_Manager::Game_Manager(class sf::RenderWindow *,class sf::View &,int,int)" (??0Game_Manager@@QAE@PAVRenderWindow@sf@@AAVView@2@HH@Z)
+     1>Menu.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Texture::~Texture(void)" (__imp_??1Texture@sf@@QAE@XZ)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Texture::~Texture(void)" (__imp_??1Texture@sf@@QAE@XZ)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Texture::~Texture(void)" (__imp_??1Texture@sf@@QAE@XZ)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::View::setCenter(float,float)" (__imp_?setCenter@View@sf@@QAEXMM@Z) référencé dans la fonction "public: void __thiscall Game_Manager::update(void)" (?update@Game_Manager@@QAEXXZ)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: class sf::Vector2<float> const & __thiscall sf::View::getSize(void)const " (__imp_?getSize@View@sf@@QBEABV?$Vector2@M@2@XZ) référencé dans la fonction "public: __thiscall Game_Manager::Game_Manager(class sf::RenderWindow *,class sf::View &,int,int)" (??0Game_Manager@@QAE@PAVRenderWindow@sf@@AAVView@2@HH@Z)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::View::zoom(float)" (__imp_?zoom@View@sf@@QAEXM@Z) référencé dans la fonction "public: void __thiscall Game_Manager::update(void)" (?update@Game_Manager@@QAEXXZ)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::RenderTarget::clear(class sf::Color const &)" (__imp_?clear@RenderTarget@sf@@QAEXABVColor@2@@Z) référencé dans la fonction "public: void __thiscall Game_Manager::draw(void)" (?draw@Game_Manager@@QAEXXZ)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::RenderTarget::setView(class sf::View const &)" (__imp_?setView@RenderTarget@sf@@QAEXABVView@2@@Z) référencé dans la fonction "public: __thiscall Game_Manager::Game_Manager(class sf::RenderWindow *,class sf::View &,int,int)" (??0Game_Manager@@QAE@PAVRenderWindow@sf@@AAVView@2@HH@Z)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: class sf::Rect<float> __thiscall sf::Sprite::getGlobalBounds(void)const " (__imp_?getGlobalBounds@Sprite@sf@@QBE?AV?$Rect@M@2@XZ) référencé dans la fonction "private: void __thiscall Game_Manager::mouse_selection(void)" (?mouse_selection@Game_Manager@@AAEXXZ)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Rect<float> __thiscall sf::Sprite::getGlobalBounds(void)const " (__imp_?getGlobalBounds@Sprite@sf@@QBE?AV?$Rect@M@2@XZ)
+     1>Game_Manager.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: virtual __thiscall sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UAE@XZ) référencé dans la fonction "private: void __thiscall Game_Manager::mouse_selection(void)" (?mouse_selection@Game_Manager@@AAEXXZ)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: virtual __thiscall sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UAE@XZ)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: virtual __thiscall sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UAE@XZ)
+     1>Glissor.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: class sf::Texture & __thiscall sf::Texture::operator=(class sf::Texture const &)" (__imp_??4Texture@sf@@QAEAAV01@ABV01@@Z) référencé dans la fonction "public: class My_Sprite & __thiscall My_Sprite::operator=(class My_Sprite const &)" (??4My_Sprite@@QAEAAV0@ABV0@@Z)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Texture & __thiscall sf::Texture::operator=(class sf::Texture const &)" (__imp_??4Texture@sf@@QAEAAV01@ABV01@@Z)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Texture & __thiscall sf::Texture::operator=(class sf::Texture const &)" (__imp_??4Texture@sf@@QAEAAV01@ABV01@@Z)
+     1>Glissor.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: class sf::Sprite & __thiscall sf::Sprite::operator=(class sf::Sprite const &)" (__imp_??4Sprite@sf@@QAEAAV01@ABV01@@Z) référencé dans la fonction "public: class My_Sprite & __thiscall My_Sprite::operator=(class My_Sprite const &)" (??4My_Sprite@@QAEAAV0@ABV0@@Z)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Sprite & __thiscall sf::Sprite::operator=(class sf::Sprite const &)" (__imp_??4Sprite@sf@@QAEAAV01@ABV01@@Z)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Sprite & __thiscall sf::Sprite::operator=(class sf::Sprite const &)" (__imp_??4Sprite@sf@@QAEAAV01@ABV01@@Z)
+     1>Glissor.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: class sf::Text & __thiscall sf::Text::operator=(class sf::Text const &)" (__imp_??4Text@sf@@QAEAAV01@ABV01@@Z) référencé dans la fonction "public: class My_Text & __thiscall My_Text::operator=(class My_Text const &)" (??4My_Text@@QAEAAV0@ABV0@@Z)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: class sf::Text & __thiscall sf::Text::operator=(class sf::Text const &)" (__imp_??4Text@sf@@QAEAAV01@ABV01@@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Color::Color(void)" (__imp_??0Color@sf@@QAE@XZ) référencé dans la fonction "public: void __thiscall My_Sprite::add_sprite(class My_Sprite *,int)" (?add_sprite@My_Sprite@@QAEXPAV1@H@Z)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Color::Color(void)" (__imp_??0Color@sf@@QAE@XZ)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Image::Image(void)" (__imp_??0Image@sf@@QAE@XZ) référencé dans la fonction "public: void __thiscall My_Sprite::add_sprite(class My_Sprite *,int)" (?add_sprite@My_Sprite@@QAEXPAV1@H@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Image::~Image(void)" (__imp_??1Image@sf@@QAE@XZ) référencé dans la fonction "public: void __thiscall My_Sprite::add_sprite(class My_Sprite *,int)" (?add_sprite@My_Sprite@@QAEXPAV1@H@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Image::create(unsigned int,unsigned int,class sf::Color const &)" (__imp_?create@Image@sf@@QAEXIIABVColor@2@@Z) référencé dans la fonction "public: void __thiscall My_Sprite::add_sprite(class My_Sprite *,int)" (?add_sprite@My_Sprite@@QAEXPAV1@H@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: bool __thiscall sf::Image::loadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (__imp_?loadFromFile@Image@sf@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) référencé dans la fonction "public: void __thiscall My_Sprite::add_sprite(class My_Sprite *,int)" (?add_sprite@My_Sprite@@QAEXPAV1@H@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: bool __thiscall sf::Image::saveToFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)const " (__imp_?saveToFile@Image@sf@@QBE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) référencé dans la fonction "public: void __thiscall My_Sprite::add_sprite(class My_Sprite *,int)" (?add_sprite@My_Sprite@@QAEXPAV1@H@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: class sf::Vector2<unsigned int> __thiscall sf::Image::getSize(void)const " (__imp_?getSize@Image@sf@@QBE?AV?$Vector2@I@2@XZ) référencé dans la fonction "public: void __thiscall My_Sprite::set_color(class sf::Color)" (?set_color@My_Sprite@@QAEXVColor@sf@@@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Image::copy(class sf::Image const &,unsigned int,unsigned int,class sf::Rect<int> const &,bool)" (__imp_?copy@Image@sf@@QAEXABV12@IIABV?$Rect@H@2@_N@Z) référencé dans la fonction "public: void __thiscall My_Sprite::add_sprite(class My_Sprite *,int)" (?add_sprite@My_Sprite@@QAEXPAV1@H@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Image::setPixel(unsigned int,unsigned int,class sf::Color const &)" (__imp_?setPixel@Image@sf@@QAEXIIABVColor@2@@Z) référencé dans la fonction "public: void __thiscall My_Sprite::add_sprite(class My_Sprite *,int)" (?add_sprite@My_Sprite@@QAEXPAV1@H@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: class sf::Color __thiscall sf::Image::getPixel(unsigned int,unsigned int)const " (__imp_?getPixel@Image@sf@@QBE?AVColor@2@II@Z) référencé dans la fonction "public: void __thiscall My_Sprite::add_sprite(class My_Sprite *,int)" (?add_sprite@My_Sprite@@QAEXPAV1@H@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: bool __thiscall sf::Texture::loadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class sf::Rect<int> const &)" (__imp_?loadFromFile@Texture@sf@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV?$Rect@H@2@@Z) référencé dans la fonction "public: __thiscall My_Sprite::My_Sprite(class My_Sprite const &)" (??0My_Sprite@@QAE@ABV0@@Z)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: bool __thiscall sf::Texture::loadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class sf::Rect<int> const &)" (__imp_?loadFromFile@Texture@sf@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV?$Rect@H@2@@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: bool __thiscall sf::Texture::loadFromImage(class sf::Image const &,class sf::Rect<int> const &)" (__imp_?loadFromImage@Texture@sf@@QAE_NABVImage@2@ABV?$Rect@H@2@@Z) référencé dans la fonction "public: void __thiscall My_Sprite::set_color(class sf::Color)" (?set_color@My_Sprite@@QAEXVColor@sf@@@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QAEXABVDrawable@2@ABVRenderStates@2@@Z) référencé dans la fonction "public: void __thiscall My_Sprite::draw(int,int)" (?draw@My_Sprite@@QAEXHH@Z)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QAEXABVDrawable@2@ABVRenderStates@2@@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Transformable::setPosition(float,float)" (__imp_?setPosition@Transformable@sf@@QAEXMM@Z) référencé dans la fonction "public: void __thiscall My_Sprite::draw(int,int)" (?draw@My_Sprite@@QAEXHH@Z)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Transformable::setPosition(float,float)" (__imp_?setPosition@Transformable@sf@@QAEXMM@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Transformable::scale(class sf::Vector2<float> const &)" (__imp_?scale@Transformable@sf@@QAEXABV?$Vector2@M@2@@Z) référencé dans la fonction "public: void __thiscall My_Sprite::scale(float,float)" (?scale@My_Sprite@@QAEXMM@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Sprite::Sprite(void)" (__imp_??0Sprite@sf@@QAE@XZ) référencé dans la fonction "public: __thiscall My_Sprite::My_Sprite(class My_Sprite const &)" (??0My_Sprite@@QAE@ABV0@@Z)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Sprite::Sprite(void)" (__imp_??0Sprite@sf@@QAE@XZ)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Sprite::setTexture(class sf::Texture const &,bool)" (__imp_?setTexture@Sprite@sf@@QAEXABVTexture@2@_N@Z) référencé dans la fonction "public: __thiscall My_Sprite::My_Sprite(class My_Sprite const &)" (??0My_Sprite@@QAE@ABV0@@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Sprite::setTextureRect(class sf::Rect<int> const &)" (__imp_?setTextureRect@Sprite@sf@@QAEXABV?$Rect@H@2@@Z) référencé dans la fonction "public: void __thiscall My_Sprite::draw(int,int)" (?draw@My_Sprite@@QAEXHH@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Sprite::setColor(class sf::Color const &)" (__imp_?setColor@Sprite@sf@@QAEXABVColor@2@@Z) référencé dans la fonction "public: void __thiscall My_Sprite::add_color(int,int,int,int)" (?add_color@My_Sprite@@QAEXHHHH@Z)
+     1>My_Sprite.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Sprite::Sprite(class sf::Sprite const &)" (__imp_??0Sprite@sf@@QAE@ABV01@@Z) référencé dans la fonction "public: class sf::Sprite __thiscall My_Sprite::get_sprite(void)" (?get_sprite@My_Sprite@@QAE?AVSprite@sf@@XZ)
+     1>My_Sprite.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: static class sf::RenderStates const sf::RenderStates::Default" (__imp_?Default@RenderStates@sf@@2V12@B)
+     1>My_Text.obj : error LNK2001: symbole externe non résolu "__declspec(dllimport) public: static class sf::RenderStates const sf::RenderStates::Default" (__imp_?Default@RenderStates@sf@@2V12@B)
+     1>My_Text.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Font::Font(void)" (__imp_??0Font@sf@@QAE@XZ) référencé dans la fonction "void __cdecl `dynamic initializer for 'private: static class sf::Font My_Text::font1''(void)" (??__E?font1@My_Text@@0VFont@sf@@A@@YAXXZ)
+     1>My_Text.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Font::~Font(void)" (__imp_??1Font@sf@@QAE@XZ) référencé dans la fonction "void __cdecl `dynamic atexit destructor for 'private: static class sf::Font My_Text::font1''(void)" (??__F?font1@My_Text@@0VFont@sf@@A@@YAXXZ)
+     1>My_Text.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: bool __thiscall sf::Font::loadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (__imp_?loadFromFile@Font@sf@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) référencé dans la fonction "public: void __thiscall My_Text::change_font(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?change_font@My_Text@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+     1>My_Text.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __thiscall sf::Text::Text(void)" (__imp_??0Text@sf@@QAE@XZ) référencé dans la fonction "public: __thiscall My_Text::My_Text(class My_Text const &)" (??0My_Text@@QAE@ABV0@@Z)
+     1>My_Text.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Text::setString(class sf::String const &)" (__imp_?setString@Text@sf@@QAEXABVString@2@@Z) référencé dans la fonction "public: void __thiscall My_Text::init(class sf::RenderWindow *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,bool)" (?init@My_Text@@QAEXPAVRenderWindow@sf@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@Z)
+     1>My_Text.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Text::setFont(class sf::Font const &)" (__imp_?setFont@Text@sf@@QAEXABVFont@2@@Z) référencé dans la fonction "public: void __thiscall My_Text::change_font(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?change_font@My_Text@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+     1>My_Text.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Text::setCharacterSize(unsigned int)" (__imp_?setCharacterSize@Text@sf@@QAEXI@Z) référencé dans la fonction "public: void __thiscall My_Text::draw(int,int,int)" (?draw@My_Text@@QAEXHHH@Z)
+     1>My_Text.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __thiscall sf::Text::setColor(class sf::Color const &)" (__imp_?setColor@Text@sf@@QAEXABVColor@2@@Z) référencé dans la fonction "public: void __thiscall My_Text::init(class sf::RenderWindow *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,bool)" (?init@My_Text@@QAEXPAVRenderWindow@sf@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@Z)
+     1>My_Text.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: virtual __thiscall sf::Text::~Text(void)" (__imp_??1Text@sf@@UAE@XZ) référencé dans la fonction __unwindfunclet$??0My_Text@@QAE@ABV0@@Z$2
+     1>C:\Users\Mars\Documents\code\realm\old-domain-vs2015\Debug\old-domain-vs2015.exe : fatal error LNK1120: 64 externes non résolus
+     1>Génération du projet "C:\Users\Mars\Documents\code\realm\old-domain-vs2015\old-domain-vs2015.vcxproj" terminée (Build cible(s)) -- ÉCHEC.
+
+ÉCHEC de la build.
+
+Temps écoulé 00:00:45.93
