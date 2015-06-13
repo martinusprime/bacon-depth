@@ -117,6 +117,7 @@ void Game_Manager::update(int timeElapsed)
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
             { 
+
                 character1[i].update();
                     if (!character1[i].alive())
                     {
@@ -190,13 +191,11 @@ void Game_Manager::draw()
     int Id;//v2
 
     static sf::Clock render_clock;
-    if (render_clock.getElapsedTime().asMilliseconds() < 2) {
-        return;
-    }
+  
     render_clock.restart();
     m_app->clear();
 
-    background.draw(0,0  - background.get_h() );
+    background.draw(0,0  - tile_size );
    
     for (size_t x = 0; x < 5; x++)
     {
@@ -241,11 +240,13 @@ void Game_Manager::draw()
     }
     // Update the window
     m_app->display();
+
+
 }
 void Game_Manager::hud()
 {
     m_app->setView(m_view2);
-
+ 
     radio_icon.draw(0, 0);
 
     radio_bar_background.draw(0, radio_icon.get_h());

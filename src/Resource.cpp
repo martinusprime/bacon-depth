@@ -27,11 +27,14 @@ Resource::Resource(RenderWindow *app, View *view, int id, int number_in_tile)
 
 Resource::~Resource()
 {
+
 }
+
 int Resource::get_quantity()
 {
     return quantity;
 }
+
 void Resource::draw()
 {
     sprite.draw(tile_x * tile_size + sprite.get_w() * m_number_in_tile, tile_y * tile_size + tile_size - sprite.get_h());
