@@ -37,7 +37,10 @@ public:
     string get_file();
     bool is_over();
     virtual ~My_Sprite() = default;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 85fa15d470118025d890dd26b2b596089fbadae4
 protected:
 private:
     View *m_view1;

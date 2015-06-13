@@ -3,6 +3,7 @@
 #include "Random.h"
 
 Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int screen_y)
+<<<<<<< HEAD
     : m_view1(view1)
 {
     m_app = app;
@@ -46,12 +47,36 @@ void Game_Manager::draw()
 {
     int Id;
 
+=======
+: m_view1(view1)
+{
+ 
+    m_app = app;
+    m_app->setView(m_view1);
+
+   
+}
+
+
+
+void Game_Manager::update()
+{
+
+
+   
+}
+
+
+void Game_Manager::draw()
+{
+>>>>>>> 85fa15d470118025d890dd26b2b596089fbadae4
     static sf::Clock render_clock;
     if (render_clock.getElapsedTime().asMilliseconds() < 2) {
         return;
     }
     render_clock.restart();
     m_app->clear();
+<<<<<<< HEAD
 
     for (size_t x = 0; x < 5; x++)
     {
@@ -61,6 +86,10 @@ void Game_Manager::draw()
         }
     }
     system("PAUSE");
+=======
+  
+
+>>>>>>> 85fa15d470118025d890dd26b2b596089fbadae4
     // Update the window
     m_app->display();
 }

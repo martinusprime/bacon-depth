@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 13/06/2015 11:47:21.
      1>Project "C:\Users\marc\Documents\GitHub\gamebacon\old-domain.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -9,6 +10,45 @@
      1>src\Game_Manager.cpp(47): warning C4101: 'Id' : unreferenced local variable
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\marc\Documents\GitHub\gamebacon\Release\old-domain.exe" /NOLOGO /LIBPATH:"SFML-2.2-vs2013\lib" "sfml-graphics.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\marc\Documents\GitHub\gamebacon\Release\old-domain.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\marc\Documents\GitHub\gamebacon\Release\old-domain.lib" /MACHINE:X86 /SAFESEH "Release\old-domain.res"
+=======
+﻿Build started 13/06/2015 01:54:51.
+     1>Project "D:\gamebacon\old-domain.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iinclude /I"SFML-2.2-vs2013\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp src\Button.cpp src\File_Loader.cpp src\Game_Manager.cpp src\Glissor.cpp src\Key_event.cpp src\My_Sprite.cpp src\My_Text.cpp src\My_window.cpp src\Timer.cpp
+         main.cpp
+     1>main.cpp(21): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Button.cpp
+     1>src\Button.cpp(13): warning C4244: 'initializing' : conversion from 'unsigned int' to 'float', possible loss of data
+     1>src\Button.cpp(14): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         File_Loader.cpp
+         Game_Manager.cpp
+         Glissor.cpp
+     1>src\Glissor.cpp(63): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         Key_event.cpp
+         My_Sprite.cpp
+     1>src\My_Sprite.cpp(54): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(55): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(94): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(95): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(110): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(112): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(113): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(231): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>src\My_Sprite.cpp(242): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>src\My_Sprite.cpp(251): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(252): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         My_Text.cpp
+     1>src\My_Text.cpp(73): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         My_window.cpp
+     1>src\My_window.cpp(7): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_window.cpp(91): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_window.cpp(92): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+         Timer.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"Release\old-domain.res" old-domain.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\gamebacon\Release\old-domain.exe" /NOLOGO /LIBPATH:"SFML-2.2-vs2013\lib" "sfml-graphics.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\gamebacon\Release\old-domain.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\gamebacon\Release\old-domain.lib" /MACHINE:X86 /SAFESEH "Release\old-domain.res"
+>>>>>>> 85fa15d470118025d890dd26b2b596089fbadae4
          Release\main.obj
          Release\Button.obj
          Release\File_Loader.obj
@@ -18,6 +58,7 @@
          Release\My_Sprite.obj
          Release\My_Text.obj
          Release\My_window.obj
+<<<<<<< HEAD
          Release\Tile.obj
          Release\Timer.obj
          Generating code
@@ -28,3 +69,14 @@
 Build succeeded.
 
 Time Elapsed 00:00:03.54
+=======
+         Release\Timer.obj
+         Generating code
+         Finished generating code
+         old-domain.vcxproj -> D:\gamebacon\Release\old-domain.exe
+     1>Done Building Project "D:\gamebacon\old-domain.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:21.99
+>>>>>>> 85fa15d470118025d890dd26b2b596089fbadae4
