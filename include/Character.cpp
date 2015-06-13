@@ -186,11 +186,8 @@ int Character::pathFinding(Tile map[][10])
                     }
                     if (i < 10)
                     {
-<<<<<<< HEAD
+
                         if ((map[i + 1][j].getNode() == 0) && (map[i + 1][j].getId() == 2))/////////VERIFICATION OF THE ELEVATOR
-=======
-                        if (map[i + 1][j].getNode() == 0)
->>>>>>> 176b3e45dc458937956efef00ced334401d42fbf
                         {
                             map[i + 1][j].setNode(node);
                             if ((i == m_goalY) && (j == m_goalX))
@@ -229,10 +226,6 @@ int Character::pathFinding(Tile map[][10])
             cout << endl;
         }
         cout << endl << node << endl;
-<<<<<<< HEAD
-        system("PAUSE");
-=======
->>>>>>> 176b3e45dc458937956efef00ced334401d42fbf
     }
     node--;
     int meilleur = node;

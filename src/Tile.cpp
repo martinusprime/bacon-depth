@@ -14,10 +14,7 @@ Tile::Tile()
     m_maxHp = 0;
     m_Hp = 0;
     walkable = 1;
-<<<<<<< HEAD
     m_work = NO;
-=======
->>>>>>> 176b3e45dc458937956efef00ced334401d42fbf
 }
 
 Tile::~Tile()
@@ -57,7 +54,7 @@ int Tile::getNode()
 int Tile::isWalkable()
 {
     return walkable;
-<<<<<<< HEAD
+
 }
 
 void Tile::constru(int newID, int progressMax)
@@ -75,6 +72,4 @@ void Tile::update()
         m_ID = m_futID;
         m_progress = 0;
     }
-=======
->>>>>>> 176b3e45dc458937956efef00ced334401d42fbf
 }
