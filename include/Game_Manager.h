@@ -16,6 +16,7 @@
 #include "My_window.h"
 #include "Tile.h"
 #include "Character.h"
+#include "Monster.h"
 
 #include "Tile.h"
 
@@ -62,7 +63,8 @@ private:
     int m_w, m_h;
     int m_screen_y; //height of the game window height in pixels
     int m_screen_x; //width of the game window in pixels
-    int citizen_number; //the number of citizen you have
+    int citizen_number, citizen_max, monster_max; //the number of citizen you have
+    int tile_size;
     bool clicked;
     Music music;
 
@@ -70,11 +72,13 @@ private:
     Tile map[5][10];
     My_Sprite spriteTile0;
     My_Sprite background;
-    My_Sprite radio_icon, radio_bar, radio_bar_background, radio_bar_grad, head_icon;
+    My_Sprite selection_border, radio_icon, radio_bar, radio_bar_background, radio_bar_grad, head_icon;
     My_Text citizen_number_text;
     vector <Character> character1;
+    vector <Monster> monster1;
     vector <My_Sprite> sprites;
-    
+    vector <Button> buttons;
+    vector <bool> citizen_state;
     
 };
 
