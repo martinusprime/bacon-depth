@@ -8,13 +8,17 @@
 #include <vector>
 #include <string>
 #include <cmath>
-
+#include <vector>
 #include "Button.h"
 #include "Key_event.h"
 #include "My_Sprite.h"
 #include "My_window.h"
+<<<<<<< HEAD
 #include "Tile.h"
 #include "Character.h"
+
+#include "Tile.h"
+
 
 using namespace sf;
 
@@ -26,7 +30,8 @@ public:
     Game_Manager(RenderWindow *app, View &view1, int screen_x, int screen_y);
     void execute_action(Action action);
     void draw();
-    void update();
+    void update(int timeElapsed);
+
     void hud();
     virtual ~Game_Manager() = default;
 
@@ -40,11 +45,12 @@ private:
     Vector2u window_vec;
     //mouse related stuff:
     Vector2f m_selection_vector;
-    int m_x_cursor, m_y_cursor, m_x_offset, m_y_offset;
 
+    int m_x_cursor, m_y_cursor, m_x_offset, m_y_offset;
     int m_w, m_h;
     int m_screen_y; //height of the game window height in pixels
     int m_screen_x; //width of the game window in pixels
+
 
     Tile map[5][10];
     My_Sprite spriteTile0;
@@ -52,8 +58,7 @@ private:
     vector <Character> character1;
     vector <My_Sprite> sprites;
 
-
-
+    
 };
 
 #endif // GAME_MANAGER_H

@@ -6,6 +6,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     : m_view1(view1)
     , radio_icon(app, "resources/radioactive_icon.png", &view1)
     , radio_bar(app, "resources/radio_bar.png", &view1)
+    : m_view1(view1)
 {
     m_app = app;
     m_app->setView(m_view1);
