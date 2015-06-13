@@ -5,13 +5,16 @@
 Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int screen_y)
     : m_view1(view1)
     , radio_icon(app, "resources/radioactive_icon.png", &view1)
+    , food_icon(app, "resources/food_icon.png", &view1)
+    , metal_icon(app, "resources/metal_icon.png", &view1)
     , radio_bar(app, "resources/radio_bar.png", &view1)
     , radio_bar_background(app, "resources/radio_bar_background.png", &view1)
     , radio_bar_grad(app, "resources/radio_bar_grad.png", &view1)
     , head_icon(app, "resources/head_icon.png", &view1)
     , background(app, "resources/background.png", &view1)
     , selection_border(app, "resources/selection_border.png", &view1)
-    , goal_border(app, "resources/selection_border.png", &view1)
+    , goal_border(app, "resources/selection_border.png", &view1)    
+    , resource1(app, &view1, 0, 5)
     , tile_size(384)
     , glissor1(app, 0, 0, 0, 0, &view1)
 {
@@ -68,6 +71,8 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
         citizen_state.push_back(true);
     }
     citizen_number_text.init(app, "Still alive: ", 35, 1);
+    metal_number_text.init(app, "Metal: ", 35, 1);
+    food_number_text.init(app, "Foods: ", 35, 1);
 
   
 
@@ -150,8 +155,8 @@ void Game_Manager::update(int timeElapsed)
         {
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
             {
-                if (selected_tile.goal_x != selected_tile.clicked_x
-                    &&  selected_tile.goal_x != selected_tile.clicked_y)
+                if (selected_tile.goal_x != selected_tile.x
+                    || selected_tile.goal_y != selected_tile.y)
                 {
                     selected_tile.previous_clicked_x = selected_tile.clicked_x;
                     selected_tile.previous_clicked_y = selected_tile.clicked_y;
@@ -164,15 +169,15 @@ void Game_Manager::update(int timeElapsed)
             }
             if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
             {
-                selected_tile.goal_x = selected_tile.x;
-                selected_tile.goal_y = selected_tile.y;
-                if (selected_tile.goal_x != selected_tile.clicked_x
-                    &&  selected_tile.goal_x != selected_tile.clicked_y)
+                
+                if(selected_tile.x != selected_tile.clicked_x
+                    || selected_tile.y != selected_tile.clicked_y)
                 {
+                    selected_tile.goal_x = selected_tile.x;
+                    selected_tile.goal_y = selected_tile.y;
                     glissor_on = true;
                 }
             }
-
         }
       
         citizen_number_text.refill("Still alive: " + std::to_string(citizen_number));
@@ -201,6 +206,8 @@ void Game_Manager::draw()
         }
     }
   
+    //ressources display
+    resource1.draw();
 
     for (int i = 0; i < citizen_max; i++)
     {
@@ -245,11 +252,15 @@ void Game_Manager::hud()
     radio_bar.draw(0, radio_icon.get_h());
     radio_bar_grad.draw(0, radio_icon.get_h());
 
-    head_icon.draw(1920 - head_icon.get_w(), 0 );
+    head_icon.draw(1920 - head_icon.get_w(), 0);
+    food_icon.draw(1920 - food_icon.get_w(), 200);
+    metal_icon.draw(1920 - metal_icon.get_w(), 400);
 
 
 
-    citizen_number_text.draw(1920 -( head_icon.get_w() * 2.5) , 0, 35);
+    citizen_number_text.draw(1920 - (head_icon.get_w() * 2.5), 0, 35);
+    metal_number_text.draw(1920 - (head_icon.get_w() * 2.5), 400, 35);
+    food_number_text.draw(1920 - (head_icon.get_w() * 2.5), 200, 35);
 
     m_app->setView(m_view1);
 }

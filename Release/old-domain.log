@@ -1,11 +1,14 @@
-﻿Build started 13/06/2015 21:07:06.
+﻿Build started 13/06/2015 23:50:41.
      1>Project "D:\gamebacon\old-domain.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iinclude /I"SFML-2.2-vs2013\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt include\Character.cpp
-         Character.cpp
-     1>include\Character.cpp(284): warning C4553: '==' : operator has no effect; did you intend '='?
-       ResourceCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"Release\old-domain.res" old-domain.rc 
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iinclude /I"SFML-2.2-vs2013\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\Game_Manager.cpp
+         Game_Manager.cpp
+     1>src\Game_Manager.cpp(139): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(140): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(190): warning C4101: 'Id' : unreferenced local variable
+     1>src\Game_Manager.cpp(261): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(262): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(263): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\gamebacon\Release\old-domain.exe" /NOLOGO /LIBPATH:"SFML-2.2-vs2013\lib" "sfml-graphics.lib" "sfml-audio.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\gamebacon\Release\old-domain.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\gamebacon\Release\old-domain.lib" /MACHINE:X86 /SAFESEH "Release\old-domain.res"
          Release\Character.obj
@@ -28,4 +31,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:06.68
+Time Elapsed 00:00:06.74

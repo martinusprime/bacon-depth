@@ -17,7 +17,7 @@
 #include "Character.h"
 #include "Glissor.h"
 #include "Monster.h"
-
+#include "Resource.h"
 #include "Tile.h"
 
 
@@ -70,12 +70,15 @@ private:
     bool clicked, glissor_on;
     Music music;
 
+    Resource resource1;
     Selected_tile selected_tile;
     Tile map[5][10];
     My_Sprite spriteTile0;
     My_Sprite background;
+    My_Sprite food_icon;
+    My_Sprite metal_icon;
     My_Sprite selection_border, goal_border, radio_icon, radio_bar, radio_bar_background, radio_bar_grad, head_icon;
-    My_Text citizen_number_text;
+    My_Text citizen_number_text, food_number_text, metal_number_text;
     Glissor glissor1;
     vector <Character> character1;
     vector <Monster> monster1;

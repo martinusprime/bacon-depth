@@ -1,5 +1,5 @@
 #include "Character.h"
-
+#include "Random.h"
 
 Character::Character(RenderWindow *app, View *view, int id)
     : sprite(app, "resources/perso", view, 10)
@@ -9,6 +9,7 @@ Character::Character(RenderWindow *app, View *view, int id)
     , m_id(id)
     , is_alive(true)
 {
+    srand(time(0));
     m_goalX = 0;
     m_goalY = 0;
     status = IDLE;
@@ -39,8 +40,7 @@ Character::Character(RenderWindow *app, View *view, int id)
         direction = RIGHT;
     }
     else direction = LEFT;
-
-    //
+    
 }
 
 
@@ -61,7 +61,7 @@ void Character::update()
             random_clock.restart();
 
 
-            int random = Random::get_int(0, 10);
+            int random = rand() % 10 + 0;
             if (random > 7)
             {
                 if (direction == RIGHT)

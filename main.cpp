@@ -31,7 +31,6 @@ int main()
         while (app.isOpen() )
         {
             game_manager1.update(render_clock.getElapsedTime().asSeconds());
-            game_manager1.draw();
            // cout << render_clock.getElapsedTime().asSeconds()<<endl;
             render_clock.restart();
             game_manager1.draw();
