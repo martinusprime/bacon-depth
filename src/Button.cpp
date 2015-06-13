@@ -5,6 +5,8 @@ Button::Button(RenderWindow *app, string name, int x, int y, int window_x, int w
 {
     m_x = x;
     m_y = y;
+    m_w = button_sprite.get_w();
+    m_h = button_sprite.get_h();
     m_app = app;
     m_view1 = view1;
     m_window_x = window_x;
@@ -34,16 +36,13 @@ void Button::update(int x_get, int y_get)
 
     mouse_vec = Mouse::getPosition(*m_app);
     m_a = m_app->mapPixelToCoords(mouse_vec, *m_view1);
+    cout << m_a.x << " y " << m_a.y << "m_x "<<m_w<<"m_y "<<m_h<< endl;
+
     if( m_a.x >= m_x &&  m_a.x <= m_x  + m_w
-            && m_a.y >= m_y   && m_a.y <= m_y + 30&& cross ==false)
+            && m_a.y >= m_y   && m_a.y <= m_y + m_h)
     {
 
         mouse_on  = true;
-    }
-    else if(m_a.x >= m_x &&  m_a.x <= m_x  + 25
-            && m_a.y >= m_y  && m_a.y <= m_y  + 25 && cross ==true)
-    {
-        mouse_on = true;
     }
     else
     {
@@ -78,4 +77,10 @@ void Button::update(int x_get, int y_get)
 bool Button::is_activated()
 {
     return activation;
+}
+
+
+void  Button::desactivate()
+{
+     activation = false;
 }

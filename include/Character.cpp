@@ -61,7 +61,6 @@ void Character::update()
 
 
             int random = Random::get_int(0, 10);
-            cout << random << endl;
             if (random > 7)
             {
                 if (direction == RIGHT)
