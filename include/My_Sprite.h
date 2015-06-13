@@ -34,6 +34,7 @@ public:
     void set_color(int r, int g, int b, int alpha);
     void set_color(Color color_get);
     void add_color(int r, int g, int b, int alpha);
+    void flip_x(bool flip);
     string get_file();
     bool is_over();
     virtual ~My_Sprite() = default;
@@ -42,7 +43,7 @@ private:
     View *m_view1;
     string m_file;
     RenderWindow *m_app;
-    int m_x, m_y, m_w, m_h;
+    int m_x, m_y, m_w, m_h, flip_value;
     Event m_event;
     Texture m_texture;
     Sprite m_sprite;

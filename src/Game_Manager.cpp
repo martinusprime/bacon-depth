@@ -11,18 +11,20 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     , head_icon(app, "resources/head_icon.png", &view1)
     , background(app, "resources/background.png", &view1)
     , selection_border(app, "resources/selection_border.png", &view1)
+    , goal_border(app, "resources/selection_border.png", &view1)
     , tile_size(384)
+    , glissor1(app, 0, 0, 0, 0, &view1)
 {
 
 
-
+    goal_border.add_color(255, 150, 50, 255);
 
     citizen_max = 10;
     monster_max = 10;
     citizen_number = citizen_max;
     pause = false;
     clicked = false;
-
+    glissor_on = false;
 
     m_app = app;
     m_app->setView(m_view1);
@@ -55,7 +57,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     for (int i = 0; i < 10 ; i++) {
         path = "resources/tile" + std::to_string(i) + ".png";
         sprites.push_back( My_Sprite{ m_app, path, &m_view1 });
-        std::cout << path << endl;
+  //      std::cout << path << endl;
 
     }
 
@@ -67,6 +69,8 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     }
     citizen_number_text.init(app, "Still alive: ", 35, 1);
 
+  
+
     //monsters on surface
     for (int i = 0; i < monster_max; i++)
     {
@@ -76,8 +80,8 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
 
     //all the buttons
   
-        buttons.push_back( Button{ m_app, "creuser", 0, 0, 1920, 1080, &view1 });
-
+    buttons.push_back( Button{ m_app, "creuser", 0, 0, 0, 0, &m_view1 });
+    glissor1 = Glissor{ m_app, 0, 0, 0, 0, &m_view1 };
     //music init
 
     if (!music.openFromFile("resources/music.ogg"))
@@ -98,6 +102,13 @@ void Game_Manager::update(int timeElapsed)
         m_view1.setCenter(static_cast<float>(m_x_offset), static_cast<float>(m_y_offset));
         m_app->setView(m_view1);
 
+
+        buttons[0].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size);
+        if (buttons[0].is_activated())
+        {
+            buttons[0].desactivate();
+        }
+        
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
             { 
@@ -119,20 +130,51 @@ void Game_Manager::update(int timeElapsed)
         }
         //if the mouse is over the right tile
 
-        cout << "selec " << selected_tile.x << " " << selected_tile.y << endl;
+       // cout << "selec " << selected_tile.x << " " << selected_tile.y << endl;
         selected_tile.x = m_selection_vector.x / tile_size;
         selected_tile.y = m_selection_vector.y / tile_size;
+        if (selected_tile.x < 0)
+        {
+            selected_tile.x = 0;
+        }
+        if (selected_tile.x > 4)
+        {
+            selected_tile.x = 4;
+        }
+        if (selected_tile.y < 0)
+        {
+            selected_tile.y = 0;
+        }
+     
         if (clicked)
         {
-            selected_tile.previous_clicked_x = selected_tile.clicked_x;
-            selected_tile.previous_clicked_y = selected_tile.clicked_y;
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                if (selected_tile.goal_x != selected_tile.clicked_x
+                    &&  selected_tile.goal_x != selected_tile.clicked_y)
+                {
+                    selected_tile.previous_clicked_x = selected_tile.clicked_x;
+                    selected_tile.previous_clicked_y = selected_tile.clicked_y;
 
-            selected_tile.clicked_x = selected_tile.x;
-            selected_tile.clicked_y = selected_tile.y;
+                    selected_tile.clicked_x = selected_tile.x;
+                    selected_tile.clicked_y = selected_tile.y;
+                }
+           
 
-            //map[selected_tile.x][selected_tile.y].
+            }
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+            {
+                selected_tile.goal_x = selected_tile.x;
+                selected_tile.goal_y = selected_tile.y;
+                if (selected_tile.goal_x != selected_tile.clicked_x
+                    &&  selected_tile.goal_x != selected_tile.clicked_y)
+                {
+                    glissor_on = true;
+                }
+            }
+
         }
-
+      
         citizen_number_text.refill("Still alive: " + std::to_string(citizen_number));
     }
 }
@@ -169,10 +211,21 @@ void Game_Manager::draw()
 
     }
 
+    for (int i = 0; i < monster_max; i++)
+    {
+       
+        monster1[i].draw();
+
+    }
+    goal_border.draw(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);
     selection_border.draw(selected_tile.clicked_x * tile_size, selected_tile.clicked_y * tile_size);
-    buttons[0].update(selected_tile.clicked_x + 1, selected_tile.clicked_y);
     buttons[0].draw();
 
+    if (glissor_on)
+    {
+        glissor1.update(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);
+        glissor1.draw();
+    }
     //pause handling
 
     if (!pause)
@@ -194,7 +247,7 @@ void Game_Manager::hud()
 
     head_icon.draw(1920 - head_icon.get_w(), 0 );
 
-    
+
 
     citizen_number_text.draw(1920 -( head_icon.get_w() * 2.5) , 0, 35);
 

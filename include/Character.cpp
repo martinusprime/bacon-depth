@@ -62,7 +62,6 @@ void Character::update()
 
 
             int random = Random::get_int(0, 10);
-            cout << random << endl;
             if (random > 7)
             {
                 if (direction == RIGHT)
@@ -91,23 +90,39 @@ void Character::update()
                 walking_x -= 2;
             }
 
-            if (walking_x < 0)
+            if (walking_x - sprite.get_w() < 0)
             {
                 direction = RIGHT;
-                walking_x = 0;
+                walking_x = 0 +sprite.get_w();
             }
 
-            if (walking_x + sprite.get_w() > tile_size)
+            if (walking_x  > tile_size)
             {
                 direction = LEFT;
-                walking_x = tile_size - sprite.get_w();
+                walking_x = tile_size ;
             }
 
         }
     }
+
     if (life <= 0)
     {
         is_alive = false;
+    }
+
+    if (direction == RIGHT)
+    {
+        life_bar_background.flip_x(false);
+        life_bar.flip_x(false);
+        life_bar_heart.flip_x(false);
+        sprite.flip_x(false);
+    }
+    else if (direction == LEFT)
+    {
+        life_bar_background.flip_x(true);
+        life_bar.flip_x(true);
+        life_bar_heart.flip_x(true);
+        sprite.flip_x(true);
     }
 }
 
@@ -171,7 +186,11 @@ int Character::pathFinding(Tile map[][10])
                     }
                     if (i < 10)
                     {
+<<<<<<< HEAD
                         if ((map[i + 1][j].getNode() == 0) && (map[i + 1][j].getId() == 2))/////////VERIFICATION OF THE ELEVATOR
+=======
+                        if (map[i + 1][j].getNode() == 0)
+>>>>>>> 176b3e45dc458937956efef00ced334401d42fbf
                         {
                             map[i + 1][j].setNode(node);
                             if ((i == m_goalY) && (j == m_goalX))
@@ -210,7 +229,10 @@ int Character::pathFinding(Tile map[][10])
             cout << endl;
         }
         cout << endl << node << endl;
+<<<<<<< HEAD
         system("PAUSE");
+=======
+>>>>>>> 176b3e45dc458937956efef00ced334401d42fbf
     }
     node--;
     int meilleur = node;
