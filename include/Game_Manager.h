@@ -72,6 +72,7 @@ private:
 
     Selected_tile selected_tile;
     Tile map[5][10];
+    Tile mapCon[5][10];
     My_Sprite spriteTile0;
     My_Sprite background;
     My_Sprite selection_border, goal_border, radio_icon, radio_bar, radio_bar_background, radio_bar_grad, head_icon;

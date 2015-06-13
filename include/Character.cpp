@@ -49,7 +49,7 @@ Character::~Character()
 }
 
 
-void Character::update()
+void Character::update(Tile map[][10])
 {
     float new_life =life / 100.0f;
     life_bar.scale(new_life, 1.0f);
@@ -124,6 +124,21 @@ void Character::update()
         life_bar_heart.flip_x(true);
         sprite.flip_x(true);
     }
+
+    if (status == MOVING)
+    {
+        if ((tile_x == m_goalX) && (tile_y == m_goalY))
+        {
+            status = IDLE;
+        }
+        else
+        {
+            if (pathFinding(map) == 0)
+            {
+                status == IDLE;
+            }
+        }
+    }
 }
 
 bool Character::alive()
@@ -149,6 +164,7 @@ void Character::newGoal(int x, int y)
 
 int Character::pathFinding(Tile map[][10])
 {
+    //cout << "ENTRER PATHFINDING" << endl;
     int contin = 1;
     for (size_t i = 0; i < 10; i++)
     {
@@ -162,14 +178,15 @@ int Character::pathFinding(Tile map[][10])
     int y = tile_y;
     map[x][y].setNode(1);
     int node = 1;
-    while (contin)
+    int compteur = 0;
+    for (size_t i = 0; i < 50; i++)
     {
+        compteur++;
         node++;
         for (size_t i = 0; i < 10; i++)
         {
             for (size_t j = 0; j < 5; j++)
             {
-                cout << map[i][j].getNode() << " ";
                 if ((map[i][j].getNode() == (node - 1)) && (map[i][j].isWalkable()))
                 {
                     if (i > 0)
@@ -180,7 +197,7 @@ int Character::pathFinding(Tile map[][10])
                             if ((i == m_goalY) && (j == m_goalX))
                             {
                                 contin = 0;
-                                cout << "FIN";
+                                //cout << "FIN";
                             }
                         }
                     }
@@ -193,7 +210,7 @@ int Character::pathFinding(Tile map[][10])
                             if ((i == m_goalY) && (j == m_goalX))
                             {
                                 contin = 0;
-                                cout << "FIN";
+                                //cout << "FIN";
                             }
                         }
                     }
@@ -205,7 +222,7 @@ int Character::pathFinding(Tile map[][10])
                             if ((i == m_goalY) && (j == m_goalX))
                             {
                                 contin = 0;
-                                cout << "FIN";
+                                //cout << "FIN";
                             }
                         }
                     }
@@ -217,15 +234,15 @@ int Character::pathFinding(Tile map[][10])
                             if ((i == m_goalY) && (j == m_goalX))
                             {
                                 contin = 0;
-                                cout << "FIN";
+                                //cout << "FIN";
                             }
                         }
                     }
                 }
             }
-            cout << endl;
+            //cout << endl;
         }
-        cout << endl << node << endl;
+        //cout << endl << node << endl;
     }
     node--;
     int meilleur = node;
@@ -233,13 +250,18 @@ int Character::pathFinding(Tile map[][10])
     node1.x = m_goalX;
     node1.y = m_goalY;
     coord node2;
-
-    while (contin)
+    contin = 1;
+    compteur = 0;
+    
+    while (compteur < 50)
     {
+        //cout << "debug1" << endl;
+        compteur++;
         if (node1.y > 0)
         {
-            if (map[node1.y - 1][node1.x].getNode() < meilleur)
+            if ((map[node1.y - 1][node1.x].getNode() < meilleur) && (map[node1.y - 1][node1.x].getNode() != 0))
             {
+                //cout << "BINGO" << endl;
                 meilleur = map[node1.y - 1][node1.x].getNode();
                 node2.x = node1.x;
                 node2.y = node1.y - 1;
@@ -247,8 +269,9 @@ int Character::pathFinding(Tile map[][10])
         }
         if (node1.y < 10)
         {
-            if (map[node1.y + 1][node1.x].getNode() < meilleur)
+            if ((map[node1.y + 1][node1.x].getNode() < meilleur) && (map[node1.y + 1][node1.x].getNode() != 0))
             {
+                //cout << "BINGO" << endl;
                 meilleur = map[node1.y + 1][node1.x].getNode();
                 node2.x = node1.x;
                 node2.y = node1.y + 1;
@@ -256,8 +279,9 @@ int Character::pathFinding(Tile map[][10])
         }
         if (node1.x > 0)
         {
-            if (map[node1.y][node1.x - 1].getNode() < meilleur)
+            if ((map[node1.y][node1.x - 1].getNode() < meilleur) && (map[node1.y][node1.x - 1].getNode() != 0))
             {
+                //cout << "BINGO" << endl;
                 meilleur = map[node1.y][node1.x - 1].getNode();
                 node2.x = node1.x - 1;
                 node2.y = node1.y;
@@ -265,22 +289,36 @@ int Character::pathFinding(Tile map[][10])
         }
         if (node1.x < 5)
         {
-            if (map[node1.y][node1.x + 1].getNode() < meilleur)
+            if ((map[node1.y][node1.x + 1].getNode() < meilleur) && (map[node1.y][node1.x + 1].getNode() != 0))
             {
+                //cout << "BINGO" << endl;
                 meilleur = map[node1.y][node1.x + 1].getNode();
                 node2.x = node1.x + 1;
                 node2.y = node1.y;
             }
         }
-        if ((node2.x == m_goalX) && (node2.y == m_goalY))
+        //cout << endl << "test:" << node2.x << m_goal << endl;
+        if ((node2.x == tile_x) && (node2.y == tile_y))
         {
-            //////////////APPEL FONCTION DEPLACEMENT (node1.y, node1.x)          
+            
+            //cout << "TROUVE:!!!!!" << endl;
+            //////////////APPEL FONCTION DEPLACEMENT (node1.y, node1.x)
+            (*this).setPosition(node1.x, node1.y);
+            //cout << "NODE:" << node1.x << node1.y << endl;
             return 1;
         }
         else
         {
             node1 = node2;
+            //cout << endl << "NODE:"<< node1.x << node1.y << endl;
         }
         node == meilleur;
     }
+    return 0;
+}
+
+void Character::setPosition(int x, int y)
+{
+    tile_x = x;
+    tile_y = y;
 }

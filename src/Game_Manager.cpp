@@ -97,6 +97,7 @@ void Game_Manager::update(int timeElapsed)
 {
     handle_input_events();
 
+
     if (!pause)
     {
         m_view1.setCenter(static_cast<float>(m_x_offset), static_cast<float>(m_y_offset));
@@ -112,7 +113,7 @@ void Game_Manager::update(int timeElapsed)
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
             { 
-                character1[i].update();
+                character1[i].update(map);
                     if (!character1[i].alive())
                     {
                         citizen_number--;
@@ -177,12 +178,18 @@ void Game_Manager::update(int timeElapsed)
       
         citizen_number_text.refill("Still alive: " + std::to_string(citizen_number));
     }
+    
+    
+    for (size_t i = 0; i < character1.size(); i++)
+    {
+        character1[i].update(map);
+    }
 }
 
 
 void Game_Manager::draw()
 {
-    int Id;//v2
+    int Id;
 
     static sf::Clock render_clock;
     if (render_clock.getElapsedTime().asMilliseconds() < 2) {
@@ -200,8 +207,8 @@ void Game_Manager::draw()
             sprites[map[x][y].getId()].draw(tile_size * x, tile_size * y);
         }
     }
-  
-
+    
+    
     for (int i = 0; i < citizen_max; i++)
     {
         if (citizen_state[i])
@@ -210,17 +217,17 @@ void Game_Manager::draw()
         }
 
     }
-
+    
     for (int i = 0; i < monster_max; i++)
     {
        
         monster1[i].draw();
 
     }
-    goal_border.draw(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);
+    goal_border.draw(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);/////////////////////////////////////////////////////
     selection_border.draw(selected_tile.clicked_x * tile_size, selected_tile.clicked_y * tile_size);
     buttons[0].draw();
-
+    
     if (glissor_on)
     {
         glissor1.update(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);
@@ -285,6 +292,9 @@ void Game_Manager::execute_action(Action action)
         cout << "close app\n";
         m_app->close();
         break;
+    case ACT_VALIDATION:
+        ///////DEBUG
+        character1[1].newGoal(0, 2);
     default:
         break;
     }

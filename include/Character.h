@@ -12,18 +12,19 @@ class Character
 {
 public:
     Character(RenderWindow *app, View *view, int id);
-    void update();
+    void update(Tile map[][10]);
     void draw();
     bool alive();
     virtual ~Character();
     void newGoal(int x, int y);
-   
-struct coord
+    struct coord
     {
         int x;
         int y;
     };
-int pathFinding(Tile map[][10]);
+    int pathFinding(Tile map[][10]);
+    void setPosition(int x, int y);
+
 private:
     View *m_view1;
     RenderWindow *m_app;
