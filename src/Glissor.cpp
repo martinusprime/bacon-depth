@@ -19,8 +19,8 @@ Glissor::Glissor(const Glissor &glissor_get)
 }
 
 Glissor::Glissor(RenderWindow *app, int x, int y, int window_x, int window_y, View *view1)
-: m_bar(app, "ressources/bar.png", view1)
-, m_cursor_bar(app, "ressources/cursor_bar.png", view1)
+: m_bar(app, "resources/bar.png", view1)
+, m_cursor_bar(app, "resources/cursor_bar.png", view1)
 {
     m_view1 = view1;
     m_window_x = window_x;
@@ -36,7 +36,7 @@ Glissor::Glissor(RenderWindow *app, int x, int y, int window_x, int window_y, Vi
 void Glissor::draw()
 {
     m_bar.draw(m_x + m_window_x, m_y + m_window_y);
-    m_cursor_bar.draw(m_x + m_value * 2 + m_window_x, m_y + m_window_y - 13);
+    m_cursor_bar.draw(m_x + m_value * 2 , m_y  - 13);
     m_rate.draw(m_x + m_window_x - 75, m_y + m_window_y, 25);
 }
 
@@ -52,8 +52,8 @@ void Glissor::update( int x, int y)
 
     m_mouse_vec = Mouse::getPosition(*m_app);
     m_a = m_app->mapPixelToCoords(m_mouse_vec, *m_view1);
-    if (Mouse::isButtonPressed(Mouse::Left) && m_a.x >= m_x + m_value * 2 + m_window_x &&  m_a.x <= m_x + m_value * 2 + m_window_x + 20
-        && m_a.y >= m_y + m_window_y - 13 && m_a.y <= m_y + m_window_y - 13 + 50)
+    if (Mouse::isButtonPressed(Mouse::Left) && m_a.x >= m_x + m_value * 2  &&  m_a.x <= m_x + m_value * 2  + 20
+        && m_a.y >= m_y  - 13 && m_a.y <= m_y  - 13 + 50)
     {
         m_mouse_on = true;
     }

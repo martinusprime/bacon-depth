@@ -225,7 +225,6 @@ int Character::pathFinding(Tile map[][10])
             cout << endl;
         }
         cout << endl << node << endl;
-        system("PAUSE");
     }
     node--;
     int meilleur = node;

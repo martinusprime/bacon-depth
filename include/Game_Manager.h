@@ -15,6 +15,7 @@
 #include "My_Sprite.h"
 #include "Tile.h"
 #include "Character.h"
+#include "Glissor.h"
 #include "Monster.h"
 
 #include "Tile.h"
@@ -56,6 +57,8 @@ private:
         int previous_clicked_y;
         int clicked_x;
         int clicked_y;
+        int goal_x;
+        int goal_y;
     };
 
     int m_x_cursor, m_y_cursor, m_x_offset, m_y_offset;
@@ -64,15 +67,16 @@ private:
     int m_screen_x; //width of the game window in pixels
     int citizen_number, citizen_max, monster_max; //the number of citizen you have
     int tile_size;
-    bool clicked;
+    bool clicked, glissor_on;
     Music music;
 
     Selected_tile selected_tile;
     Tile map[5][10];
     My_Sprite spriteTile0;
     My_Sprite background;
-    My_Sprite selection_border, radio_icon, radio_bar, radio_bar_background, radio_bar_grad, head_icon;
+    My_Sprite selection_border, goal_border, radio_icon, radio_bar, radio_bar_background, radio_bar_grad, head_icon;
     My_Text citizen_number_text;
+    Glissor glissor1;
     vector <Character> character1;
     vector <Monster> monster1;
     vector <My_Sprite> sprites;

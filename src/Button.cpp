@@ -36,7 +36,6 @@ void Button::update(int x_get, int y_get)
 
     mouse_vec = Mouse::getPosition(*m_app);
     m_a = m_app->mapPixelToCoords(mouse_vec, *m_view1);
-    cout << m_a.x << " y " << m_a.y << "m_x "<<m_w<<"m_y "<<m_h<< endl;
 
     if( m_a.x >= m_x &&  m_a.x <= m_x  + m_w
             && m_a.y >= m_y   && m_a.y <= m_y + m_h)

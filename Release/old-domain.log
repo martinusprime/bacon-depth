@@ -1,7 +1,11 @@
-﻿Build started 13/06/2015 19:24:25.
-     1>Project "C:\Users\marc\Documents\GitHub\GameJame\old-domain.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\marc\Documents\GitHub\GameJame\Release\old-domain.exe" /NOLOGO /LIBPATH:"SFML-2.2-vs2013\lib" "sfml-graphics.lib" "sfml-audio.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\marc\Documents\GitHub\GameJame\Release\old-domain.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\marc\Documents\GitHub\GameJame\Release\old-domain.lib" /MACHINE:X86 /SAFESEH "Release\old-domain.res"
+﻿Build started 13/06/2015 20:56:38.
+     1>Project "D:\gamebacon\old-domain.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iinclude /I"SFML-2.2-vs2013\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\Glissor.cpp
+         Glissor.cpp
+     1>src\Glissor.cpp(63): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\gamebacon\Release\old-domain.exe" /NOLOGO /LIBPATH:"SFML-2.2-vs2013\lib" "sfml-graphics.lib" "sfml-audio.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\gamebacon\Release\old-domain.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\gamebacon\Release\old-domain.lib" /MACHINE:X86 /SAFESEH "Release\old-domain.res"
          Release\Character.obj
          Release\main.obj
          Release\Button.obj
@@ -15,11 +19,11 @@
          Release\Resource.obj
          Release\Tile.obj
          Release\Timer.obj
-     1>Character.obj : error LNK2001: unresolved external symbol "public: void __thiscall My_Sprite::flip_x(bool)" (?flip_x@My_Sprite@@QAEX_N@Z)
-     1>Game_Manager.obj : error LNK2001: unresolved external symbol "public: void __thiscall Button::desactivate(void)" (?desactivate@Button@@QAEXXZ)
-     1>C:\Users\marc\Documents\GitHub\GameJame\Release\old-domain.exe : fatal error LNK1120: 2 unresolved externals
-     1>Done Building Project "C:\Users\marc\Documents\GitHub\GameJame\old-domain.vcxproj" (Build target(s)) -- FAILED.
+         Generating code
+         Finished generating code
+         old-domain.vcxproj -> D:\gamebacon\Release\old-domain.exe
+     1>Done Building Project "D:\gamebacon\old-domain.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.82
+Time Elapsed 00:00:05.63
