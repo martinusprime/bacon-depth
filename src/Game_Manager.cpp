@@ -140,7 +140,7 @@ void Game_Manager::update(int timeElapsed)
 
 void Game_Manager::draw()
 {
-    int Id;
+    int Id;//v2
 
     static sf::Clock render_clock;
     if (render_clock.getElapsedTime().asMilliseconds() < 2) {

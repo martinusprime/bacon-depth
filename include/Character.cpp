@@ -9,7 +9,8 @@ Character::Character(RenderWindow *app, View *view, int id)
     , m_id(id)
     , is_alive(true)
 {
-  
+    m_goalX = 0;
+    m_goalY = 0;
     status = IDLE;
 
     m_view1 = view;
@@ -121,4 +122,150 @@ void Character::draw()
     life_bar_background.draw(tile_x * 384 + walking_x, tile_y * 384 + ( 384 - sprite.get_h() )- 50);
     life_bar.draw(tile_x * 384 + walking_x, tile_y * 384 + (384 - sprite.get_h()) - 50);
     life_bar_heart.draw(tile_x * 384 + walking_x, tile_y * 384 + (384 - sprite.get_h()) - 50);
+}
+
+void Character::newGoal(int x, int y)
+{
+    status = MOVING;
+
+    m_goalX = x;
+    m_goalY = y;
+}
+
+int Character::pathFinding(Tile map[][10])
+{
+    int contin = 1;
+    for (size_t i = 0; i < 10; i++)
+    {
+        for (size_t j = 0; j < 5; j++)
+        {
+            map[i][j].setNode(0);
+        }
+    }
+
+    int x = tile_x;
+    int y = tile_y;
+    map[x][y].setNode(1);
+    int node = 1;
+    while (contin)
+    {
+        node++;
+        for (size_t i = 0; i < 10; i++)
+        {
+            for (size_t j = 0; j < 5; j++)
+            {
+                cout << map[i][j].getNode() << " ";
+                if ((map[i][j].getNode() == (node - 1)) && (map[i][j].isWalkable()))
+                {
+                    if (i > 0)
+                    {
+                        if (map[i - 1][j].getNode() == 0)
+                        {
+                            map[i - 1][j].setNode(node);
+                            if ((i == m_goalY) && (j == m_goalX))
+                            {
+                                contin = 0;
+                                cout << "FIN";
+                            }
+                        }
+                    }
+                    if (i < 10)
+                    {
+                        if ((map[i + 1][j].getNode() == 0) && (map[i + 1][j].getId() == 2))/////////VERIFICATION OF THE ELEVATOR
+                        {
+                            map[i + 1][j].setNode(node);
+                            if ((i == m_goalY) && (j == m_goalX))
+                            {
+                                contin = 0;
+                                cout << "FIN";
+                            }
+                        }
+                    }
+                    if (j > 0)
+                    {
+                        if (map[i][j - 1].getNode() == 0)
+                        {
+                            map[i][j - 1].setNode(node);
+                            if ((i == m_goalY) && (j == m_goalX))
+                            {
+                                contin = 0;
+                                cout << "FIN";
+                            }
+                        }
+                    }
+                    if (j < 5)
+                    {
+                        if (map[i][j + 1].getNode() == 0)
+                        {
+                            map[i][j + 1].setNode(node);
+                            if ((i == m_goalY) && (j == m_goalX))
+                            {
+                                contin = 0;
+                                cout << "FIN";
+                            }
+                        }
+                    }
+                }
+            }
+            cout << endl;
+        }
+        cout << endl << node << endl;
+        system("PAUSE");
+    }
+    node--;
+    int meilleur = node;
+    coord node1;
+    node1.x = m_goalX;
+    node1.y = m_goalY;
+    coord node2;
+
+    while (contin)
+    {
+        if (node1.y > 0)
+        {
+            if (map[node1.y - 1][node1.x].getNode() < meilleur)
+            {
+                meilleur = map[node1.y - 1][node1.x].getNode();
+                node2.x = node1.x;
+                node2.y = node1.y - 1;
+            }
+        }
+        if (node1.y < 10)
+        {
+            if (map[node1.y + 1][node1.x].getNode() < meilleur)
+            {
+                meilleur = map[node1.y + 1][node1.x].getNode();
+                node2.x = node1.x;
+                node2.y = node1.y + 1;
+            }
+        }
+        if (node1.x > 0)
+        {
+            if (map[node1.y][node1.x - 1].getNode() < meilleur)
+            {
+                meilleur = map[node1.y][node1.x - 1].getNode();
+                node2.x = node1.x - 1;
+                node2.y = node1.y;
+            }
+        }
+        if (node1.x < 5)
+        {
+            if (map[node1.y][node1.x + 1].getNode() < meilleur)
+            {
+                meilleur = map[node1.y][node1.x + 1].getNode();
+                node2.x = node1.x + 1;
+                node2.y = node1.y;
+            }
+        }
+        if ((node2.x == m_goalX) && (node2.y == m_goalY))
+        {
+            //////////////APPEL FONCTION DEPLACEMENT (node1.y, node1.x)          
+            return 1;
+        }
+        else
+        {
+            node1 = node2;
+        }
+        node == meilleur;
+    }
 }
