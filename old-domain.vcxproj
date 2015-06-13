@@ -137,14 +137,7 @@
     <ClCompile Include="src\My_Sprite.cpp" />
     <ClCompile Include="src\My_Text.cpp" />
     <ClCompile Include="src\My_window.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="src\Tile.cpp" />
-=======
-<<<<<<< HEAD
-    <ClCompile Include="src\Tile.cpp" />
-=======
->>>>>>> 85fa15d470118025d890dd26b2b596089fbadae4
->>>>>>> c945af70963bf10b02ac1a7b4d2a438e20ec0958
     <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,14 +151,7 @@
     <ClInclude Include="include\My_Text.h" />
     <ClInclude Include="include\My_window.h" />
     <ClInclude Include="include\Random.h" />
-<<<<<<< HEAD
     <ClInclude Include="include\Tile.h" />
-=======
-<<<<<<< HEAD
-    <ClInclude Include="include\Tile.h" />
-=======
->>>>>>> 85fa15d470118025d890dd26b2b596089fbadae4
->>>>>>> c945af70963bf10b02ac1a7b4d2a438e20ec0958
     <ClInclude Include="include\Timer.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
