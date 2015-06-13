@@ -27,7 +27,7 @@ void My_Text::init(RenderWindow *app, std::string content, int character_size, b
     //{
     //}
 
-    if(My_Text::m_font1.loadFromFile("ressources/font2.ttf"))
+    if(My_Text::m_font1.loadFromFile("resources/font.ttf"))
     {
         if(color)
         {
