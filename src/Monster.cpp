@@ -10,8 +10,8 @@ Monster::Monster(RenderWindow *app, View *view, int id)
     m_view1 = view;
     m_app = app;
     life = 100;
-    tile_x = 0;
-    tile_y = 0; 
+    tile_x = 1;
+    tile_y = 0;
     //set initial position
     walking_x = m_id * 10 ;
 

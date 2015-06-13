@@ -3,7 +3,6 @@
 #include "Button.h"
 #include "Key_event.h"
 #include "My_Sprite.h"
-#include "My_window.h"
 #include "Tile.h"
 #include "Random.h"
 
