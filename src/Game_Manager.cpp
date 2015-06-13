@@ -67,6 +67,9 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     }
     citizen_number_text.init(app, "Still alive: ", 35, 1);
 
+    character1[1].newGoal(3, 2);
+    character1[1].pathFinding(map);
+
     //monsters on surface
     for (int i = 0; i < monster_max; i++)
     {

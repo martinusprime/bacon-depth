@@ -17,7 +17,14 @@ public:
     void draw();
     bool alive();
     virtual ~Character();
-
+    void newGoal(int x, int y);
+   
+struct coord
+    {
+        int x;
+        int y;
+    };
+int pathFinding(Tile map[][10]);
 private:
     View *m_view1;
     RenderWindow *m_app;
@@ -31,6 +38,8 @@ private:
     int life;
     Clock render_clock, random_clock;
     bool is_alive;
+    int m_goalX, m_goalY;
 
+    
 };
 
