@@ -44,20 +44,14 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
         for (size_t y = 0; y < 10; y++)
         {
             map[x][y].setLevel(x);
-            if (x == 0)
-            {
-                map[x][y].setID(1);
-            }
-            else
-            {
-                map[x][y].setID(2);
-            }
+                map[x][y].setID(x + (y * 5));
+        
         }
     }
     
     //init sprites
     string path = "";
-    for (int i = 0; i < 10 ; i++) {
+    for (int i = 0; i < 60 ; i++) {
         path = "resources/tile" + std::to_string(i) + ".png";
         sprites.push_back( My_Sprite{ m_app, path, &m_view1 });
   //      std::cout << path << endl;
@@ -118,12 +112,7 @@ void Game_Manager::update(int timeElapsed)
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
             { 
-<<<<<<< HEAD
-
-                character1[i].update();
-=======
                 character1[i].update(map);
->>>>>>> 8281983bd657b55b5d369cbb2cec4020465df46c
                     if (!character1[i].alive())
                     {
                         citizen_number--;
@@ -215,15 +204,9 @@ void Game_Manager::draw()
             sprites[map[x][y].getId()].draw(tile_size * x, tile_size * y);
         }
     }
-<<<<<<< HEAD
-    
-    
-=======
-  
     //ressources display
     resource1.draw();
 
->>>>>>> 87cefd6457b7a402fd3c2c2fc08ebca8371263ae
     for (int i = 0; i < citizen_max; i++)
     {
         if (citizen_state[i])
@@ -239,7 +222,7 @@ void Game_Manager::draw()
         monster1[i].draw();
 
     }
-    goal_border.draw(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);/////////////////////////////////////////////////////
+    goal_border.draw(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);
     selection_border.draw(selected_tile.clicked_x * tile_size, selected_tile.clicked_y * tile_size);
     buttons[0].draw();
     

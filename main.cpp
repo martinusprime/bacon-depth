@@ -30,13 +30,9 @@ int main()
         // Start the game loop
         while (app.isOpen() )
         {
-<<<<<<< HEAD
             game_manager1.update(render_clock.getElapsedTime().asSeconds());            
             game_manager1.draw();
-            
-=======
-            game_manager1.update(render_clock.getElapsedTime().asSeconds());
->>>>>>> 87cefd6457b7a402fd3c2c2fc08ebca8371263ae
+          
            // cout << render_clock.getElapsedTime().asSeconds()<<endl;
             render_clock.restart();     
         }
