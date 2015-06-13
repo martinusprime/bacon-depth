@@ -73,6 +73,7 @@ private:
     Resource resource1;
     Selected_tile selected_tile;
     Tile map[5][10];
+    Tile mapCon[5][10];
     My_Sprite spriteTile0;
     My_Sprite background;
     My_Sprite food_icon;

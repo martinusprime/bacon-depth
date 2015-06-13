@@ -13,7 +13,8 @@ enum Action
     ACT_GO_RIGHT,
     ACT_GO_LEFT,
     ACT_PAUSE,
-    ACT_CLOSE_APP
+    ACT_CLOSE_APP,
+    ACT_VALIDATION
 };
 
 

@@ -15,6 +15,7 @@ Key_event_handler::Key_event_handler()
         { sf::Keyboard::T, ACT_ZOOM_IN },
         { sf::Keyboard::Space, ACT_PAUSE },
         { sf::Keyboard::G, ACT_ZOOM_OUT },
+        { sf::Keyboard::Numpad5, ACT_VALIDATION },
     };
 }
 
