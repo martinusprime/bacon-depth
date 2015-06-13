@@ -14,7 +14,6 @@ class Button
 {
 public:
     Button(RenderWindow *app_get, string name_get, int x_get, int y_get, int window_x_get, int window_y_get, View *view1_get);
-    Button(RenderWindow *app_get, bool, int window_x_get, int window_y_get, int window_w_get, View *view1_get); 
     virtual ~Button() = default;
     
     void draw();

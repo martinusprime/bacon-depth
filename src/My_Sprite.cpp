@@ -11,6 +11,8 @@ My_Sprite::My_Sprite()
 
 My_Sprite::My_Sprite(const My_Sprite &other)
 {
+    flip_value = 0;
+
     m_total_animation_time = other.m_total_animation_time;
 
     m_view1 = other.m_view1;
@@ -41,6 +43,8 @@ My_Sprite::My_Sprite(const My_Sprite &other)
 
 My_Sprite::My_Sprite(RenderWindow *app, std::string file, View *view)
 {
+    flip_value = 0;
+
     m_total_animation_time =0;
 
     m_view1 = view;
@@ -53,11 +57,13 @@ My_Sprite::My_Sprite(RenderWindow *app, std::string file, View *view)
     FloatRect  a= m_sprite.getGlobalBounds();
     m_w = a.width;
     m_h = a.height;
+    flip_value = 0;
 
 }
 
 My_Sprite::My_Sprite(RenderWindow *app, std::string file, View *view, int file_number)
 {
+    flip_value = 0;
     m_total_animation_time =0;
 
     m_view1 = view;
@@ -99,6 +105,8 @@ My_Sprite::My_Sprite(RenderWindow *app, std::string file, View *view, int file_n
 
 My_Sprite::My_Sprite(RenderWindow *app, string file, View *view, int animation_width, int animation_length, float total_animation_time)
 {
+    flip_value = 0;
+
     m_view1 = view;
     m_file = file;
     m_app = app;
@@ -229,7 +237,7 @@ void My_Sprite::draw(int x, int y)
 
     }
 
-    m_sprite.setPosition(m_x, m_y);
+    m_sprite.setPosition(m_x + flip_value, m_y);
     m_app->draw(m_sprite);
 }
 
@@ -249,9 +257,26 @@ void My_Sprite::scale(float x_rate, float y_rate)
 {
     m_sprite.setScale(1.0f, 1.0f);
     m_sprite.scale(Vector2f(x_rate, y_rate));
-    FloatRect  a= m_sprite.getGlobalBounds();
+    FloatRect  a = m_sprite.getGlobalBounds();
     m_w = a.width;
     m_h = a.height;
+}
+void My_Sprite::flip_x(bool flip)
+{
+        m_sprite.setScale(1.0f, 1.0f);
+
+    if (flip)
+    {
+        m_sprite.scale(-1.0f, 1.0f);
+        m_sprite.setOrigin({ m_sprite.getLocalBounds().width, 0 });
+        flip_value = - m_sprite.getLocalBounds().width;
+    }
+    else
+    {
+        m_sprite.scale(1.0f, 1.0f);
+        m_sprite.setOrigin({ m_sprite.getLocalBounds().width, 0 });
+        flip_value = 0;
+    }
 }
 
 void My_Sprite::set_color(Color color_get)

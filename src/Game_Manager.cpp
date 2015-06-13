@@ -76,7 +76,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
 
     //all the buttons
   
-        buttons.push_back( Button{ m_app, "creuser", 0, 0, 1920, 1080, &view1 });
+        buttons.push_back( Button{ m_app, "creuser", 0, 0, 0, 0, &m_view1 });
 
     //music init
 
@@ -97,6 +97,9 @@ void Game_Manager::update(int timeElapsed)
     {
         m_view1.setCenter(static_cast<float>(m_x_offset), static_cast<float>(m_y_offset));
         m_app->setView(m_view1);
+
+
+        buttons[0].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size);
 
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
@@ -119,7 +122,7 @@ void Game_Manager::update(int timeElapsed)
         }
         //if the mouse is over the right tile
 
-        cout << "selec " << selected_tile.x << " " << selected_tile.y << endl;
+       // cout << "selec " << selected_tile.x << " " << selected_tile.y << endl;
         selected_tile.x = m_selection_vector.x / tile_size;
         selected_tile.y = m_selection_vector.y / tile_size;
         if (clicked)
@@ -169,8 +172,13 @@ void Game_Manager::draw()
 
     }
 
+    for (int i = 0; i < monster_max; i++)
+    {
+       
+        monster1[i].draw();
+
+    }
     selection_border.draw(selected_tile.clicked_x * tile_size, selected_tile.clicked_y * tile_size);
-    buttons[0].update(selected_tile.clicked_x + 1, selected_tile.clicked_y);
     buttons[0].draw();
 
     //pause handling
@@ -194,7 +202,7 @@ void Game_Manager::hud()
 
     head_icon.draw(1920 - head_icon.get_w(), 0 );
 
-    
+
 
     citizen_number_text.draw(1920 -( head_icon.get_w() * 2.5) , 0, 35);
 
