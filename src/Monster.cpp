@@ -165,11 +165,12 @@ void Monster::update(Tile my_map[][5], float timeElapsed)
         m_moving += timeElapsed;
         cout << " -->" << m_moving << endl;
         //}
-        if (m_moving >= 2000)
+        if (m_moving >= 4000)
         {
             (*this).setPosition(move_x, move_y);
         }
     }
+    void combat();
 }
 
 void Monster::setPosition(int x, int y)
@@ -456,4 +457,9 @@ void Monster::build(int x, int y)
     status = BUILDING;
     m_buildX = x;
     m_buildY = y;
+}
+
+void Monster::get_damage(int damage)
+{
+    life -= damage;
 }

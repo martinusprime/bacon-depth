@@ -120,6 +120,11 @@ void Tile::update(float time)
         m_futID = 0;
         m_progress = 0;
     }
+
+    if (m_Hp < 0)
+    {
+        setID(1);
+    }
 }
 
 void Tile::setNode(int node)
@@ -162,7 +167,7 @@ int Tile::addProgress(float pr)
     return 1;
 }
 
-int Tile::isBuilding(int x, int y)
+int Tile::isBuilding()
 {
     if ((m_ID >= 17) && (m_ID <= 22))
     {
@@ -172,4 +177,9 @@ int Tile::isBuilding(int x, int y)
     {
         return 0;
     }
+}
+
+void Tile::get_damage(int damage)
+{
+    m_Hp -= damage;
 }

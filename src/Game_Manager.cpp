@@ -115,6 +115,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     {
         character1.push_back(Character{ m_app, &m_view1, i });
         citizen_state.push_back(true);
+        character1[i].setPosition(2, 0);
     }
     citizen_number_text.init(app, "Still alive: ", 35, 1);
     metal_number_text.init(app, "Metal: ", 35, 1);
@@ -348,7 +349,7 @@ void Game_Manager::update(float timeElapsed)
             if (citizen_state[i])
             {
                 monster1[i].update(my_map, timeElapsed);
-                monster1[i].newGoal(character1[1].getX)
+                monster1[i].newGoal(character1[1].getX(), character1[1].getY());
             }
         }
 
@@ -411,6 +412,7 @@ void Game_Manager::update(float timeElapsed)
          food_number_text.refill("Food: " + std::to_string(food_number));
         metal_number_text.refill("Metal: " + std::to_string(metal_number));
     }
+    combat();
 }
 
 bool Game_Manager::isOccupied(int x, int y)
@@ -829,4 +831,25 @@ bool Game_Manager::handle_input_events_key()
         
     }
     return ret;
+}
+
+void Game_Manager::combat()
+{
+    for (size_t i = 0; i <= character1.size(); i++)
+    {
+        for (size_t j = 0; j <= monster1.size(); j++)
+        {
+            if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding())
+            {
+                cout << "BASTONBUILDING" << endl;
+                my_map[monster1[j].getY()][monster1[j].getX()].get_damage(10);
+            }
+            else if ((monster1[j].getY() == character1[i].getY()) && (monster1[j].getX() == character1[i].getX()))
+            {
+                cout << "BASTONCHAR" << endl;
+                character1[i].get_damage(5);
+                monster1[j].get_damage(5);
+            }
+        }
+    }
 }
