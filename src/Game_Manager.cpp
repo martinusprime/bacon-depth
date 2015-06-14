@@ -50,12 +50,16 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     m_view2.setViewport(FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
 
     //init map
-    for (size_t x = 0; x < 5; x++)
+    for (size_t x = 0; x < 10; x++)
     {
-        for (size_t y = 0; y < 10; y++)
+        for (size_t y = 0; y < 5; y++)
         {
+<<<<<<< HEAD
          //   map[x][y].init_resource(m_app, &m_view1, x);
             map[x][y].setLevel(y);
+=======
+            map[y][x].setLevel(y);
+>>>>>>> 7a9ec755acfd17f71d80369478c6b4ce606e2a8a
             if (y == 0)
             {            //surface
 
@@ -64,7 +68,6 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
             
             if(x >= 2 && x <5 && y == 2)
             {            //metro 3, 4, 5
-
                 map[x][y].setID(1 + x);
             }
              if(x >= 1 && x <4 && y == 3)
@@ -84,7 +87,8 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
             }
              if (x >= 0 && x <5 && y == 4)
             {
-                map[x][y].setID(1);
+                map[y][x].setID(0);
+
             }
         }
     }
@@ -181,7 +185,7 @@ void Game_Manager::update(float timeElapsed)
             {
                 character1[i].update(map, timeElapsed);
 
-                //map[character1[i].getX][character1[i].getX].addCharacter(*character1[i]);
+                //map[character1[i].getY][character1[i].getX].addCharacter(*character1[i]);
 
                 if (!character1[i].alive())
                 {
@@ -346,7 +350,7 @@ void Game_Manager::draw()
     {
         for (size_t y = 0; y < 10; y++)
         {
-            sprites[map[x][y].getId()].draw(tile_size * x, tile_size * y);
+            sprites[map[y][x].getId()].draw(tile_size * x, tile_size * y);
         }
     }
 
@@ -468,13 +472,14 @@ void Game_Manager::execute_action(Action action)
         m_app->close();
         break;
     case ACT_MOVE:
+       
         for (size_t i = 0; i < character1.size(); i++)
         {
             if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)) &&
-                (map[selected_tile.goal_x][selected_tile.goal_y].isWalkable()))
-            {
-                cout << "MOVING" << endl;
+                (map[selected_tile.goal_y][selected_tile.goal_x].isWalkable()))
+            {               
                 character1[i].newGoal(selected_tile.goal_x, selected_tile.goal_y);
+                cout << "GOAL" << selected_tile.goal_x << " " << selected_tile.goal_y << endl;
                 compteur++;
             }
         }
