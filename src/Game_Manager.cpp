@@ -385,11 +385,7 @@ void Game_Manager::update(float timeElapsed)
             if (citizen_state[i])
             {
                 monster1[i].update(my_map, timeElapsed);
-<<<<<<< HEAD
                 monster1[i].newGoal(character1[1].getX(), character1[1].getY());
-=======
-//                monster1[i].newGoal(character1[1].getX)
->>>>>>> e4a70c7b4d357a641f3d9c033dabf412dd88762d
             }
         }
 

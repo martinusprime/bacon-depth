@@ -140,15 +140,13 @@ void Tile::update(float time)
         m_progress = 0;
     }
 
-<<<<<<< HEAD
     if (m_Hp < 0)
     {
         setID(1);
-=======
-    if(m_work == DIGING)
-    {
-        time_text.refill(std::to_string(m_progress) + "/" + std::to_string(m_progressMax));
->>>>>>> e4a70c7b4d357a641f3d9c033dabf412dd88762d
+        if (m_work == DIGING)
+        {
+            time_text.refill(std::to_string(m_progress) + "/" + std::to_string(m_progressMax));
+        }
     }
 }
 
@@ -192,11 +190,7 @@ int Tile::addProgress(float pr)
     return 1;
 }
 
-<<<<<<< HEAD
 int Tile::isBuilding()
-=======
-bool Tile::isBuilding()
->>>>>>> e4a70c7b4d357a641f3d9c033dabf412dd88762d
 {
     if ((m_ID >= 17) && (m_ID <= 22))
     {

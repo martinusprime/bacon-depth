@@ -27,12 +27,8 @@ public:
     int isWalkable();
     void constru(int newID, int progressMax);
     int addProgress(float pr);
-<<<<<<< HEAD
     int isBuilding();
     void get_damage(int damage);
-=======
-    bool isBuilding();
->>>>>>> e4a70c7b4d357a641f3d9c033dabf412dd88762d
 
 private:
     int m_level, m_rubble, m_oxygen, m_ID, resource_number;
