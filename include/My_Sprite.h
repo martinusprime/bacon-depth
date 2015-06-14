@@ -24,7 +24,7 @@ public:
 
     void draw(int x, int y);
     void draw_tile(int x, int y, int random);
-    void scale(float x_rate, float y_rate);
+    void scale(float x_rate, float y_rate, bool is_vertical);
     void set_text_rect(int x, int y, int w, int h);
     int get_w();
     int get_h();

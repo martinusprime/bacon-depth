@@ -16,11 +16,17 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     , selection_border(app, "resources/selection_border.png", &view1)
     , goal_border(app, "resources/selection_border.png", &view1)
     , bomb(app, "resources/bomb.png", &view1)
+    , pause_sprite(app, "resources/pause.png", &view1)
+    , info_sprite(app, "resources/info.png", &view1)
     , resource1(app, &view1, 0, 5)
     , tile_size(384)
     , glissor1(app, 0, 0, 0, 0, &view1)
 {
 
+
+    buffer.loadFromFile("resources/explosion.ogg");
+
+    sound.setBuffer(buffer);
 
     goal_border.add_color(255, 150, 50, 255);
 
@@ -30,10 +36,10 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     pause = false;
     clicked = false;
     glissor_on = false;
-
+    info = true;
     cinematic_on = true;
-    m_x_offset = 384 * 2 + (384 / 2);
-    m_y_offset = (384 / 2);
+    m_x_offset = tile_size * 2 + (tile_size / 2);
+    m_y_offset = (tile_size / 2);
 
     m_app = app;
     m_app->setView(m_view1);
@@ -51,6 +57,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
         {
             map[y][x].setLevel(y);
             if (y == 0)
+<<<<<<< HEAD
             {
                 map[y][x].setID(6 + x);
                 //cout << "walkability" << map[y][x].isWalkable() << endl;
@@ -58,17 +65,47 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
             if (y == 0)
             {
                 map[y][x].setID(1);
+=======
+            {            //surface
+
+                map[x][y].setID(6 + x);
             }
-            else
+            
+            if(x >= 2 && x <5 && y == 2)
+            {            //metro 3, 4, 5
+
+                map[x][y].setID(1 + x);
+>>>>>>> 0b3d5ad5a915ea4ed2cbe983100168fb6e090411
+            }
+             if(x >= 1 && x <4 && y == 3)
+            {            //soutterrain
+
+                map[x][y].setID(10 + x);
+            }
+             if(x >= 2 && x <5 && y == 1)
+            {            //egouts
+
+                map[x][y].setID(12 + x);
+            }
+             if(x >= 1 && x <4 && y == 3)
+            {            //groupe electrogene
+
+                map[x][y].setID(10 + x);
+            }
+             if (x >= 0 && x <5 && y == 4)
             {
+<<<<<<< HEAD
                 map[y][x].setID(0);
+=======
+                map[x][y].setID(1);
+>>>>>>> 0b3d5ad5a915ea4ed2cbe983100168fb6e090411
             }
         }
     }
 
     //init sprites
     string path = "";
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 60; i++) {
         path = "resources/tile" + std::to_string(i) + ".png";
         sprites.push_back(My_Sprite{ m_app, path, &m_view1 });
         //      std::cout << path << endl;
@@ -97,6 +134,9 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     //all the buttons
 
     buttons.push_back(Button{ m_app, "creuser", 0, 0, 0, 0, &m_view1 });
+
+    buttons.push_back(Button{ m_app, "Move", 0, 0, 0, 0, &m_view1 });//button of the glissor
+    buttons.push_back(Button{ m_app, 0, 0, 0, 0, &m_view1 });//button of the glissor
     glissor1 = Glissor{ m_app, 0, 0, 0, 0, &m_view1 };
     //music init
 
@@ -116,6 +156,8 @@ void Game_Manager::update(float timeElapsed)
 {
     handle_input_events();
 
+
+
     if (cinematic_on)
     {
         cinematic_update();
@@ -126,6 +168,8 @@ void Game_Manager::update(float timeElapsed)
         m_view1.setCenter(static_cast<float>(m_x_offset), static_cast<float>(m_y_offset));
         m_app->setView(m_view1);
 
+        //radiation haldling
+        radio_bar.scale( 1.0f, map[selected_tile.clicked_x][selected_tile.clicked_y].get_radiation(), true);
 
         buttons[0].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size);
         if (buttons[0].is_activated())
@@ -133,7 +177,23 @@ void Game_Manager::update(float timeElapsed)
             buttons[0].desactivate();
         }
 
+<<<<<<< HEAD
 
+=======
+        buttons[1].update(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size + buttons[1].get_h());
+        if (buttons[1].is_activated())
+        {
+            buttons[1].desactivate();
+            execute_action(ACT_MOVE);
+        }
+
+        buttons[2].update((selected_tile.clicked_x + 1)* tile_size - buttons[2].get_h() , selected_tile.clicked_y * tile_size + buttons[2].get_h());
+        if (buttons[2].is_activated())
+        {
+            buttons[2].desactivate();
+            execute_action(ACT_STOP);
+        }
+>>>>>>> 0b3d5ad5a915ea4ed2cbe983100168fb6e090411
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
             {
@@ -154,6 +214,14 @@ void Game_Manager::update(float timeElapsed)
             {
                 monster1[i].update();
 
+            }
+        }
+
+        for (size_t x = 0; x < 5; x++)
+        {
+            for (size_t y = 0; y < 10; y++)
+            {
+                map[x][y].update(timeElapsed);
             }
         }
         //if the mouse is over the right tile
@@ -216,7 +284,7 @@ void Game_Manager::cinematic_update()
         bomb_y += cinematic_time;
         if (explosing)
         {
-            explosion.scale(1.0f + cinematic_time, 1.0f + cinematic_time);
+            explosion.scale(1.0f + cinematic_time, 1.0f + cinematic_time, false);
         }
 
         if (explosion_flash == true)
@@ -228,10 +296,12 @@ void Game_Manager::cinematic_update()
             explosion_flash = true;
         }
     }
-    if (bomb_y >= 384 - bomb.get_h() && !explosing)
+    if (bomb_y >= tile_size - bomb.get_h() && !explosing)
     {
         cinematic_time = 1.0f;
         explosing = true;
+        sound.play();
+
     }
     if (explosing && cinematic_time >= 6.5f)
     {
@@ -247,7 +317,7 @@ void Game_Manager::cinematic_draw()
     {
         if (!explosion_flash)
         {
-            explosion.draw(0, -384);
+            explosion.draw(0, -tile_size);
         }
     }
     else
@@ -264,8 +334,17 @@ void Game_Manager::cinematic_init()
     explosing = false;
     pause = true;
     explosion_flash = true;
-    bomb_y = -384;
+    bomb_y = -tile_size;
     cinematic_time = 5.0f;
+    while (info)
+    {
+        draw();
+        if (handle_input_events_key())
+        {
+            info = false;
+        }
+    }
+
     cinematic_clock.restart();
 }
 
@@ -311,6 +390,8 @@ void Game_Manager::draw()
     goal_border.draw(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);/////////////////////////////////////////////////////
     selection_border.draw(selected_tile.clicked_x * tile_size, selected_tile.clicked_y * tile_size);
     buttons[0].draw();
+    buttons[1].draw();
+    buttons[2].draw();
 
     int compteur = 0;
     for (int i = 0; i < character1.size(); i++)
@@ -326,7 +407,11 @@ void Game_Manager::draw()
     {
         cinematic_draw();
     }
-    
+    if (info)
+    {
+        info_sprite.draw(0, 0 - tile_size);
+    }
+
 
     if (glissor_on)
     {
@@ -339,7 +424,10 @@ void Game_Manager::draw()
     {
         hud();
     }
-    // Update the window
+    else
+    {
+        pause_sprite.draw(0,  0);
+    }// Update the window
     m_app->display();
 
 
@@ -351,7 +439,7 @@ void Game_Manager::hud()
     radio_icon.draw(0, 0);
 
     radio_bar_background.draw(0, radio_icon.get_h());
-    radio_bar.draw(0, radio_icon.get_h());
+    radio_bar.draw(0 + 28, radio_icon.get_h() + 40);
     radio_bar_grad.draw(0, radio_icon.get_h());
 
     head_icon.draw(1920 - head_icon.get_w(), 0);
@@ -373,17 +461,17 @@ void Game_Manager::execute_action(Action action)
     switch (action)
     {
     case ACT_GO_UP:
-        m_y_offset -= 384;
+        m_y_offset -= tile_size;
         break;
     case ACT_GO_RIGHT:
-        m_x_offset += 384;
+        m_x_offset += tile_size;
 
         break;
     case ACT_GO_DOWN:
-        m_y_offset += 384;
+        m_y_offset += tile_size;
         break;
     case ACT_GO_LEFT:
-        m_x_offset -= 384;
+        m_x_offset -= tile_size;
         break;
     case ACT_PAUSE:
         if (!pause)
@@ -448,6 +536,30 @@ bool Game_Manager::handle_input_events()
             clicked = true;
             ret = true;
         }
+    }
+    return ret;
+}
+
+bool Game_Manager::handle_input_events_key()
+{
+    Event event;
+    bool isEvent = m_app->pollEvent(event);
+    Action action;
+    sf::Mouse::Button click = {};
+    clicked = false;
+
+    key_event.get_mouse_position(m_app, mouse_vec);
+    m_selection_vector = m_app->mapPixelToCoords(mouse_vec);
+
+    bool ret = false;
+    if (isEvent)
+    {
+        if (key_event.manage_key_event(event, action))
+        {
+            execute_action(action);
+            ret = true;
+        }
+        
     }
     return ret;
 }

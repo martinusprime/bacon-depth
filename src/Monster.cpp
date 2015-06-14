@@ -12,6 +12,7 @@ Monster::Monster(RenderWindow *app, View *view, int id)
     life = 100;
     tile_x = 1;
     tile_y = 0;
+    tile_size = 384;
     //set initial position
     walking_x = m_id * 10 ;
 
@@ -21,10 +22,10 @@ Monster::Monster(RenderWindow *app, View *view, int id)
         walking_x = 0;
     }
 
-    if (walking_x + sprite.get_w() > 384)
+    if (walking_x + sprite.get_w() > tile_size)
     {
         direction = LEFT;
-        walking_x = 384 - sprite.get_w();
+        walking_x = tile_size - sprite.get_w();
     }
 
     if (Random::get_int(0, 10) > 5)
@@ -86,10 +87,10 @@ void Monster::update()
                 walking_x = 0;
             }
 
-            if (walking_x + sprite.get_w() > 384)
+            if (walking_x + sprite.get_w() > tile_size)
             {
                 direction = LEFT;
-                walking_x = 384 - sprite.get_w();
+                walking_x = tile_size - sprite.get_w();
             }
 
         }
@@ -100,5 +101,5 @@ void Monster::update()
 
 void Monster::draw()
 {
-    sprite.draw(tile_x * 384 + walking_x, tile_y * 384 + 384 - sprite.get_h());
+    sprite.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h());
 }

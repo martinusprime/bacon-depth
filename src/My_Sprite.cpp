@@ -88,7 +88,7 @@ My_Sprite::My_Sprite(RenderWindow *app, std::string file, View *view, int file_n
     }
     if(file_check.is_open() == false && rand_limit == 1 )
     {
-        m_texture.loadFromFile("ressources/empty.png");
+        m_texture.loadFromFile("resources/empty.png");
     }
     else
     {
@@ -253,8 +253,9 @@ void My_Sprite::draw_tile(int x, int y, int random)
     //cout<<" ra "<<animation_rect.left<<endl;
 }
 
-void My_Sprite::scale(float x_rate, float y_rate)
+void My_Sprite::scale(float x_rate, float y_rate, bool is_vertical)
 {
+   
     m_sprite.setScale(1.0f, 1.0f);
     m_sprite.scale(Vector2f(x_rate, y_rate));
     FloatRect  a = m_sprite.getGlobalBounds();
