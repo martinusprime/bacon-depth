@@ -51,5 +51,7 @@ private:
     int move_x, move_y;
     int m_digX, m_digY;
     int m_buildX, m_buildY;
+
+    int m_targetX, m_targetY;
 };
 

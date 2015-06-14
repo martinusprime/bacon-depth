@@ -161,3 +161,15 @@ int Tile::addProgress(float pr)
     cout << pr << " " << m_progress << endl;
     return 1;
 }
+
+int Tile::isBuilding(int x, int y)
+{
+    if ((m_ID >= 17) && (m_ID <= 22))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
