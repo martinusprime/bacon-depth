@@ -1,4 +1,4 @@
-﻿Build started 14/06/2015 23:27:06.
+﻿Build started 14/06/2015 23:29:20.
      1>Project "D:\gamebacon\old-domain.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iinclude /I"SFML-2.2-vs2013\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt include\Character.cpp main.cpp src\Button.cpp src\Game_Manager.cpp src\Glissor.cpp src\Monster.cpp src\Ressource.cpp src\Tile.cpp
@@ -11,16 +11,16 @@
      1>main.cpp(12): warning C4101: 'time' : unreferenced local variable
          Button.cpp
          Game_Manager.cpp
-     1>src\Game_Manager.cpp(300): warning C4305: '-=' : truncation from 'double' to 'float'
-     1>src\Game_Manager.cpp(419): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(301): warning C4305: '-=' : truncation from 'double' to 'float'
      1>src\Game_Manager.cpp(420): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>src\Game_Manager.cpp(486): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>src\Game_Manager.cpp(487): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-     1>src\Game_Manager.cpp(610): warning C4018: '<' : signed/unsigned mismatch
-     1>src\Game_Manager.cpp(567): warning C4101: 'Id' : unreferenced local variable
-     1>src\Game_Manager.cpp(673): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>src\Game_Manager.cpp(674): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(421): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(488): warning C4305: '+=' : truncation from 'double' to 'float'
+     1>src\Game_Manager.cpp(489): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(612): warning C4018: '<' : signed/unsigned mismatch
+     1>src\Game_Manager.cpp(569): warning C4101: 'Id' : unreferenced local variable
      1>src\Game_Manager.cpp(675): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(676): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(677): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
          Glissor.cpp
      1>src\Glissor.cpp(63): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
          Monster.cpp
@@ -33,7 +33,7 @@
      1>src\Tile.cpp(21): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>src\Tile.cpp(58): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>src\Tile.cpp(133): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>src\Tile.cpp(193): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Tile.cpp(197): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\gamebacon\Release\old-domain.exe" /NOLOGO /LIBPATH:"SFML-2.2-vs2013\lib" "sfml-graphics.lib" "sfml-audio.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\gamebacon\Release\old-domain.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\gamebacon\Release\old-domain.lib" /MACHINE:X86 /SAFESEH "Release\old-domain.res"
          Release\Character.obj
@@ -56,4 +56,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:18.58
+Time Elapsed 00:00:18.33
