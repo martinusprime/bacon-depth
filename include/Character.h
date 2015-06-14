@@ -41,7 +41,7 @@ private:
     enum Status { IDLE, BATTLE, MOVING, DIGING, BUILDING};
     Direction direction;
     Status status;
-    My_Sprite sprite, pike, hammer;
+    My_Sprite sprite, pike, hammer, sword;
     My_Sprite life_bar, life_bar_background, life_bar_heart;
     int m_id, tile_x, tile_y, walking_x, tile_size;
     int life;

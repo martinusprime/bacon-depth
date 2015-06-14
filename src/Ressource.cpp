@@ -11,6 +11,11 @@ Ressource::Ressource(RenderWindow *app, View *view, int id, int number_in_tile, 
     {
         sprite = My_Sprite{ app, "resources/iron_icon", view, 3};
     }
+
+    if (id == 1)
+    {
+        sprite = My_Sprite{ app, "resources/food_icon", view, 3 };
+    }
     if (number_in_tile > 4)
     {
         number_in_tile = 4;
