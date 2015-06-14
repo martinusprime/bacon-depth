@@ -74,7 +74,8 @@ void Tile::update(float time)
 {
     // m_irradiation doit etre comprise entre 0 et 1  a la fin;
 
-    m_irradiation += (time / 500.0 * (1000 - (m_level * 100.0)))/100000.0;
+    m_irradiation += (time / 5.0) / 100000.0 - m_level * 0.1;
+
     if (m_irradiation > 1.0f)
     {
         m_irradiation = 1.0f;

@@ -29,10 +29,10 @@ Character::Character(RenderWindow *app, View *view, int id)
         walking_x = 0;
     }
 
-    if (walking_x + sprite.get_w() > 384)
+    if (walking_x + sprite.get_w() > tile_size)
     {
         direction = LEFT;
-        walking_x = 384 - sprite.get_w();
+        walking_x = tile_size - sprite.get_w();
     }
 
     if (Random::get_int(0, 10) > 5)
@@ -158,10 +158,10 @@ bool Character::alive()
 
 void Character::draw()
 {
-    sprite.draw(tile_x * 384 + walking_x, tile_y * 384 + 384 - sprite.get_h());
-    life_bar_background.draw(tile_x * 384 + walking_x, tile_y * 384 + (384 - sprite.get_h()) - 50);
-    life_bar.draw(tile_x * 384 + walking_x, tile_y * 384 + (384 - sprite.get_h()) - 50);
-    life_bar_heart.draw(tile_x * 384 + walking_x, tile_y * 384 + (384 - sprite.get_h()) - 50);
+    sprite.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h());
+    life_bar_background.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 50);
+    life_bar.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 50);
+    life_bar_heart.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 50);
 }
 
 void Character::newGoal(int x, int y)

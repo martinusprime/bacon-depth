@@ -16,11 +16,17 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     , selection_border(app, "resources/selection_border.png", &view1)
     , goal_border(app, "resources/selection_border.png", &view1)
     , bomb(app, "resources/bomb.png", &view1)
+    , pause_sprite(app, "resources/pause.png", &view1)
+    , info_sprite(app, "resources/info.png", &view1)
     , resource1(app, &view1, 0, 5)
     , tile_size(384)
     , glissor1(app, 0, 0, 0, 0, &view1)
 {
 
+
+    buffer.loadFromFile("resources/explosion.ogg");
+
+    sound.setBuffer(buffer);
 
     goal_border.add_color(255, 150, 50, 255);
 
@@ -30,10 +36,10 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     pause = false;
     clicked = false;
     glissor_on = false;
-
+    info = true;
     cinematic_on = true;
-    m_x_offset = 384 * 2 + (384 / 2);
-    m_y_offset = (384 / 2);
+    m_x_offset = tile_size * 2 + (tile_size / 2);
+    m_y_offset = (tile_size / 2);
 
     m_app = app;
     m_app->setView(m_view1);
@@ -272,10 +278,12 @@ void Game_Manager::cinematic_update()
             explosion_flash = true;
         }
     }
-    if (bomb_y >= 384 - bomb.get_h() && !explosing)
+    if (bomb_y >= tile_size - bomb.get_h() && !explosing)
     {
         cinematic_time = 1.0f;
         explosing = true;
+        sound.play();
+
     }
     if (explosing && cinematic_time >= 6.5f)
     {
@@ -291,7 +299,7 @@ void Game_Manager::cinematic_draw()
     {
         if (!explosion_flash)
         {
-            explosion.draw(0, -384);
+            explosion.draw(0, -tile_size);
         }
     }
     else
@@ -308,8 +316,17 @@ void Game_Manager::cinematic_init()
     explosing = false;
     pause = true;
     explosion_flash = true;
-    bomb_y = -384;
+    bomb_y = -tile_size;
     cinematic_time = 5.0f;
+    while (info)
+    {
+        draw();
+        if (handle_input_events_key())
+        {
+            info = false;
+        }
+    }
+
     cinematic_clock.restart();
 }
 
@@ -372,7 +389,11 @@ void Game_Manager::draw()
     {
         cinematic_draw();
     }
-    
+    if (info)
+    {
+        info_sprite.draw(0, 0 - tile_size);
+    }
+
 
     if (glissor_on)
     {
@@ -385,7 +406,10 @@ void Game_Manager::draw()
     {
         hud();
     }
-    // Update the window
+    else
+    {
+        pause_sprite.draw(0,  0);
+    }// Update the window
     m_app->display();
 
 
@@ -419,17 +443,17 @@ void Game_Manager::execute_action(Action action)
     switch (action)
     {
     case ACT_GO_UP:
-        m_y_offset -= 384;
+        m_y_offset -= tile_size;
         break;
     case ACT_GO_RIGHT:
-        m_x_offset += 384;
+        m_x_offset += tile_size;
 
         break;
     case ACT_GO_DOWN:
-        m_y_offset += 384;
+        m_y_offset += tile_size;
         break;
     case ACT_GO_LEFT:
-        m_x_offset -= 384;
+        m_x_offset -= tile_size;
         break;
     case ACT_PAUSE:
         if (!pause)
@@ -493,6 +517,30 @@ bool Game_Manager::handle_input_events()
             clicked = true;
             ret = true;
         }
+    }
+    return ret;
+}
+
+bool Game_Manager::handle_input_events_key()
+{
+    Event event;
+    bool isEvent = m_app->pollEvent(event);
+    Action action;
+    sf::Mouse::Button click = {};
+    clicked = false;
+
+    key_event.get_mouse_position(m_app, mouse_vec);
+    m_selection_vector = m_app->mapPixelToCoords(mouse_vec);
+
+    bool ret = false;
+    if (isEvent)
+    {
+        if (key_event.manage_key_event(event, action))
+        {
+            execute_action(action);
+            ret = true;
+        }
+        
     }
     return ret;
 }

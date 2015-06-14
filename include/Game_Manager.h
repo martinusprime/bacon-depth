@@ -38,6 +38,7 @@ public:
 
 private:
     bool handle_input_events();
+    bool handle_input_events_key();
     bool pause;
 
     void cinematic_update();
@@ -96,7 +97,11 @@ private:
     int bomb_y;
     My_Sprite bomb;
     My_Sprite explosion;
-    bool explosing, explosion_flash;
+    My_Sprite info_sprite, pause_sprite;
+    bool explosing, info, explosion_flash;
+
+    sf::SoundBuffer buffer;
+    sf::Sound sound;
 
 };
 

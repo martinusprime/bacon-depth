@@ -24,7 +24,7 @@ private:
     Direction direction;
     Status status;
     My_Sprite sprite;
-    int m_id, tile_x, tile_y, walking_x;
+    int m_id, tile_x, tile_y, tile_size, walking_x;
     int life;
     Clock render_clock, random_clock;
 
