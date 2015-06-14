@@ -15,6 +15,7 @@ public:
     void update(Tile my_map[][5], float timeElapsed);
     void draw();
     bool alive();
+    void get_damage(int damage);
     virtual ~Character();
     void newGoal(int x, int y);
     struct coord

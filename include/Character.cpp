@@ -50,6 +50,10 @@ Character::~Character()
 {
 }
 
+void Character::get_damage(int damage)
+{
+    life -= damage;
+}
 
 void Character::update(Tile my_map[][5], float timeElapsed)
 {
