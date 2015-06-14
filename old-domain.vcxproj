@@ -137,7 +137,7 @@
     <ClCompile Include="src\Monster.cpp" />
     <ClCompile Include="src\My_Sprite.cpp" />
     <ClCompile Include="src\My_Text.cpp" />
-    <ClCompile Include="src\Resource.cpp" />
+    <ClCompile Include="src\Ressource.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
@@ -152,7 +152,7 @@
     <ClInclude Include="include\My_Sprite.h" />
     <ClInclude Include="include\My_Text.h" />
     <ClInclude Include="include\Random.h" />
-    <ClInclude Include="include\Resource.h" />
+    <ClInclude Include="include\Ressource.h" />
     <ClInclude Include="include\Tile.h" />
     <ClInclude Include="include\Timer.h" />
     <ClInclude Include="resource.h" />

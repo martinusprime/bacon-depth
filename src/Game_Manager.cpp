@@ -18,7 +18,6 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     , bomb(app, "resources/bomb.png", &view1)
     , pause_sprite(app, "resources/pause.png", &view1)
     , info_sprite(app, "resources/info.png", &view1)
-    , resource1(app, &view1, 0, 5)
     , tile_size(384)
     , glissor1(app, 0, 0, 0, 0, &view1)
 {
@@ -55,6 +54,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     {
         for (size_t y = 0; y < 10; y++)
         {
+         //   map[x][y].init_resource(m_app, &m_view1, x);
             map[x][y].setLevel(y);
             if (y == 0)
             {            //surface
@@ -351,8 +351,6 @@ void Game_Manager::draw()
     }
 
 
-    //ressources display
-    resource1.draw();
 
     for (int i = 0; i < citizen_max; i++)
     {
@@ -406,9 +404,9 @@ void Game_Manager::draw()
     {
         hud();
     }
-    else
+    if (pause && !cinematic_on)
     {
-        pause_sprite.draw(0,  0);
+        pause_sprite.draw(tile_size,  0);
     }// Update the window
     m_app->display();
 

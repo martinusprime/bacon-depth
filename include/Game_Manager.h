@@ -75,7 +75,6 @@ private:
     bool clicked, glissor_on, cinematic_on;
     Music music;
 
-    Resource resource1;
     Selected_tile selected_tile;
     Tile map[5][10];
     Tile mapCon[5][10];
