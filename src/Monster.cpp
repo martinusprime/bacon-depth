@@ -2,7 +2,7 @@
 #include "Random.h"
 
 Monster::Monster(RenderWindow *app, View *view, int id)
-    : sprite(app, "resources/perso", view, 10)
+    : sprite(app, "resources/monster", view, 10)
     , life_bar(app, "resources/life_bar.png", view)
     , life_bar_background(app, "resources/life_bar_background.png", view)
     , life_bar_heart(app, "resources/life_bar_heart.png", view)

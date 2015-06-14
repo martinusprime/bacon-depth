@@ -43,14 +43,15 @@ void Tile::init_resources(RenderWindow *app, View *view, int x, int y)
     m_y = y;
     for (int i = 0; i < random; i++)
     {
-        cout << "it: "<< i<< "randomommo :" << random << endl;
+        cout << "it: " << i << "randomommo :" << random << endl;
         resource1.push_back(Ressource{ app, view, 0, resource_number, x, y });
         resource_number++;
     } srand(time(0));
 
-        life_bar = My_Sprite{ app, "resources/life_bar.png", view };
-        life_bar_background = My_Sprite{ app, "resources/life_bar_background.png", view };
-        life_bar_heart = My_Sprite{ app, "resources/life_bar_heart.png", view };
+    life_bar = My_Sprite{ app, "resources/life_bar.png", view };
+    life_bar_background = My_Sprite{ app, "resources/life_bar_background.png", view };
+    life_bar_heart = My_Sprite{ app, "resources/life_bar_heart.png", view };
+    time_text.init(app, "dfsd", 55, 1);
 }
 
 int Tile::get_ressources()
@@ -101,12 +102,19 @@ int Tile::getId()
 }
 void Tile::draw_tile()
 {
-    life_bar_background.draw(m_x * tile_size , m_y * tile_size);
-    life_bar.draw(m_x * tile_size, m_y * tile_size);
-    life_bar_heart.draw(m_x * tile_size , m_y * tile_size );
+    if (isBuilding())
+    {
+        life_bar_background.draw(m_x * tile_size, m_y * tile_size);
+        life_bar.draw(m_x * tile_size, m_y * tile_size);
+        life_bar_heart.draw(m_x * tile_size, m_y * tile_size);
+    }
     for (int i = 0; i < resource_number; i++)
     {
         resource1[i].draw();
+    }
+    if (m_work == DIGING)
+    {
+        time_text.draw(m_x * tile_size, m_y * tile_size, 50);
     }
 }
 void Tile::update(float time)
@@ -123,13 +131,18 @@ void Tile::update(float time)
     {
         m_irradiation = 0.0f;
     }
-    
+
     if ((m_progress >= m_progressMax) && (m_work != NO))
     {
         m_work = NO;
         setID(m_futID);
         m_futID = 0;
         m_progress = 0;
+    }
+
+    if(m_work == DIGING)
+    {
+        time_text.refill(std::to_string(m_progress) + "/" + std::to_string(m_progressMax));
     }
 }
 
@@ -171,4 +184,16 @@ int Tile::addProgress(float pr)
     m_progress += pr;
     cout << pr << " " << m_progress << endl;
     return 1;
+}
+
+bool Tile::isBuilding()
+{
+    if ((m_ID >= 17) && (m_ID <= 22))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }

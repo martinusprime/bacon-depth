@@ -90,9 +90,18 @@ private:
     vector <My_Sprite> sprites;
     vector <Button> buttons;
     vector <bool> citizen_state;
-
+    enum Zoom_change { ZOOM_NO_CHANGE, ZOOM_ADD, ZOOM_LESS };
     Clock cinematic_clock, radiation_time, oxygen_clock;
     float cinematic_time;
+
+    Zoom_change zoom_change;
+    float zoom;
+    float zoom_rate;
+
+
+    Clock clock_zoom;
+    sf::Time zoom_time;
+
     int bomb_y;
     My_Sprite bomb;
     My_Sprite end_sprite;
@@ -104,6 +113,9 @@ private:
 
     sf::SoundBuffer buffer;
     sf::Sound sound;
+
+    sf::SoundBuffer buffer_combat;
+    sf::Sound sound_combat;
 
 };
 

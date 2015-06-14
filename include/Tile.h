@@ -27,6 +27,7 @@ public:
     int isWalkable();
     void constru(int newID, int progressMax);
     int addProgress(float pr);
+    bool isBuilding();
 
 private:
     int m_level, m_rubble, m_oxygen, m_ID, resource_number;
@@ -39,5 +40,6 @@ private:
     Work m_work;
     vector <Ressource> resource1;
     My_Sprite life_bar, life_bar_background, life_bar_heart;
+    My_Text time_text;
 };
 
