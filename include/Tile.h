@@ -26,7 +26,7 @@ public:
     float get_radiation();
     int isWalkable();
     void constru(int newID, int progressMax);
-    void addProgress(float pr);
+    int addProgress(float pr);
 
 private:
     int m_level, m_rubble, m_oxygen, m_ID, resource_number;
