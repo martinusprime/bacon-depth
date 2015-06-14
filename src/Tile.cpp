@@ -117,6 +117,7 @@ void Tile::update(float time)
     {
         m_work = NO;
         setID(m_futID);
+        m_futID = 0;
         m_progress = 0;
     }
 }
@@ -150,7 +151,13 @@ void Tile::constru(int newID, int progressMax)
     }
 }
 
-void Tile::addProgress(float pr)
+int Tile::addProgress(float pr)
 {
+    if (m_futID == 0)
+    {
+        return 0;
+    }
     m_progress += pr;
+    cout << pr << " " << m_progress << endl;
+    return 1;
 }

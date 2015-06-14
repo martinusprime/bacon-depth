@@ -179,7 +179,7 @@ void Game_Manager::reset()
         {
 
             my_map[y][x].setLevel(x);
-            my_map[y][x].init_resources(m_app, &view1, x, y);
+            my_map[y][x].init_resources(m_app, &m_view1, x, y);
 
             if (y == 0)
             {            //surface
@@ -305,7 +305,7 @@ void Game_Manager::update(float timeElapsed)
 
             if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
             {
-            //    execute_action(ACT_BUILD_GENERATOR);
+                execute_action(ACT_BUILD_GENERATOR);
 
             }
         }
@@ -317,8 +317,7 @@ void Game_Manager::update(float timeElapsed)
 
             if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
             {
-                // metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
-
+                execute_action(ACT_BUILD_FARM);
             }
         }
 
@@ -329,8 +328,7 @@ void Game_Manager::update(float timeElapsed)
 
             if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
             {
-                // metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
-
+                execute_action(ACT_BUILD_WORKBENCH);
             }
         }
 
@@ -341,8 +339,7 @@ void Game_Manager::update(float timeElapsed)
 
             if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
             {
-                //    execute_action(ACT_BUILD_OXYGEN);
-
+                    execute_action(ACT_BUILD_AERATION);
             }
         }
 
@@ -692,11 +689,13 @@ void Game_Manager::execute_action(Action action)
                 character1[i].stop();
             }
         }
-    case ACT_DIGING:        
-        if (((selected_tile.goal_y - selected_tile.clicked_y) * (selected_tile.goal_y - selected_tile.clicked_y) == 1) &&
-            ((selected_tile.goal_x - selected_tile.clicked_x) * (selected_tile.goal_x - selected_tile.clicked_x) == 1))
+    case ACT_DIGING:
+        if (((selected_tile.goal_y == selected_tile.clicked_y) && (selected_tile.goal_x == (selected_tile.clicked_x) + 1)) ||
+            ((selected_tile.goal_y == selected_tile.clicked_y) && (selected_tile.goal_x == (selected_tile.clicked_x) - 1)) ||
+            ((selected_tile.goal_y == (selected_tile.clicked_y) + 1) && (selected_tile.goal_x == selected_tile.clicked_x)) ||
+            ((selected_tile.goal_y == (selected_tile.clicked_y) - 1) && (selected_tile.goal_x == selected_tile.clicked_x)))            
         {
-            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(1, 100);
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(1, 10000000);
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
@@ -706,6 +705,90 @@ void Game_Manager::execute_action(Action action)
                 }
             }
         }        
+    case ACT_BUILD_GENERATOR:
+        if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
+        {
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(17, 1000000);
+            for (size_t i = 0; i < character1.size(); i++)
+            {
+                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                {
+                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    compteur++;
+                }
+            }
+        }
+        break;
+    case ACT_BUILD_AERATION:
+        if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
+        {
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(18, 1000000);
+            for (size_t i = 0; i < character1.size(); i++)
+            {
+                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                {
+                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    compteur++;
+                }
+            }
+        }
+        break;
+    case ACT_BUILD_FARM:
+        if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
+        {
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(19, 1000000);
+            for (size_t i = 0; i < character1.size(); i++)
+            {
+                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                {
+                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    compteur++;
+                }
+            }
+        }
+        break;
+    case ACT_BUILD_ARMORY:
+        if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
+        {
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(20, 1000000);
+            for (size_t i = 0; i < character1.size(); i++)
+            {
+                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                {
+                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    compteur++;
+                }
+            }
+        }
+        break;
+    case ACT_BUILD_WORKBENCH:
+        if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
+        {
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(21, 1000000);
+            for (size_t i = 0; i < character1.size(); i++)
+            {
+                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                {
+                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    compteur++;
+                }
+            }
+        }
+        break;
+    case ACT_BUILD_BUNKER:
+        if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
+        {
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(22, 100000000);
+            for (size_t i = 0; i < character1.size(); i++)
+            {
+                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                {
+                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    compteur++;
+                }
+            }
+        }
+        break;
     default:
         break;
     }

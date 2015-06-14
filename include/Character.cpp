@@ -114,7 +114,21 @@ void Character::update(Tile my_map[][5], float timeElapsed)
 
     else if (status == DIGING)
     {
-        my_map[m_digY][m_digX].addProgress(timeElapsed);
+        if (my_map[m_digY][m_digX].addProgress(timeElapsed) == 0)
+        {
+            status == IDLE;
+            m_digY = 0;
+            m_digX = 0;
+        }
+    }
+    else if (status == BUILDING)
+    {
+        if (my_map[m_buildY][m_buildX].addProgress(timeElapsed) == 0)
+        {
+            status == IDLE;
+            m_buildY = 0;
+            m_buildX = 0;
+        }
     }
 
     if (life <= 0)
@@ -139,7 +153,10 @@ void Character::update(Tile my_map[][5], float timeElapsed)
 
     if ((tile_x == m_goalX) && (tile_y == m_goalY))
     {
-        status = IDLE;
+        if (status == MOVING)
+        {
+            status = IDLE;
+        }        
     }
     else
     {
@@ -236,7 +253,7 @@ int Character::pathFinding(Tile my_map[][5])
                     if (i > 0)
                     {
                         //std::cout << "Haut" << endl;
-                        if ((my_map[i - 1][j].getNode() == 0) && (my_map[i - 1][j].isWalkable()))
+                        if ((my_map[i - 1][j].getNode() == 0) && (my_map[i - 1][j].isWalkable())) //&& ((my_map[i - 1][j].getNode() == 8) || (my_map[i - 1][j].getNode() == 2)))*/
                         {
                             my_map[i - 1][j].setNode(node);
                             if ((i == m_goalY) && (j == m_goalX))
@@ -248,7 +265,7 @@ int Character::pathFinding(Tile my_map[][5])
                     }
                     if (i < 9)
                     {                        
-                        if ((my_map[i + 1][j].getNode() == 0) && (my_map[i + 1][j].isWalkable()))
+                        if ((my_map[i + 1][j].getNode() == 0) && (my_map[i + 1][j].isWalkable()))// && ((my_map[i][j].getNode() == 8) || (my_map[i][j].getNode() == 2)))
                         {
                             //std::cout << "BAS" << endl;
                             my_map[i + 1][j].setNode(node);
@@ -432,4 +449,11 @@ void Character::dig(int x, int y)
     status = DIGING;
     m_digX = x;
     m_digY = y;
+}
+
+void Character::build(int x, int y)
+{
+    status = BUILDING;
+    m_buildX = x;
+    m_buildY = y;
 }
