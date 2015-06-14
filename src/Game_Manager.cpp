@@ -534,10 +534,14 @@ void Game_Manager::execute_action(Action action)
             }
         }
     case ACT_DIGING:        
-        if (((selected_tile.goal_y - selected_tile.clicked_y) * (selected_tile.goal_y - selected_tile.clicked_y) == 1) &&
-            ((selected_tile.goal_x - selected_tile.clicked_x) * (selected_tile.goal_x - selected_tile.clicked_x) == 1))
+       
+        if (((selected_tile.goal_y == selected_tile.clicked_y) && (selected_tile.goal_x == (selected_tile.clicked_x) + 1)) ||
+            ((selected_tile.goal_y == selected_tile.clicked_y) && (selected_tile.goal_x == (selected_tile.clicked_x) - 1)) ||
+            ((selected_tile.goal_y == (selected_tile.clicked_y) + 1) && (selected_tile.goal_x == selected_tile.clicked_x)) ||
+            ((selected_tile.goal_y == (selected_tile.clicked_y) - 1) && (selected_tile.goal_x == selected_tile.clicked_x)))            
         {
-            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(1, 100);
+             cout << "CA MARCHE" << endl;
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(1, 10000);
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))

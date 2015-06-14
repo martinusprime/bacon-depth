@@ -153,4 +153,5 @@ void Tile::constru(int newID, int progressMax)
 void Tile::addProgress(float pr)
 {
     m_progress += pr;
+    cout << pr << " " << m_progress << endl;
 }
