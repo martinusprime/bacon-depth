@@ -112,6 +112,11 @@ void Character::update(Tile my_map[][5], float timeElapsed)
         }
     }
 
+    else if (status == DIGING)
+    {
+        my_map[m_digY][m_digX].addProgress(timeElapsed);
+    }
+
     if (life <= 0)
     {
         is_alive = false;
@@ -420,4 +425,11 @@ void Character::stop()
     m_moving = 0;
     move_x = 0;
     move_y = 0;
+}
+
+void Character::dig(int x, int y)
+{
+    status = DIGING;
+    m_digX = x;
+    m_digY = y;
 }

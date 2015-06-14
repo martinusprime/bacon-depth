@@ -15,7 +15,8 @@ enum Action
     ACT_PAUSE,
     ACT_CLOSE_APP,
     ACT_MOVE,
-    ACT_STOP
+    ACT_STOP,
+    ACT_DIGING
 };
 
 

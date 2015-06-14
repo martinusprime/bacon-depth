@@ -501,8 +501,7 @@ void Game_Manager::execute_action(Action action)
         cout << "close app\n";
         m_app->close();
         break;
-    case ACT_MOVE:
-       
+    case ACT_MOVE:       
         for (size_t i = 0; i < character1.size(); i++)
         {
             if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)) &&
@@ -522,6 +521,20 @@ void Game_Manager::execute_action(Action action)
                 character1[i].stop();
             }
         }
+    case ACT_DIGING:        
+        if (((selected_tile.goal_y - selected_tile.clicked_y) * (selected_tile.goal_y - selected_tile.clicked_y) == 1) &&
+            ((selected_tile.goal_x - selected_tile.clicked_x) * (selected_tile.goal_x - selected_tile.clicked_x) == 1))
+        {
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(1, 100);
+            for (size_t i = 0; i < character1.size(); i++)
+            {
+                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                {
+                    character1[i].dig(selected_tile.goal_x, selected_tile.goal_y);
+                    compteur++;
+                }
+            }
+        }        
     default:
         break;
     }
