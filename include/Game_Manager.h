@@ -39,6 +39,9 @@ public:
 private:
     bool handle_input_events();
     bool pause;
+    void cinematic_update();
+    void cinematic_draw();
+    void cinematic_init();
 
     Key_event_handler key_event;
     RenderWindow *m_app;
@@ -67,7 +70,7 @@ private:
     int m_screen_x; //width of the game window in pixels
     int citizen_number, citizen_max, monster_max; //the number of citizen you have
     int tile_size;
-    bool clicked, glissor_on;
+    bool clicked, glissor_on, cinematic_on;
     Music music;
 
     Resource resource1;
@@ -86,7 +89,13 @@ private:
     vector <My_Sprite> sprites;
     vector <Button> buttons;
     vector <bool> citizen_state;
-    
+
+    Clock cinematic_clock;
+    float cinematic_time;
+    int bomb_y;
+    My_Sprite bomb;
+    My_Sprite explosion;
+    bool explosing, explosion_flash;
 };
 
 #endif // GAME_MANAGER_H

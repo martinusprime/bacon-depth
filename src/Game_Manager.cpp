@@ -11,9 +11,11 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     , radio_bar_background(app, "resources/radio_bar_background.png", &view1)
     , radio_bar_grad(app, "resources/radio_bar_grad.png", &view1)
     , head_icon(app, "resources/head_icon.png", &view1)
+    , explosion(app, "resources/explosion.png", &view1)
     , background(app, "resources/background.png", &view1)
     , selection_border(app, "resources/selection_border.png", &view1)
-    , goal_border(app, "resources/selection_border.png", &view1)    
+    , bomb(app, "resources/bomb.png", &view1)
+    , goal_border(app, "resources/selection_border.png", &view1)
     , resource1(app, &view1, 0, 5)
     , tile_size(384)
     , glissor1(app, 0, 0, 0, 0, &view1)
@@ -28,6 +30,9 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     pause = false;
     clicked = false;
     glissor_on = false;
+    cinematic_on = true;
+    m_x_offset = 384 * 2 + (384/2);
+    m_y_offset =  (384 / 2);
 
     m_app = app;
     m_app->setView(m_view1);
@@ -89,6 +94,9 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     }
 
     music.play();
+    //
+    update(0);
+    cinematic_init();
 }
 
 
@@ -96,6 +104,10 @@ void Game_Manager::update(int timeElapsed)
 {
     handle_input_events();
 
+    if (cinematic_on)
+    {
+        cinematic_update();
+    }
 
     if (!pause)
     {
@@ -185,6 +197,66 @@ void Game_Manager::update(int timeElapsed)
     }
 }
 
+void Game_Manager::cinematic_update()
+{
+    if (cinematic_clock.getElapsedTime().asSeconds() > 0.5)
+    {
+        cinematic_time+= 0.3;
+        bomb_y+= cinematic_time;
+        if (explosing)
+        {
+            explosion.scale(1.0f + cinematic_time, 1.0f + cinematic_time);
+        }
+
+        if (explosion_flash == true)
+        {
+            explosion_flash = false;
+        }
+        else 
+        {
+            explosion_flash = true;
+        }
+    }
+    if (bomb_y >= 384 - bomb.get_h() && !explosing)
+    {
+        cinematic_time = 1.0f;
+        explosing = true;
+    }
+    if (explosing && cinematic_time >= 6.5f)
+    {
+        pause = false;
+        cinematic_on = false;
+    }
+   
+}
+void Game_Manager::cinematic_draw()
+{
+   
+    if (explosing)
+    {
+        if (!explosion_flash)
+        {
+            explosion.draw(0, -384);
+        }
+    }
+    else
+    {
+            bomb.draw(0, bomb_y - 364);
+            bomb.draw(354, bomb_y);
+            bomb.draw(645, bomb_y);
+            bomb.draw(888, bomb_y);
+    }
+}
+
+void Game_Manager::cinematic_init()
+{
+    explosing = false;
+    pause = true;
+    explosion_flash = true;
+    bomb_y = -384;
+    cinematic_time = 5.0f;
+    cinematic_clock.restart();
+}
 
 void Game_Manager::draw()
 {
@@ -225,6 +297,12 @@ void Game_Manager::draw()
     goal_border.draw(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);
     selection_border.draw(selected_tile.clicked_x * tile_size, selected_tile.clicked_y * tile_size);
     buttons[0].draw();
+
+    if (cinematic_on)
+    {
+        cinematic_draw();
+    }
+
     
     if (glissor_on)
     {
