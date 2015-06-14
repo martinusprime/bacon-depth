@@ -1,3 +1,5 @@
+#include <vector>
+
 #pragma once
 class Tile
 {
@@ -12,7 +14,6 @@ public:
     int getNode();
     int isWalkable();
     void constru(int newID, int progressMax);
-    void update();
 
 private:
     int m_irradiation, m_level, m_rubble, m_oxygen, m_ID;
@@ -20,8 +21,7 @@ private:
     int walkable;
     int m_node;
     int m_progress, m_progressMax, m_futID;
-    enum Work { NO, DIGING, BUILDING};
+    enum Work { NO, DIGING, BUILDING };
     Work m_work;
-    
 };
 

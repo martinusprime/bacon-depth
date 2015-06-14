@@ -18,10 +18,10 @@ Character::Character(RenderWindow *app, View *view, int id)
     m_app = app;
     life = 100;
     tile_x = 0;
-    tile_y = 0; 
+    tile_y = 0;
     tile_size = 384;
     //set initial position
-    walking_x = m_id * 10 ;
+    walking_x = m_id * 10;
 
     if (walking_x < 0)
     {
@@ -36,11 +36,11 @@ Character::Character(RenderWindow *app, View *view, int id)
     }
 
     if (Random::get_int(0, 10) > 5)
-    { 
+    {
         direction = RIGHT;
     }
     else direction = LEFT;
-    
+
 }
 
 
@@ -49,9 +49,9 @@ Character::~Character()
 }
 
 
-void Character::update(Tile map[][10])
+void Character::update(Tile map[][10], float timeElapsed)
 {
-    float new_life =life / 100.0f;
+    float new_life = life / 100.0f;
     life_bar.scale(new_life, 1.0f);
 
     if (status == IDLE)
@@ -93,13 +93,13 @@ void Character::update(Tile map[][10])
             if (walking_x - sprite.get_w() < 0)
             {
                 direction = RIGHT;
-                walking_x = 0 +sprite.get_w();
+                walking_x = 0 + sprite.get_w();
             }
 
             if (walking_x  > tile_size)
             {
                 direction = LEFT;
-                walking_x = tile_size ;
+                walking_x = tile_size;
             }
 
         }
@@ -137,6 +137,15 @@ void Character::update(Tile map[][10])
             {
                 status == IDLE;
             }
+            else
+            {
+                m_moving += timeElapsed;
+                cout << " -->" << m_moving << endl;
+            }
+            if (m_moving >= 1)
+            {
+                (*this).setPosition(move_x, move_y);
+            }
         }
     }
 }
@@ -149,7 +158,7 @@ bool Character::alive()
 void Character::draw()
 {
     sprite.draw(tile_x * 384 + walking_x, tile_y * 384 + 384 - sprite.get_h());
-    life_bar_background.draw(tile_x * 384 + walking_x, tile_y * 384 + ( 384 - sprite.get_h() )- 50);
+    life_bar_background.draw(tile_x * 384 + walking_x, tile_y * 384 + (384 - sprite.get_h()) - 50);
     life_bar.draw(tile_x * 384 + walking_x, tile_y * 384 + (384 - sprite.get_h()) - 50);
     life_bar_heart.draw(tile_x * 384 + walking_x, tile_y * 384 + (384 - sprite.get_h()) - 50);
 }
@@ -164,6 +173,11 @@ void Character::newGoal(int x, int y)
 
 int Character::pathFinding(Tile map[][10])
 {
+    if (map[m_goalX][m_goalY].isWalkable() == 0)
+    {
+        cout << "ERROR CASE ISNT WALKABLE" << endl;
+        return 0;
+    }
     //cout << "ENTRER PATHFINDING" << endl;
     int contin = 1;
     for (size_t i = 0; i < 10; i++)
@@ -201,7 +215,7 @@ int Character::pathFinding(Tile map[][10])
                             }
                         }
                     }
-                    if (i < 10)
+                    if (i < 9)
                     {
 
                         if ((map[i + 1][j].getNode() == 0) && (map[i + 1][j].getId() == 2))/////////VERIFICATION OF THE ELEVATOR
@@ -226,7 +240,7 @@ int Character::pathFinding(Tile map[][10])
                             }
                         }
                     }
-                    if (j < 5)
+                    if (j < 4)
                     {
                         if (map[i][j + 1].getNode() == 0)
                         {
@@ -252,47 +266,49 @@ int Character::pathFinding(Tile map[][10])
     coord node2;
     contin = 1;
     compteur = 0;
-    
-    while (compteur < 50)
+
+    while (compteur < 1000)
     {
         //cout << "debug1" << endl;
         compteur++;
-        if (node1.y > 0)
+        if (node1.y > 1)
         {
-            if ((map[node1.y - 1][node1.x].getNode() < meilleur) && (map[node1.y - 1][node1.x].getNode() != 0))
+            /*cout << "Node" << node1.x << node1.y << endl;
+            system("PAUSE");*/
+            if ((map[node1.x][node1.y - 1].getNode() < meilleur) && (map[node1.x][node1.y - 1].getNode() != 0))
             {
                 //cout << "BINGO" << endl;
-                meilleur = map[node1.y - 1][node1.x].getNode();
+                meilleur = map[node1.x][node1.y - 1].getNode();
                 node2.x = node1.x;
                 node2.y = node1.y - 1;
             }
         }
-        if (node1.y < 10)
+        if (node1.y < 9)
         {
-            if ((map[node1.y + 1][node1.x].getNode() < meilleur) && (map[node1.y + 1][node1.x].getNode() != 0))
+            if ((map[node1.x][node1.y + 1].getNode() < meilleur) && (map[node1.x][node1.y + 1].getNode() != 0))
             {
                 //cout << "BINGO" << endl;
-                meilleur = map[node1.y + 1][node1.x].getNode();
+                meilleur = map[node1.x][node1.y + 1].getNode();
                 node2.x = node1.x;
                 node2.y = node1.y + 1;
             }
         }
-        if (node1.x > 0)
+        if (node1.x > 1)
         {
-            if ((map[node1.y][node1.x - 1].getNode() < meilleur) && (map[node1.y][node1.x - 1].getNode() != 0))
+            if ((map[node1.x - 1][node1.y].getNode() < meilleur) && (map[node1.x - 1][node1.y].getNode() != 0))
             {
                 //cout << "BINGO" << endl;
-                meilleur = map[node1.y][node1.x - 1].getNode();
+                meilleur = map[node1.x - 1][node1.y].getNode();
                 node2.x = node1.x - 1;
                 node2.y = node1.y;
             }
         }
-        if (node1.x < 5)
+        if (node1.x < 4)
         {
-            if ((map[node1.y][node1.x + 1].getNode() < meilleur) && (map[node1.y][node1.x + 1].getNode() != 0))
+            if ((map[node1.x + 1][node1.y].getNode() < meilleur) && (map[node1.x + 1][node1.y].getNode() != 0))
             {
                 //cout << "BINGO" << endl;
-                meilleur = map[node1.y][node1.x + 1].getNode();
+                meilleur = map[node1.x + 1][node1.y].getNode();
                 node2.x = node1.x + 1;
                 node2.y = node1.y;
             }
@@ -300,10 +316,10 @@ int Character::pathFinding(Tile map[][10])
         //cout << endl << "test:" << node2.x << m_goal << endl;
         if ((node2.x == tile_x) && (node2.y == tile_y))
         {
-            
+
             //cout << "TROUVE:!!!!!" << endl;
             //////////////APPEL FONCTION DEPLACEMENT (node1.y, node1.x)
-            (*this).setPosition(node1.x, node1.y);
+            (*this).moving(node1.x, node1.y);
             //cout << "NODE:" << node1.x << node1.y << endl;
             return 1;
         }
@@ -321,4 +337,59 @@ void Character::setPosition(int x, int y)
 {
     tile_x = x;
     tile_y = y;
+}
+
+void Character::moving(int x, int y)
+{
+    if ((x != move_x) || (y != move_y))
+    {
+        //cout << "REINI" << endl;
+        move_x = x;
+        move_y = y;
+        m_moving = 0;
+    }
+}
+
+int Character::getX()
+{
+    return tile_x;
+}
+
+int Character::getY()
+{
+    return tile_y;
+}
+
+int Character::isIdle()
+{
+    if (status == IDLE)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int Character::isOnPos(int x, int y)
+{
+    if ((tile_x == x) && (tile_y == y))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void Character::stop()
+{
+    status = IDLE;
+    m_goalX = 0;
+    m_goalY = 0;
+    m_moving = 0;
+    move_x = 0;
+    move_y = 0;
 }

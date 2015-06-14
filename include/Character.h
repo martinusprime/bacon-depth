@@ -12,7 +12,7 @@ class Character
 {
 public:
     Character(RenderWindow *app, View *view, int id);
-    void update(Tile map[][10]);
+    void update(Tile map[][10], float timeElapsed);
     void draw();
     bool alive();
     virtual ~Character();
@@ -24,6 +24,12 @@ public:
     };
     int pathFinding(Tile map[][10]);
     void setPosition(int x, int y);
+    void moving(int x, int y);
+    int getX();
+    int getY();
+    int isIdle();
+    int isOnPos(int x, int y);
+    void stop();
 
 private:
     View *m_view1;
@@ -39,7 +45,8 @@ private:
     Clock render_clock, random_clock;
     bool is_alive;
     int m_goalX, m_goalY;
+    float m_moving;
+    int move_x, move_y;
 
-    
 };
 
