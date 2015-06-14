@@ -239,7 +239,7 @@ int Character::pathFinding(Tile my_map[][5])
                     if (i > 0)
                     {
                         //std::cout << "Haut" << endl;
-                        if ((my_map[i - 1][j].getNode() == 0) && (my_map[i - 1][j].isWalkable()) && ((my_map[i - 1][j].getNode() == 8) || (my_map[i - 1][j].getNode() == 2)))
+                        if ((my_map[i - 1][j].getNode() == 0) && (my_map[i - 1][j].isWalkable())) //&& ((my_map[i - 1][j].getNode() == 8) || (my_map[i - 1][j].getNode() == 2)))*/
                         {
                             my_map[i - 1][j].setNode(node);
                             if ((i == m_goalY) && (j == m_goalX))
@@ -251,7 +251,7 @@ int Character::pathFinding(Tile my_map[][5])
                     }
                     if (i < 9)
                     {                        
-                        if ((my_map[i + 1][j].getNode() == 0) && (my_map[i + 1][j].isWalkable()) && ((my_map[i][j].getNode() == 8) || (my_map[i][j].getNode() == 2)))
+                        if ((my_map[i + 1][j].getNode() == 0) && (my_map[i + 1][j].isWalkable()))// && ((my_map[i][j].getNode() == 8) || (my_map[i][j].getNode() == 2)))
                         {
                             //std::cout << "BAS" << endl;
                             my_map[i + 1][j].setNode(node);

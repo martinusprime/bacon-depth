@@ -547,7 +547,7 @@ void Game_Manager::execute_action(Action action)
             ((selected_tile.goal_y == (selected_tile.clicked_y) - 1) && (selected_tile.goal_x == selected_tile.clicked_x)))            
         {
              cout << "CA MARCHE" << endl;
-            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(1, 10000);
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(1, 1000000);
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
