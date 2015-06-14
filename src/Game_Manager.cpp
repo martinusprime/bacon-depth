@@ -45,22 +45,23 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     m_view2.setViewport(FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
 
     //init map
-    for (size_t x = 0; x < 5; x++)
+    for (size_t y = 0; y < 10; y++)
     {
-        for (size_t y = 0; y < 10; y++)
+        for (size_t x = 0; x < 5; x++)
         {
-            map[x][y].setLevel(y);
+            map[y][x].setLevel(y);
             if (y == 0)
             {
-                map[x][y].setID(6 + x);
+                map[y][x].setID(6 + x);
+                //cout << "walkability" << map[y][x].isWalkable() << endl;
             }
-            if (x == 0)
+            if (y == 0)
             {
-                map[x][y].setID(1);
+                map[y][x].setID(1);
             }
             else
             {
-                map[x][y].setID(0);
+                map[y][x].setID(0);
             }
         }
     }
@@ -132,12 +133,13 @@ void Game_Manager::update(float timeElapsed)
             buttons[0].desactivate();
         }
 
+
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
             {
                 character1[i].update(map, timeElapsed);
 
-                //map[character1[i].getX][character1[i].getX].addCharacter(*character1[i]);
+                //map[character1[i].getY][character1[i].getX].addCharacter(*character1[i]);
 
                 if (!character1[i].alive())
                 {
@@ -283,7 +285,7 @@ void Game_Manager::draw()
     {
         for (size_t y = 0; y < 10; y++)
         {
-            sprites[map[x][y].getId()].draw(tile_size * x, tile_size * y);
+            sprites[map[y][x].getId()].draw(tile_size * x, tile_size * y);
         }
     }
 
@@ -398,13 +400,14 @@ void Game_Manager::execute_action(Action action)
         m_app->close();
         break;
     case ACT_MOVE:
+       
         for (size_t i = 0; i < character1.size(); i++)
         {
             if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)) &&
-                (map[selected_tile.goal_x][selected_tile.goal_y].isWalkable()))
-            {
-                cout << "MOVING" << endl;
+                (map[selected_tile.goal_y][selected_tile.goal_x].isWalkable()))
+            {               
                 character1[i].newGoal(selected_tile.goal_x, selected_tile.goal_y);
+                cout << "GOAL" << selected_tile.goal_x << " " << selected_tile.goal_y << endl;
                 compteur++;
             }
         }
