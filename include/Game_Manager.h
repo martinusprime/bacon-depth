@@ -13,11 +13,9 @@
 #include "Button.h"
 #include "Key_event.h"
 #include "My_Sprite.h"
-#include "Tile.h"
 #include "Character.h"
 #include "Glissor.h"
 #include "Monster.h"
-#include "Ressource.h"
 #include "Tile.h"
 
 

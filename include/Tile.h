@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <string>
 #include "Ressource.h"
-
+class Ressource;
 class Tile
 {
 public:
@@ -19,6 +19,7 @@ public:
     void update(float time);
     void setNode(int node);
     int getNode();
+    void draw_tile();
     float get_radiation();
     int isWalkable();
     void constru(int newID, int progressMax);

@@ -7,7 +7,7 @@
 #include "Random.h"
 
 using namespace sf;
-
+class Tile;
 class Character
 {
 public:
