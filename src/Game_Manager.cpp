@@ -27,10 +27,23 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     , glissor1(app, 0, 0, 0, 0, &view1)
 {
 
-
+    //sounds
     buffer.loadFromFile("resources/explosion.ogg");
 
     sound.setBuffer(buffer);
+
+    buffer_combat.loadFromFile("resources/combat.ogg");
+
+    sound_combat.setBuffer(buffer_combat);
+
+    //
+
+    zoom = 1;
+    zoom_rate = 10;
+    zoom_change = ZOOM_NO_CHANGE;
+
+
+
 
     goal_border.add_color(255, 150, 50, 255);
 
@@ -226,6 +239,29 @@ void Game_Manager::reset()
 void Game_Manager::update(float timeElapsed)
 {
     handle_input_events();
+    m_view1.zoom(zoom);
+
+    zoom_time = clock_zoom.getElapsedTime();
+    if (zoom_time.asSeconds() >  0.05  && zoom_change != ZOOM_NO_CHANGE)
+    {
+        clock_zoom.restart();
+        if (zoom_change == ZOOM_ADD && zoom_rate >= -30)
+        {
+            zoom = 0.90f;
+            zoom_rate--;
+        }
+        if (zoom_change == ZOOM_LESS  && zoom_rate <= 50)
+        {
+            zoom = 1.1f;
+            zoom_rate++;
+        }
+        zoom_change = ZOOM_NO_CHANGE;
+    }
+    else
+    {
+        zoom = 1;
+    }
+
 
     if (citizen_number == 0)
     {
@@ -349,7 +385,11 @@ void Game_Manager::update(float timeElapsed)
             if (citizen_state[i])
             {
                 monster1[i].update(my_map, timeElapsed);
+<<<<<<< HEAD
                 monster1[i].newGoal(character1[1].getX(), character1[1].getY());
+=======
+//                monster1[i].newGoal(character1[1].getX)
+>>>>>>> e4a70c7b4d357a641f3d9c033dabf412dd88762d
             }
         }
 
@@ -630,17 +670,23 @@ void Game_Manager::execute_action(Action action)
     switch (action)
     {
     case ACT_GO_UP:
-        m_y_offset -= tile_size;
+        m_y_offset -= tile_size / 4;
         break;
     case ACT_GO_RIGHT:
-        m_x_offset += tile_size;
+        //m_x_offset += tile_size;
 
         break;
     case ACT_GO_DOWN:
-        m_y_offset += tile_size;
+        m_y_offset += tile_size / 4;
         break;
     case ACT_GO_LEFT:
-        m_x_offset -= tile_size;
+        m_x_offset -= tile_size / 4;
+        break;
+    case ACT_ZOOM_IN:
+        zoom_change = ZOOM_ADD;
+        break;
+    case ACT_ZOOM_OUT:
+        zoom_change = ZOOM_LESS;
         break;
     case ACT_PAUSE:
         if (!pause)
@@ -779,6 +825,16 @@ void Game_Manager::execute_action(Action action)
         break;
     default:
         break;
+    }
+
+    if (m_x_offset < tile_size * 2 + (tile_size / 2))
+    {
+        m_x_offset = tile_size * 2 + (tile_size / 2);
+    }
+    
+    if (m_y_offset < (tile_size / 2))
+    {
+        m_y_offset = (tile_size / 2);
     }
 }
 
