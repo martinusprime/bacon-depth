@@ -7,9 +7,6 @@ using namespace sf;
 
 
 
-
-
-
 int main()
 {
     int time;
