@@ -17,6 +17,7 @@ Tile::Tile()
     m_work = NO;
     resource_number = 0;
     srand(time(0));
+    m_progress = 0;
 }
 
 Tile::~Tile()
@@ -53,6 +54,7 @@ int Tile::get_ressources()
 }
 void Tile::setID(int ID)
 {
+    m_progress = 0;
     m_ID = ID;
     if (ID == 0)
     {
@@ -110,10 +112,11 @@ void Tile::update(float time)
     {
         m_irradiation = 0.0f;
     }
+    
     if ((m_progress >= m_progressMax) && (m_work != NO))
     {
         m_work = NO;
-        m_ID = m_futID;
+        setID(m_futID);
         m_progress = 0;
     }
 }
@@ -135,7 +138,19 @@ int Tile::isWalkable()
 
 void Tile::constru(int newID, int progressMax)
 {
-    m_progress = 0;
     m_progressMax = progressMax;
     m_futID = newID;
+    if (m_futID == 1)
+    {
+        m_work = DIGING;
+    }
+    else
+    {
+        m_work = BUILDING;
+    }
+}
+
+void Tile::addProgress(float pr)
+{
+    m_progress += pr;
 }

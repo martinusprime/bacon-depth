@@ -30,12 +30,13 @@ public:
     int isIdle();
     int isOnPos(int x, int y);
     void stop();
+    void dig(int x, int y);
 
 private:
     View *m_view1;
     RenderWindow *m_app;
     enum Direction { UP, DOWN, LEFT, RIGHT };
-    enum Status { IDLE, BATTLE, MOVING };
+    enum Status { IDLE, BATTLE, MOVING, DIGING };
     Direction direction;
     Status status;
     My_Sprite sprite;
@@ -47,6 +48,6 @@ private:
     int m_goalX, m_goalY;
     float m_moving;
     int move_x, move_y;
-
+    int m_digX, m_digY;
 };
 

@@ -9,7 +9,7 @@ Ressource::Ressource(RenderWindow *app, View *view, int id, int number_in_tile, 
     m_view1 = view;
     if (id == 0)
     {
-        sprite = My_Sprite{ app, "resources/iron_icon_", view, 3};
+        sprite = My_Sprite{ app, "resources/iron_icon", view, 3};
     }
     if (number_in_tile > 5)
     {
