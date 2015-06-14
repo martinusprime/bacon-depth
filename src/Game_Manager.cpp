@@ -136,17 +136,10 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
 
     buttons.push_back(Button{ m_app, "Take resources",0, 0, 0, 0, &m_view1 });//button of the ressources
     glissor1 = Glissor{ m_app, 0, 0, 0, 0, &m_view1 };
-    //music init
-
-    if (!music.openFromFile("resources/music.ogg"))
-    {
-    cout << "music init failed" << endl;
-    }
-
-    music.play();
-    //
+ 
     update(0);
     cinematic_init();
+    oxygen_clock.restart();
 }
 
 
@@ -169,12 +162,12 @@ void Game_Manager::update(float timeElapsed)
         //radiation haldling
         radio_bar.scale(1.0f, my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_radiation(), true);
         //oxygen_handling
-        if (oxygen_clock.getElapsedTime().asSeconds() > 0.5)
+        if (oxygen_clock.getElapsedTime().asSeconds() > 0.5f)
         {
             oxygen_clock.restart();
-            oxygen_number -= 0.001;
+            oxygen_number -= 0.00001;
         }
-        oxygen_bar.scale(1.0f, oxygen_number, false);
+        oxygen_bar.scale(oxygen_number, 1.0f, false);
 
         buttons[0].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size);
         if (buttons[0].is_activated())
@@ -333,6 +326,15 @@ void Game_Manager::cinematic_update()
     {
         pause = false;
         cinematic_on = false;
+        //music init
+
+        if (!music.openFromFile("resources/nostalgia.ogg"))
+        {
+            cout << "music init failed" << endl;
+        }
+
+        music.play();
+        //
     }
 
 }
@@ -468,15 +470,19 @@ void Game_Manager::hud()
     radio_bar.draw(0 + 28, radio_icon.get_h() + 40);
     radio_bar_grad.draw(0, radio_icon.get_h());
 
-    head_icon.draw(1920 - head_icon.get_w(), 0);
-    food_icon.draw(1920 - food_icon.get_w(), 200);
-    metal_icon.draw(1920 - metal_icon.get_w(), 400);
+    oxygen_bar_background.draw(0 + 150, m_screen_y - oxygen_bar_background.get_h() - 20);
+    oxygen_bar.draw(0 + 150, m_screen_y - oxygen_bar_background.get_h() - 20);
+    oxygen_bar_grad.draw(0 + 150, m_screen_y - oxygen_bar_background.get_h() - 20);
+
+    head_icon.draw(m_screen_x - head_icon.get_w(), 0);
+    food_icon.draw(m_screen_x - food_icon.get_w(), 200);
+    metal_icon.draw(m_screen_x - metal_icon.get_w(), 400);
 
 
 
-    citizen_number_text.draw(1920 - (head_icon.get_w() * 2.5), 0, 35);
-    metal_number_text.draw(1920 - (head_icon.get_w() * 2.5), 400, 35);
-    food_number_text.draw(1920 - (head_icon.get_w() * 2.5), 200, 35);
+    citizen_number_text.draw(m_screen_x - (head_icon.get_w() * 2.5), 0, 35);
+    metal_number_text.draw(m_screen_x - (head_icon.get_w() * 2.5), 400, 35);
+    food_number_text.draw(m_screen_x - (head_icon.get_w() * 2.5), 200, 35);
 
     m_app->setView(m_view1);
 }

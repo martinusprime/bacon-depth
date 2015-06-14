@@ -2,7 +2,7 @@
 #include "Button.h"
 #include "Key_event.h"
 #include "My_Sprite.h"
-
+#include "Random.h"
 using namespace sf;
 class Ressource
 {
@@ -16,5 +16,6 @@ private:
     RenderWindow *m_app;
     int m_id, m_number_in_tile, m_tile_x, m_tile_y, tile_size, quantity;
     My_Sprite sprite;
+    My_Text quantity_text;
 };
 

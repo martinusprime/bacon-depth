@@ -35,7 +35,7 @@ float Tile::get_radiation()
 }
 void Tile::init_resources(RenderWindow *app, View *view, int x, int y)
 {
-    int random = Random::get_int(0, 4);
+    int random = Random::get_int(0, 3);
     
     for (int i = 0; i < random; i++)
     {
