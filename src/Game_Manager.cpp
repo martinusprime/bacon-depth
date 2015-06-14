@@ -347,7 +347,7 @@ void Game_Manager::update(float timeElapsed)
         for (int i = 0; i < monster_max; i++) {
             if (citizen_state[i])
             {
-                monster1[i].update();
+                monster1[i].update(my_map, timeElapsed);
 
             }
         }
@@ -693,7 +693,8 @@ void Game_Manager::execute_action(Action action)
     case ACT_BUILD_GENERATOR:
         if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
         {
-            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(17, 1000000);
+            
+            my_map[selected_tile.goal_y][selected_tile.goal_x].constru(17, 1);
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
