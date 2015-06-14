@@ -149,9 +149,13 @@ void Tile::update(float time)
         m_progress = 0;
     }
 
-    if(m_work == DIGING)
+    if (m_Hp < 0)
     {
-        time_text.refill(std::to_string(m_progress) + "/" + std::to_string(m_progressMax));
+        setID(1);
+        if (m_work == DIGING)
+        {
+            time_text.refill(std::to_string(m_progress) + "/" + std::to_string(m_progressMax));
+        }
     }
 }
 
@@ -205,4 +209,9 @@ bool Tile::isBuilding()
     {
         return 0;
     }
+}
+
+void Tile::get_damage(int damage)
+{
+    m_Hp -= damage;
 }

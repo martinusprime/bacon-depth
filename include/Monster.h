@@ -15,6 +15,7 @@ public:
     void update(Tile my_map[][5], float timeElapsed);
     void draw();
     bool alive();
+    void get_damage(int damage);
     virtual ~Monster();
     void newGoal(int x, int y);
     struct coord
@@ -31,7 +32,7 @@ public:
     int isOnPos(int x, int y);
     void stop();
     void dig(int x, int y);
-    void build(int x, int y);
+    void build(int x, int y);  
 
 private:
     View *m_view1;

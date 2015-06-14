@@ -29,6 +29,7 @@ public:
     void constru(int newID, int progressMax);
     int addProgress(float pr);
     bool isBuilding();
+    void get_damage(int damage);
 
 private:
     int m_level, m_rubble, m_oxygen, m_ID, resource_number;
