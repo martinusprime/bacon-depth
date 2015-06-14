@@ -104,6 +104,21 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
 
                 my_map[y][x].setID(10 + x);
             }
+             else if (x >= 1 && x <4 && y == 5)
+             {           
+
+                 my_map[y][x].setID(24);
+             }
+             else if (x >= 0 && x <4 && y == 6)
+             {
+
+                 my_map[y][x].setID(24);
+             }
+             else if (x >= 0 && x <3 && y == 4)
+             {            
+
+                 my_map[y][x].setID(23);
+             }
              else
             {
                 my_map[y][x].setID(0);
@@ -145,11 +160,9 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
 
     //all the buttons
 
-    buttons.push_back(Button{ m_app, "creuser", 0, 0, 0, 0, &m_view1 });
-
+    buttons.push_back(Button{ m_app, "Dig", 0, 0, 0, 0, &m_view1 });
     buttons.push_back(Button{ m_app, "Move", 0, 0, 0, 0, &m_view1 });//button of the glissor
     buttons.push_back(Button{ m_app, 0, 0, 0, 0, &m_view1 });//button of the glissor
-
     buttons.push_back(Button{ m_app, "Take resources", 0, 0, 0, 0, &m_view1 });//button of the ressources
 
     //buttons of buildings
@@ -318,9 +331,14 @@ void Game_Manager::update(float timeElapsed)
 
             if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y) )
             {
-                metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
-                execute_action(ACT_STOP);
-
+                if (my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_resources_id() == 0)
+                {
+                    metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
+                }
+                if (my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_resources_id() == 1)
+                {
+                    food_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
+                }
             }
         }
 
@@ -500,6 +518,7 @@ void Game_Manager::cinematic_update()
         {
             cout << "music init failed" << endl;
         }
+        music.setLoop(true);
 
         music.play();
         //

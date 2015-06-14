@@ -36,15 +36,24 @@ float Tile::get_radiation()
 {
     return m_irradiation;
 }
+
+int Tile::get_resources_id()
+{
+    return resources_id;
+}
+
 void Tile::init_resources(RenderWindow *app, View *view, int x, int y)
 {
+
+    resources_id = Random::get_int(0, 5)-4;
+
     int random = Random::get_int(0, 3);
     m_x = x;
     m_y = y;
     for (int i = 0; i < random; i++)
     {
         cout << "it: " << i << "randomommo :" << random << endl;
-        resource1.push_back(Ressource{ app, view, 0, resource_number, x, y });
+        resource1.push_back(Ressource{ app, view, resources_id, resource_number, x, y });
         resource_number++;
     } srand(time(0));
 

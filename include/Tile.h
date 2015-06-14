@@ -21,6 +21,7 @@ public:
     void setNode(int node);
     void init_resources(RenderWindow *app, View *view, int x, int y);
     int getNode();
+    int get_resources_id();
     int get_ressources();
     void draw_tile();
     float get_radiation();
@@ -36,7 +37,7 @@ private:
     int m_efRubble, m_prod, m_def, m_maxHp, m_Hp;
     int walkable;
     int m_node, m_x, m_y, tile_size;
-    int m_progress, m_progressMax, m_futID;
+    int m_progress, m_progressMax, m_futID, resources_id;
     enum Work { NO, DIGING, BUILDING };
     Work m_work;
     vector <Ressource> resource1;
