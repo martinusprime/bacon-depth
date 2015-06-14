@@ -17,7 +17,7 @@
 #include "Character.h"
 #include "Glissor.h"
 #include "Monster.h"
-#include "Resource.h"
+#include "Ressource.h"
 #include "Tile.h"
 
 
@@ -75,7 +75,6 @@ private:
     bool clicked, glissor_on, cinematic_on;
     Music music;
 
-    Resource resource1;
     Selected_tile selected_tile;
     Tile my_map[10][5];
     Tile mapCon[5][10];

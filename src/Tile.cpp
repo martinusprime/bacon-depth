@@ -15,6 +15,7 @@ Tile::Tile()
     m_Hp = 0;
     walkable = 1;
     m_work = NO;
+
 }
 
 Tile::~Tile()
@@ -69,7 +70,6 @@ int Tile::getId()
 {
     return m_ID;
 }
-
 void Tile::update(float time)
 {
     // m_irradiation doit etre comprise entre 0 et 1  a la fin;

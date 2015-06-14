@@ -1,11 +1,13 @@
+
+#pragma once
 #include <vector>
 #include <iostream>
 #include <sstream>
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include "Ressource.h"
 
-#pragma once
 class Tile
 {
 public:
@@ -30,5 +32,6 @@ private:
     int m_progress, m_progressMax, m_futID;
     enum Work { NO, DIGING, BUILDING };
     Work m_work;
+    vector <Ressource> resource1;
 };
 
