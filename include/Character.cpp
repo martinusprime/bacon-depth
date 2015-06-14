@@ -143,7 +143,7 @@ void Character::update(Tile my_map[][5], float timeElapsed)
         m_moving += timeElapsed;
         cout << " -->" << m_moving << endl;
         //}
-        if (m_moving >= 1000)
+        if (m_moving >= 2000)
         {
             (*this).setPosition(move_x, move_y);
         }
@@ -161,7 +161,7 @@ void Character::setPosition(int x, int y)
 
 void Character::moving(int x, int y)
 {
-    //cout << "IS MOVING" << endl;
+    //cout << "IS MOVING to :" << x << " " << y << endl;
     //system("PAUSE");
     //if ((x != move_x) || (y != move_y) || (status != MOVING))
     //{
@@ -197,7 +197,7 @@ int Character::pathFinding(Tile my_map[][5])
 {
     if (my_map[m_goalY][m_goalX].isWalkable() == 0)
     {
-        //std::cout << "ERROR CASE ISNT WALKABLE" << endl;
+        std::cout << "ERROR CASE ISNT WALKABLE" << endl;
         return 0;
     }
     //cout << "ENTRER PATHFINDING" << endl;
@@ -227,7 +227,7 @@ int Character::pathFinding(Tile my_map[][5])
                 //std::cout << my_map[i][j].getNode() << " ";
                 if ((my_map[i][j].getNode() == (node - 1)) && (my_map[i][j].isWalkable()))
                 {
-                    //::cout << endl << "IN " << i << j << endl;
+                    //std::cout << endl << "IN " << i << j << endl;
                     if (i > 0)
                     {
                         //std::cout << "Haut" << endl;
@@ -242,10 +242,10 @@ int Character::pathFinding(Tile my_map[][5])
                         }
                     }
                     if (i < 9)
-                    {
-                        //std::cout << "Bas" << endl;
-                        if (my_map[i + 1][j].getNode() == 0) //&& (my_map[j][i + 1].getId() == 2))/////////VERIFICATION OF THE ELEVATOR
+                    {                        
+                        if ((my_map[i + 1][j].getNode() == 0) && (my_map[i + 1][j].isWalkable()))
                         {
+                            //std::cout << "BAS" << endl;
                             my_map[i + 1][j].setNode(node);
                             if (((i == m_goalY) && (j == m_goalX)) && (my_map[i + 1][j].isWalkable()))
                             {
@@ -257,7 +257,7 @@ int Character::pathFinding(Tile my_map[][5])
                     if (j > 0)
                     {
                         //std::cout << "Gauche" << endl;
-                        if (my_map[i][j - 1].getNode() == 0)
+                        if ((my_map[i][j - 1].getNode() == 0) && (my_map[i][j - 1].isWalkable()))
                         {
                             my_map[i][j - 1].setNode(node);
                             if (((i == m_goalY) && (j == m_goalX)) && (my_map[i][j - 1].isWalkable()))
@@ -270,7 +270,7 @@ int Character::pathFinding(Tile my_map[][5])
                     if (j < 4)
                     {
                         //std::cout << "Droite" << endl;
-                        if (my_map[i][j + 1].getNode() == 0)
+                        if ((my_map[i][j + 1].getNode() == 0) && (my_map[i][j + 1].isWalkable()))
                         {
                             my_map[i][j + 1].setNode(node);
                             if (((i == m_goalY) && (j == m_goalX)) && (my_map[i][j + 1].isWalkable()))
@@ -311,9 +311,9 @@ int Character::pathFinding(Tile my_map[][5])
         {
             //std::cout << "Node2 " << my_map[node1.y - 1][node1.x].getNode() << " " << meilleur << endl;
             //std::system("PAUSE");
-            if ((my_map[node1.y - 1][node1.x].getNode() < meilleur) && (my_map[node1.y - 1][node1.x].getNode() != 0))
+            if ((my_map[node1.y - 1][node1.x].getNode() <= meilleur) && (my_map[node1.y - 1][node1.x].getNode() != 0))
             {
-               // std::cout << "BINGO" << node1.x << " " << node1.y - 1 << endl;
+                //std::cout << "BINGO" << node1.x << " " << node1.y - 1 << endl;
                 meilleur = my_map[node1.y - 1][node1.x].getNode();
                 node2.x = node1.x;
                 node2.y = node1.y - 1;
@@ -323,7 +323,7 @@ int Character::pathFinding(Tile my_map[][5])
         {
             //std::cout << "Node3 " << my_map[node1.y + 1][node1.x].getNode() << " " << meilleur << endl;
             //std::system("PAUSE");
-            if ((my_map[node1.y + 1][node1.x].getNode() < meilleur) && (my_map[node1.y + 1][node1.x].getNode() != 0))
+            if ((my_map[node1.y + 1][node1.x].getNode() <= meilleur) && (my_map[node1.y + 1][node1.x].getNode() != 0))
             {
                 //std::cout << "BINGO" << node1.x << " " << node1.y + 1 << endl;
                 meilleur = my_map[node1.y + 1][node1.x].getNode();
@@ -335,7 +335,7 @@ int Character::pathFinding(Tile my_map[][5])
         {
             //std::cout << "Node4 " << my_map[node1.y][node1.x - 1].getNode() << " " << meilleur << endl;
             //std::system("PAUSE");
-            if ((my_map[node1.y][node1.x - 1].getNode() < meilleur) && (my_map[node1.y][node1.x - 1].getNode() != 0))
+            if ((my_map[node1.y][node1.x - 1].getNode() <= meilleur) && (my_map[node1.y][node1.x - 1].getNode() != 0))
             {
                 //std::cout << "BINGO" << node1.x - 1 << " " << node1.y << endl;
                 meilleur = my_map[node1.y][node1.x - 1].getNode();
@@ -347,7 +347,7 @@ int Character::pathFinding(Tile my_map[][5])
         {
             //std::cout << "Node5 " << my_map[node1.y][node1.x + 1].getNode() << " " << meilleur << endl;
             //std::system("PAUSE");
-            if ((my_map[node1.y][node1.x + 1].getNode() < meilleur) && (my_map[node1.y][node1.x + 1].getNode() != 0))
+            if ((my_map[node1.y][node1.x + 1].getNode() <= meilleur) && (my_map[node1.y][node1.x + 1].getNode() != 0))
             {
                 //std::cout << "BINGO" << node1.x + 1 << " " << node1.y << endl;
                 meilleur = my_map[node1.y][node1.x + 1].getNode();
@@ -357,13 +357,13 @@ int Character::pathFinding(Tile my_map[][5])
         }
         //cout << endl << "test:" << node2.x << m_goal << endl;
         //if ((((node1.x) - (tile_x) == 1) || ((node1.x) - (tile_x) == -1)) && (((node1.y) - (tile_y == 1)) || ((node1.y) - (tile_y) == -1)))
-        if ((node2.x == tile_x) && (node1.y == tile_y))
+        if ((node2.x == tile_x) && (node2.y == tile_y))
         {
 
             //cout << "TROUVE:!!!!!" << endl;
             //////////////APPEL FONCTION DEPLACEMENT (node1.y, node1.x)
-            /*cout << "NODE:" << node1.x << node1.y << endl;
-            system("PAUSE");*/
+            //cout << "NODE:" << node1.x << node1.y << endl;
+            //system("PAUSE");
             (*this).moving(node1.x, node1.y);
             
             return 1;
