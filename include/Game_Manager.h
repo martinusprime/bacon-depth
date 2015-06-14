@@ -38,7 +38,7 @@ private:
     bool handle_input_events();
     bool handle_input_events_key();
     bool pause;
-
+    void reset();
     void cinematic_update();
     void cinematic_draw();
     void cinematic_init();
@@ -95,9 +95,12 @@ private:
     float cinematic_time;
     int bomb_y;
     My_Sprite bomb;
+    My_Sprite end_sprite;
     My_Sprite explosion;
     My_Sprite info_sprite, pause_sprite;
     bool explosing, info, explosion_flash;
+
+    bool fail;
 
     sf::SoundBuffer buffer;
     sf::Sound sound;

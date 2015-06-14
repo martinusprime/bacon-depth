@@ -20,6 +20,23 @@ Button::Button(RenderWindow *app, string name, int x, int y, int window_x, int w
 
 }
 
+Button::Button(RenderWindow *app_get, string name_get, bool a_file, int x_get, int y_get, int window_x_get, int window_y_get, View *view1_get)
+    : button_sprite(app_get, name_get, view1_get)
+{
+    m_x = x_get;
+    m_y = y_get;
+    m_w = button_sprite.get_w();
+    m_h = button_sprite.get_h();
+    m_app = app_get;
+    m_view1 = view1_get;
+    cross = true;
+
+    m_name.init(m_app, name_get, 75, 1);
+    mouse_on = false;
+    mouse_click = false;
+    activation = false;
+
+}
 Button::Button(RenderWindow *app,  int x, int y, int window_x, int window_y, View *view1)
     : button_sprite(app, "resources/button_stop.png", view1)
 {

@@ -1,18 +1,18 @@
-﻿Build started 14/06/2015 20:22:46.
+﻿Build started 14/06/2015 21:10:28.
      1>Project "D:\gamebacon\old-domain.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iinclude /I"SFML-2.2-vs2013\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\Game_Manager.cpp
          Game_Manager.cpp
-     1>src\Game_Manager.cpp(168): warning C4305: '-=' : truncation from 'double' to 'float'
-     1>src\Game_Manager.cpp(235): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>src\Game_Manager.cpp(236): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>src\Game_Manager.cpp(302): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>src\Game_Manager.cpp(303): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-     1>src\Game_Manager.cpp(425): warning C4018: '<' : signed/unsigned mismatch
-     1>src\Game_Manager.cpp(382): warning C4101: 'Id' : unreferenced local variable
-     1>src\Game_Manager.cpp(483): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>src\Game_Manager.cpp(484): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>src\Game_Manager.cpp(485): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(177): warning C4305: '-=' : truncation from 'double' to 'float'
+     1>src\Game_Manager.cpp(310): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(311): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(377): warning C4305: '+=' : truncation from 'double' to 'float'
+     1>src\Game_Manager.cpp(378): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(500): warning C4018: '<' : signed/unsigned mismatch
+     1>src\Game_Manager.cpp(457): warning C4101: 'Id' : unreferenced local variable
+     1>src\Game_Manager.cpp(563): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(564): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(565): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\gamebacon\Release\old-domain.exe" /NOLOGO /LIBPATH:"SFML-2.2-vs2013\lib" "sfml-graphics.lib" "sfml-audio.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\gamebacon\Release\old-domain.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\gamebacon\Release\old-domain.lib" /MACHINE:X86 /SAFESEH "Release\old-domain.res"
          Release\Character.obj
@@ -35,4 +35,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:08.74
+Time Elapsed 00:00:07.28

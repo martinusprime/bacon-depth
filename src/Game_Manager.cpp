@@ -18,6 +18,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     , background(app, "resources/background.png", &view1)
     , selection_border(app, "resources/selection_border.png", &view1)
     , goal_border(app, "resources/selection_border.png", &view1)
+    , end_sprite(app, "resources/end.png", &view1)
     , bomb(app, "resources/bomb.png", &view1)
     , pause_sprite(app, "resources/pause.png", &view1)
     , info_sprite(app, "resources/info.png", &view1)
@@ -46,6 +47,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     m_x_offset = tile_size * 2 + (tile_size / 2);
     m_y_offset = (tile_size / 2);
     oxygen_number = 1.0f;
+    fail = false;
 
     m_app = app;
     m_app->setView(m_view1);
@@ -134,7 +136,16 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     buttons.push_back(Button{ m_app, "Move", 0, 0, 0, 0, &m_view1 });//button of the glissor
     buttons.push_back(Button{ m_app, 0, 0, 0, 0, &m_view1 });//button of the glissor
 
-    buttons.push_back(Button{ m_app, "Take resources",0, 0, 0, 0, &m_view1 });//button of the ressources
+    buttons.push_back(Button{ m_app, "Take resources", 0, 0, 0, 0, &m_view1 });//button of the ressources
+
+    //buttons of buildings
+    buttons.push_back(Button{ m_app, "resources/workshop_icon.png", true, 0, 0, 0, 0, &m_view2 });//button of the ressources
+    buttons.push_back(Button{ m_app, "resources/electricity_icon.png", true, 0, 0, 0, 0, &m_view2 });//button of the ressources
+    buttons.push_back(Button{ m_app, "resources/farm_icon.png", true, 0, 0, 0, 0, &m_view2 });//button of the ressources
+    buttons.push_back(Button{ m_app, "resources/armory_icon.png", true, 0, 0, 0, 0, &m_view2 });//button of the ressources
+    buttons.push_back(Button{ m_app, "resources/oxygen_icon.png", true, 0, 0, 0, 0, &m_view2 });//button of the ressources
+
+
     glissor1 = Glissor{ m_app, 0, 0, 0, 0, &m_view1 };
  
     update(0);
@@ -142,12 +153,83 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     oxygen_clock.restart();
 }
 
+void Game_Manager::reset()
+{
+
+    citizen_max = 10;
+    monster_max = 10;
+    citizen_number = citizen_max;
+    food_number = 0;
+    metal_number = 0;
+    pause = false;
+    clicked = false;
+    glissor_on = false;
+    info = true;
+    cinematic_on = true;
+    m_x_offset = tile_size * 2 + (tile_size / 2);
+    m_y_offset = (tile_size / 2);
+    oxygen_number = 1.0f;
+    fail = false;
+
+
+    //init map
+    for (size_t y = 0; y < 10; y++)
+    {
+        for (size_t x = 0; x < 5; x++)
+        {
+
+            my_map[y][x].setLevel(x);
+            my_map[y][x].init_resources(m_app, &view1, x, y);
+
+            if (y == 0)
+            {            //surface
+
+                my_map[y][x].setID(6 + x);
+            }
+            else if (x >= 2 && x <5 && y == 2)
+            {            //metro 3, 4, 5
+                my_map[y][x].setID(1 + x);
+            }
+            else if (x >= 1 && x <4 && y == 3)
+            {            //soutterrain
+
+                my_map[y][x].setID(10 + x);
+            }
+            else if (x >= 2 && x <5 && y == 1)
+            {            //egouts
+
+                my_map[y][x].setID(12 + x);
+            }
+            else if (x >= 1 && x <4 && y == 3)
+            {            //groupe electrogene
+
+                my_map[y][x].setID(10 + x);
+            }
+            else
+            {
+                my_map[y][x].setID(0);
+
+            }
+            // cout << my_map[y][x].isWalkable() << " ";
+        }
+        //   cout << endl;
+    }
+
+
+
+    update(0);
+    cinematic_init();
+    oxygen_clock.restart();
+}
 
 void Game_Manager::update(float timeElapsed)
 {
     handle_input_events();
 
-
+    if (citizen_number == 0)
+    {
+        fail = true;
+    }
 
     if (cinematic_on)
     {
@@ -177,6 +259,7 @@ void Game_Manager::update(float timeElapsed)
         }
 
         buttons[1].update(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size + buttons[1].get_h());
+
         if (buttons[1].is_activated())
         {
             buttons[1].desactivate();
@@ -189,7 +272,8 @@ void Game_Manager::update(float timeElapsed)
             buttons[2].desactivate();
             execute_action(ACT_STOP);
         }
-        buttons[3].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size + buttons[1].get_h() * 2);
+
+        buttons[3].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size + buttons[1].get_h() );
         if (buttons[3].is_activated())
         {
             buttons[3].desactivate();
@@ -197,8 +281,72 @@ void Game_Manager::update(float timeElapsed)
             if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y) )
             {
                 metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
+                execute_action(ACT_STOP);
+
             }
         }
+
+        buttons[4].update(m_screen_x - buttons[4].get_w() - 30, m_screen_y / 2 + buttons[5].get_h());
+        if (buttons[4].is_activated())
+        {
+            buttons[4].desactivate();
+
+            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
+            {
+               // metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
+
+            }
+        }
+
+        buttons[5].update(m_screen_x - buttons[5].get_w() - 30, (m_screen_y / 2) + (buttons[5].get_h() + 80 ));
+        if (buttons[5].is_activated())
+        {
+            buttons[5].desactivate();
+
+            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
+            {
+            //    execute_action(ACT_BUILD_GENERATOR);
+
+            }
+        }
+
+        buttons[6].update(m_screen_x - buttons[5].get_w() - 30, (m_screen_y / 2) + (buttons[6].get_h() + 80 * 2));
+        if (buttons[6].is_activated())
+        {
+            buttons[6].desactivate();
+
+            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
+            {
+                // metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
+
+            }
+        }
+
+        buttons[7].update(m_screen_x - buttons[7].get_w() - 30, (m_screen_y / 2) + (buttons[7].get_h() + 80 * 3));
+        if (buttons[7].is_activated())
+        {
+            buttons[7].desactivate();
+
+            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
+            {
+                // metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
+
+            }
+        }
+
+        buttons[8].update(m_screen_x - buttons[8].get_w() - 30, (m_screen_y / 2) + (buttons[8].get_h() + 80 * 4));
+        if (buttons[8].is_activated())
+        {
+            buttons[8].desactivate();
+
+            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
+            {
+                //    execute_action(ACT_BUILD_OXYGEN);
+
+            }
+        }
+
+
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
             {
@@ -478,6 +626,11 @@ void Game_Manager::hud()
     food_icon.draw(m_screen_x - food_icon.get_w(), 200);
     metal_icon.draw(m_screen_x - metal_icon.get_w(), 400);
 
+    buttons[4].draw();
+    buttons[5].draw();
+    buttons[6].draw();
+    buttons[7].draw();
+    buttons[8].draw();
 
 
     citizen_number_text.draw(m_screen_x - (head_icon.get_w() * 2.5), 0, 35);
