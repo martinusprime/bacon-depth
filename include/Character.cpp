@@ -52,7 +52,8 @@ Character::~Character()
 void Character::update(Tile map[][10], float timeElapsed)
 {
     float new_life = life / 100.0f;
-    life_bar.scale(new_life, 1.0f);
+    life_bar.scale(new_life, 1.0f, false);
+
 
     if (status == IDLE)
     {

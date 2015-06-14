@@ -1,4 +1,9 @@
 #include <vector>
+#include <iostream>
+#include <sstream>
+#include <iostream>
+#include <cstdlib>
+#include <string>
 
 #pragma once
 class Tile
@@ -9,14 +14,16 @@ public:
     void setLevel(int y);
     void setID(int ID);
     int getId();
-    void update(int time);
+    void update(float time);
     void setNode(int node);
     int getNode();
+    float get_radiation();
     int isWalkable();
     void constru(int newID, int progressMax);
 
 private:
-    int m_irradiation, m_level, m_rubble, m_oxygen, m_ID;
+    int m_level, m_rubble, m_oxygen, m_ID;
+    float m_irradiation;
     int m_efRubble, m_prod, m_def, m_maxHp, m_Hp;
     int walkable;
     int m_node;

@@ -20,6 +20,24 @@ Button::Button(RenderWindow *app, string name, int x, int y, int window_x, int w
 
 }
 
+Button::Button(RenderWindow *app,  int x, int y, int window_x, int window_y, View *view1)
+    : button_sprite(app, "resources/button_stop.png", view1)
+{
+    m_x = x;
+    m_y = y;
+    m_w = button_sprite.get_w();
+    m_h = button_sprite.get_h();
+    m_app = app;
+    m_view1 = view1;
+    m_window_x = window_x;
+    m_window_y = window_y;
+
+    cross = true;
+    mouse_on = false;
+    mouse_click = false;
+    activation = false;
+
+}
 void Button::draw()
 {
     button_sprite.draw(m_x, m_y);
@@ -28,7 +46,14 @@ void Button::draw()
         m_name.draw(m_x + (m_w / 3), m_y, 40);
     }
 }
-
+int Button::get_w()
+{
+    return m_w;
+}
+int Button::get_h()
+{
+    return m_h;
+}
 void Button::update(int x_get, int y_get)
 {
     m_x = x_get;

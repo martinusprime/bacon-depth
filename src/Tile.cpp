@@ -26,6 +26,11 @@ void Tile::setLevel(int y)
     m_level = y;
 }
 
+float Tile::get_radiation()
+{
+    return m_irradiation;
+}
+
 void Tile::setID(int ID)
 {
     m_ID = ID;
@@ -65,10 +70,19 @@ int Tile::getId()
     return m_ID;
 }
 
-void Tile::update(int time)
+void Tile::update(float time)
 {
-    m_irradiation += time / 5 * (10 - m_level);
+    // m_irradiation doit etre comprise entre 0 et 1  a la fin;
 
+    m_irradiation += (time / 500.0 * (1000 - (m_level * 100.0)))/100000.0;
+    if (m_irradiation > 1.0f)
+    {
+        m_irradiation = 1.0f;
+    }
+    else if (m_irradiation < 0.0f)
+    {
+        m_irradiation = 0.0f;
+    }
     if ((m_progress >= m_progressMax) && (m_work != NO))
     {
         m_work = NO;

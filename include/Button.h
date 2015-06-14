@@ -14,8 +14,11 @@ class Button
 {
 public:
     Button(RenderWindow *app_get, string name_get, int x_get, int y_get, int window_x_get, int window_y_get, View *view1_get);
+    Button(RenderWindow *app_get, int x_get, int y_get, int window_x_get, int window_y_get, View *view1_get);
     virtual ~Button() = default;
     void desactivate();
+    int get_h();
+    int get_w();
     void draw();
     void update(int x_get, int y_get);
     bool is_activated();

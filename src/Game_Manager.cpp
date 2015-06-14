@@ -51,23 +51,41 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
         {
             map[x][y].setLevel(y);
             if (y == 0)
-            {
+            {            //surface
+
                 map[x][y].setID(6 + x);
             }
-            if (x == 0)
+            
+            if(x >= 2 && x <5 && y == 2)
+            {            //metro 3, 4, 5
+
+                map[x][y].setID(1 + x);
+            }
+             if(x >= 1 && x <4 && y == 3)
+            {            //soutterrain
+
+                map[x][y].setID(10 + x);
+            }
+             if(x >= 2 && x <5 && y == 1)
+            {            //egouts
+
+                map[x][y].setID(12 + x);
+            }
+             if(x >= 1 && x <4 && y == 3)
+            {            //groupe electrogene
+
+                map[x][y].setID(10 + x);
+            }
+             if (x >= 0 && x <5 && y == 4)
             {
                 map[x][y].setID(1);
-            }
-            else
-            {
-                map[x][y].setID(0);
             }
         }
     }
 
     //init sprites
     string path = "";
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 60; i++) {
         path = "resources/tile" + std::to_string(i) + ".png";
         sprites.push_back(My_Sprite{ m_app, path, &m_view1 });
         //      std::cout << path << endl;
@@ -96,6 +114,9 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     //all the buttons
 
     buttons.push_back(Button{ m_app, "creuser", 0, 0, 0, 0, &m_view1 });
+
+    buttons.push_back(Button{ m_app, "Move", 0, 0, 0, 0, &m_view1 });//button of the glissor
+    buttons.push_back(Button{ m_app, 0, 0, 0, 0, &m_view1 });//button of the glissor
     glissor1 = Glissor{ m_app, 0, 0, 0, 0, &m_view1 };
     //music init
 
@@ -115,6 +136,8 @@ void Game_Manager::update(float timeElapsed)
 {
     handle_input_events();
 
+
+
     if (cinematic_on)
     {
         cinematic_update();
@@ -125,6 +148,8 @@ void Game_Manager::update(float timeElapsed)
         m_view1.setCenter(static_cast<float>(m_x_offset), static_cast<float>(m_y_offset));
         m_app->setView(m_view1);
 
+        //radiation haldling
+        radio_bar.scale( 1.0f, map[selected_tile.clicked_x][selected_tile.clicked_y].get_radiation(), true);
 
         buttons[0].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size);
         if (buttons[0].is_activated())
@@ -132,6 +157,19 @@ void Game_Manager::update(float timeElapsed)
             buttons[0].desactivate();
         }
 
+        buttons[1].update(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size + buttons[1].get_h());
+        if (buttons[1].is_activated())
+        {
+            buttons[1].desactivate();
+            execute_action(ACT_MOVE);
+        }
+
+        buttons[2].update((selected_tile.clicked_x + 1)* tile_size - buttons[2].get_h() , selected_tile.clicked_y * tile_size + buttons[2].get_h());
+        if (buttons[2].is_activated())
+        {
+            buttons[2].desactivate();
+            execute_action(ACT_STOP);
+        }
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
             {
@@ -152,6 +190,14 @@ void Game_Manager::update(float timeElapsed)
             {
                 monster1[i].update();
 
+            }
+        }
+
+        for (size_t x = 0; x < 5; x++)
+        {
+            for (size_t y = 0; y < 10; y++)
+            {
+                map[x][y].update(timeElapsed);
             }
         }
         //if the mouse is over the right tile
@@ -214,7 +260,7 @@ void Game_Manager::cinematic_update()
         bomb_y += cinematic_time;
         if (explosing)
         {
-            explosion.scale(1.0f + cinematic_time, 1.0f + cinematic_time);
+            explosion.scale(1.0f + cinematic_time, 1.0f + cinematic_time, false);
         }
 
         if (explosion_flash == true)
@@ -309,6 +355,8 @@ void Game_Manager::draw()
     goal_border.draw(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);/////////////////////////////////////////////////////
     selection_border.draw(selected_tile.clicked_x * tile_size, selected_tile.clicked_y * tile_size);
     buttons[0].draw();
+    buttons[1].draw();
+    buttons[2].draw();
 
     int compteur = 0;
     for (int i = 0; i < character1.size(); i++)
@@ -349,7 +397,7 @@ void Game_Manager::hud()
     radio_icon.draw(0, 0);
 
     radio_bar_background.draw(0, radio_icon.get_h());
-    radio_bar.draw(0, radio_icon.get_h());
+    radio_bar.draw(0 + 28, radio_icon.get_h() + 40);
     radio_bar_grad.draw(0, radio_icon.get_h());
 
     head_icon.draw(1920 - head_icon.get_w(), 0);

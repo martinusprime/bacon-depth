@@ -30,7 +30,7 @@ int main()
         // Start the game loop
         while (app.isOpen())
         {
-            time = render_clock.getElapsedTime().asSeconds() * 1000;
+            time = render_clock.getElapsedTime().asSeconds();
             //cout << "----->" << time << endl;
             game_manager1.update(time);
 
@@ -38,7 +38,7 @@ int main()
 
 
             // cout << render_clock.getElapsedTime().asSeconds()<<endl;
-            render_clock.restart();
+        //    render_clock.restart();
         }
     }
     catch (const std::exception &ex)

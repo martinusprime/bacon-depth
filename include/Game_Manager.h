@@ -91,7 +91,7 @@ private:
     vector <Button> buttons;
     vector <bool> citizen_state;
 
-    Clock cinematic_clock;
+    Clock cinematic_clock, radiation_time;
     float cinematic_time;
     int bomb_y;
     My_Sprite bomb;
