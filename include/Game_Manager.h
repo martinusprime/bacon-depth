@@ -74,7 +74,7 @@ private:
     Music music;
 
     Selected_tile selected_tile;
-    Tile map[10][5];
+    Tile my_map[10][5];
     Tile mapCon[5][10];
     My_Sprite spriteTile0;
     My_Sprite background;

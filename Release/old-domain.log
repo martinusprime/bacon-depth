@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 14/06/2015 17:30:35.
      1>Project "D:\gamebacon\old-domain.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -50,7 +51,39 @@
      1>Timer.obj : warning LNK4204: 'D:\gamebacon\Release\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
          old-domain.vcxproj -> D:\gamebacon\Release\old-domain.exe
      1>Done Building Project "D:\gamebacon\old-domain.vcxproj" (Build target(s)).
+=======
+﻿Build started 14/06/2015 17:30:15.
+     1>Project "C:\Users\marc\Documents\GitHub\GameJame\old-domain.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iinclude /I"SFML-2.2-vs2013\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp src\Game_Manager.cpp src\Ressource.cpp src\Tile.cpp
+         main.cpp
+     1>main.cpp(22): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>main.cpp(15): warning C4101: 'time' : unreferenced local variable
+         Game_Manager.cpp
+     1>src\Game_Manager.cpp(213): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(214): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(266): warning C4305: '+=' : truncation from 'double' to 'float'
+     1>src\Game_Manager.cpp(267): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(378): warning C4018: '<' : signed/unsigned mismatch
+     1>src\Game_Manager.cpp(337): warning C4101: 'Id' : unreferenced local variable
+     1>src\Game_Manager.cpp(432): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(433): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(434): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+         Ressource.cpp
+     1>c:\users\marc\documents\github\gamejame\include\Tile.h(35): error C2065: 'Ressource' : undeclared identifier
+     1>c:\users\marc\documents\github\gamejame\include\Tile.h(35): error C2923: 'std::vector' : 'Ressource' is not a valid template type argument for parameter '_Ty'
+     1>src\Ressource.cpp(7): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+         Tile.cpp
+     1>c:\users\marc\documents\github\gamejame\include\Character.h(15): error C2061: syntax error : identifier 'Tile'
+     1>c:\users\marc\documents\github\gamejame\include\Character.h(25): error C2061: syntax error : identifier 'Tile'
+     1>src\Tile.cpp(77): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>Done Building Project "C:\Users\marc\Documents\GitHub\GameJame\old-domain.vcxproj" (Build target(s)) -- FAILED.
+>>>>>>> 89dcd7459db0a52d2e8b5d17deaf5be708dad6f5
 
 Build succeeded.
 
+<<<<<<< HEAD
 Time Elapsed 00:00:22.03
+=======
+Time Elapsed 00:00:03.29
+>>>>>>> 89dcd7459db0a52d2e8b5d17deaf5be708dad6f5
