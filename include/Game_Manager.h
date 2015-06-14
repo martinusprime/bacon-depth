@@ -72,6 +72,7 @@ private:
     int tile_size;
     int metal_number, food_number;
     bool clicked, glissor_on, cinematic_on;
+    float oxygen_number;
     Music music;
 
     Selected_tile selected_tile;
@@ -81,7 +82,7 @@ private:
     My_Sprite background;
     My_Sprite food_icon;
     My_Sprite metal_icon;
-    My_Sprite selection_border, goal_border, radio_icon, radio_bar, radio_bar_background, radio_bar_grad, head_icon;
+    My_Sprite selection_border, goal_border, radio_icon, radio_bar, radio_bar_background, radio_bar_grad, oxygen_bar, oxygen_bar_background, oxygen_bar_grad, head_icon;
     My_Text citizen_number_text, food_number_text, metal_number_text;
     Glissor glissor1;
     vector <Character> character1;
@@ -90,7 +91,7 @@ private:
     vector <Button> buttons;
     vector <bool> citizen_state;
 
-    Clock cinematic_clock, radiation_time;
+    Clock cinematic_clock, radiation_time, oxygen_clock;
     float cinematic_time;
     int bomb_y;
     My_Sprite bomb;

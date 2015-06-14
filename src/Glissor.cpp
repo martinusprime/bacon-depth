@@ -28,7 +28,7 @@ Glissor::Glissor(RenderWindow *app, int x, int y, int window_x, int window_y, Vi
     m_x = x;
     m_y = y;
     m_app = app;
-    m_rate.init(app, " 05", 55, 1);
+    m_rate.init(app, " 00", 55, 1);
     m_value = 0;
     m_mouse_on = false;
 }

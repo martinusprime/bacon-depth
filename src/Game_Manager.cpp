@@ -6,10 +6,13 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     : m_view1(view1)
     , radio_icon(app, "resources/radioactive_icon.png", &view1)
     , food_icon(app, "resources/food_icon.png", &view1)
-    , metal_icon(app, "resources/metal_icon_0.png", &view1)
+    , metal_icon(app, "resources/iron_icon0.png", &view1)
     , radio_bar(app, "resources/radio_bar.png", &view1)
     , radio_bar_background(app, "resources/radio_bar_background.png", &view1)
     , radio_bar_grad(app, "resources/radio_bar_grad.png", &view1)
+    , oxygen_bar(app, "resources/oxygen_bar.png", &view1)
+    , oxygen_bar_background(app, "resources/oxygen_bar_background.png", &view1)
+    , oxygen_bar_grad(app, "resources/oxygen_bar_grad.png", &view1)
     , head_icon(app, "resources/head_icon.png", &view1)
     , explosion(app, "resources/explosion.png", &view1)
     , background(app, "resources/background.png", &view1)
@@ -42,6 +45,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     cinematic_on = true;
     m_x_offset = tile_size * 2 + (tile_size / 2);
     m_y_offset = (tile_size / 2);
+    oxygen_number = 1.0f;
 
     m_app = app;
     m_app->setView(m_view1);
@@ -164,11 +168,19 @@ void Game_Manager::update(float timeElapsed)
 
         //radiation haldling
         radio_bar.scale(1.0f, my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_radiation(), true);
+        //oxygen_handling
+        if (oxygen_clock.getElapsedTime().asSeconds() > 0.5)
+        {
+            oxygen_clock.restart();
+            oxygen_number -= 0.001;
+        }
+        oxygen_bar.scale(1.0f, oxygen_number, false);
 
         buttons[0].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size);
         if (buttons[0].is_activated())
         {
             buttons[0].desactivate();
+            execute_action(ACT_DIGING);
         }
 
         buttons[1].update(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size + buttons[1].get_h());
