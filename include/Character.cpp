@@ -6,6 +6,8 @@ Character::Character(RenderWindow *app, View *view, int id)
     , life_bar(app, "resources/life_bar.png", view)
     , life_bar_background(app, "resources/life_bar_background.png", view)
     , life_bar_heart(app, "resources/life_bar_heart.png", view)
+    , hammer(app, "resources/hammer.png", view)
+    , pike(app, "resources/pike.png", view)
     , m_id(id)
     , is_alive(true)
 {
@@ -146,6 +148,8 @@ void Character::update(Tile my_map[][5], float timeElapsed)
         life_bar.flip_x(false);
         life_bar_heart.flip_x(false);
         sprite.flip_x(false);
+        pike.flip_x(false);
+        hammer.flip_x(false);
     }
     else if (direction == LEFT)
     {
@@ -153,6 +157,8 @@ void Character::update(Tile my_map[][5], float timeElapsed)
         life_bar.flip_x(true);
         life_bar_heart.flip_x(true);
         sprite.flip_x(true);
+        pike.flip_x(true);
+        hammer.flip_x(true);
     }
 
     if ((tile_x == m_goalX) && (tile_y == m_goalY))
@@ -209,6 +215,16 @@ void Character::draw()
     life_bar_background.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 50);
     life_bar.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 50);
     life_bar_heart.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 50);
+
+    if (status == BUILDING)
+    {
+        hammer.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h());
+    }
+
+    if (status == DIGING)
+    {
+        pike.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h());
+    }
 }
 
 void Character::newGoal(int x, int y)

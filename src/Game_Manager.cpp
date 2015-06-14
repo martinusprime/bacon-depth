@@ -229,6 +229,7 @@ void Game_Manager::update(float timeElapsed)
     if (citizen_number == 0)
     {
         fail = true;
+        reset();
     }
 
     if (cinematic_on)
@@ -293,8 +294,7 @@ void Game_Manager::update(float timeElapsed)
 
             if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
             {
-               // metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
-
+                execute_action(ACT_BUILD_WORKBENCH);
             }
         }
 
@@ -302,23 +302,14 @@ void Game_Manager::update(float timeElapsed)
         if (buttons[5].is_activated())
         {
             buttons[5].desactivate();
-
-            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
-            {
                 execute_action(ACT_BUILD_GENERATOR);
-
-            }
         }
 
         buttons[6].update(m_screen_x - buttons[5].get_w() - 30, (m_screen_y / 2) + (buttons[6].get_h() + 80 * 2));
         if (buttons[6].is_activated())
         {
             buttons[6].desactivate();
-
-            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
-            {
                 execute_action(ACT_BUILD_FARM);
-            }
         }
 
         buttons[7].update(m_screen_x - buttons[7].get_w() - 30, (m_screen_y / 2) + (buttons[7].get_h() + 80 * 3));
@@ -326,10 +317,7 @@ void Game_Manager::update(float timeElapsed)
         {
             buttons[7].desactivate();
 
-            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
-            {
                 execute_action(ACT_BUILD_WORKBENCH);
-            }
         }
 
         buttons[8].update(m_screen_x - buttons[8].get_w() - 30, (m_screen_y / 2) + (buttons[8].get_h() + 80 * 4));
@@ -337,10 +325,7 @@ void Game_Manager::update(float timeElapsed)
         {
             buttons[8].desactivate();
 
-            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
-            {
                     execute_action(ACT_BUILD_AERATION);
-            }
         }
 
 
