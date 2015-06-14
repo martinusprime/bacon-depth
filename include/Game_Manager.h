@@ -17,7 +17,7 @@
 #include "Character.h"
 #include "Glissor.h"
 #include "Monster.h"
-#include "Resource.h"
+#include "Ressource.h"
 #include "Tile.h"
 
 

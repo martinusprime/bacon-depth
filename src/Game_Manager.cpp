@@ -54,12 +54,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     {
         for (size_t y = 0; y < 5; y++)
         {
-<<<<<<< HEAD
-         //   map[x][y].init_resource(m_app, &m_view1, x);
-            map[x][y].setLevel(y);
-=======
             map[y][x].setLevel(y);
->>>>>>> 7a9ec755acfd17f71d80369478c6b4ce606e2a8a
             if (y == 0)
             {            //surface
 
