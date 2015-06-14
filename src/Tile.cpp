@@ -2,7 +2,9 @@
 
 
 Tile::Tile()
+   
 {
+   
     m_irradiation = 0;
     m_level = 0;
     m_rubble = 100;
@@ -17,6 +19,7 @@ Tile::Tile()
     m_work = NO;
     resource_number = 0;
     srand(time(0));
+    tile_size = 384;
     m_progress = 0;
 }
 
@@ -36,13 +39,18 @@ float Tile::get_radiation()
 void Tile::init_resources(RenderWindow *app, View *view, int x, int y)
 {
     int random = Random::get_int(0, 3);
-    
+    m_x = x;
+    m_y = y;
     for (int i = 0; i < random; i++)
     {
         cout << "it: "<< i<< "randomommo :" << random << endl;
         resource1.push_back(Ressource{ app, view, 0, resource_number, x, y });
         resource_number++;
     } srand(time(0));
+
+        life_bar = My_Sprite{ app, "resources/life_bar.png", view };
+        life_bar_background = My_Sprite{ app, "resources/life_bar_background.png", view };
+        life_bar_heart = My_Sprite{ app, "resources/life_bar_heart.png", view };
 }
 
 int Tile::get_ressources()
@@ -93,6 +101,9 @@ int Tile::getId()
 }
 void Tile::draw_tile()
 {
+    life_bar_background.draw(m_x * tile_size , m_y * tile_size);
+    life_bar.draw(m_x * tile_size, m_y * tile_size);
+    life_bar_heart.draw(m_x * tile_size , m_y * tile_size );
     for (int i = 0; i < resource_number; i++)
     {
         resource1[i].draw();
