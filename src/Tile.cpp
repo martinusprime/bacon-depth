@@ -15,7 +15,8 @@ Tile::Tile()
     m_Hp = 0;
     walkable = 1;
     m_work = NO;
-
+    resource_number = 0;
+    srand(time(0));
 }
 
 Tile::~Tile()
@@ -31,7 +32,25 @@ float Tile::get_radiation()
 {
     return m_irradiation;
 }
+void Tile::init_resources(RenderWindow *app, View *view, int x, int y)
+{
+    int random = Random::get_int(0, 4);
+    
+    for (int i = 0; i < random; i++)
+    {
+        cout << "it: "<< i<< "randomommo :" << random << endl;
+        resource1.push_back(Ressource{ app, view, 0, resource_number, x, y });
+        resource_number++;
+    } srand(time(0));
+}
 
+int Tile::get_ressources()
+{
+    int total;
+    total = resource_number;
+    resource_number = 0;
+    return total;
+}
 void Tile::setID(int ID)
 {
     m_ID = ID;
@@ -69,6 +88,13 @@ void Tile::setID(int ID)
 int Tile::getId()
 {
     return m_ID;
+}
+void Tile::draw_tile()
+{
+    for (int i = 0; i < resource_number; i++)
+    {
+        resource1[i].draw();
+    }
 }
 void Tile::update(float time)
 {

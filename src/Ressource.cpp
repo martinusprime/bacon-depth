@@ -2,14 +2,14 @@
 
 
 Ressource::Ressource(RenderWindow *app, View *view, int id, int number_in_tile, int tile_x, int tile_y)
-    : sprite(app, "resources/food", view, 2)
+    : sprite(app, "resources/iron_icon_", view, 3)
 {
     srand(time(0));
     m_app = app;
     m_view1 = view;
     if (id == 0)
     {
-       
+        sprite = My_Sprite{ app, "resources/iron_icon_", view, 3};
     }
     if (number_in_tile > 5)
     {
@@ -21,7 +21,7 @@ Ressource::Ressource(RenderWindow *app, View *view, int id, int number_in_tile, 
     m_id = id;
     m_number_in_tile = number_in_tile;
     quantity = rand()%25 + 5;
-    cout<< "numebr" << quantity<<endl;
+   // cout<< "numebr" << quantity<<endl;
 }
 
 Ressource::~Ressource()
