@@ -466,7 +466,7 @@ void Game_Manager::update(float timeElapsed)
          food_number_text.refill("Food: " + std::to_string(food_number));
         metal_number_text.refill("Metal: " + std::to_string(metal_number));
     }
-    combat();
+  //  combat();
 }
 
 bool Game_Manager::isOccupied(int x, int y)

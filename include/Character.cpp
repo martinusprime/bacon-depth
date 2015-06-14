@@ -62,7 +62,15 @@ void Character::update(Tile my_map[][5], float timeElapsed)
 {
     //cout << "JOUEUR" << status << " " << tile_x << ":" << tile_y << " " << move_x << ":" << move_y << " " << m_goalX << ":" << m_goalY << endl;
     //system("PAUSE");
+    if (tile_x >= 5)
+    {
+        tile_x = 4;
+    }
 
+    if (tile_y >= 10)
+    {
+        tile_y = 9;
+    }
 
     float new_life = life / 100.0f;
     life_bar.scale(new_life, 1.0f, false);

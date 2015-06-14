@@ -2,7 +2,7 @@
 
 
 Ressource::Ressource(RenderWindow *app, View *view, int id, int number_in_tile, int tile_x, int tile_y)
-    : sprite(app, "resources/iron_icon_", view, 3)
+    : sprite(app, "resources/iron_icon", view, 3)
 {
     srand(time(0));
     m_app = app;
