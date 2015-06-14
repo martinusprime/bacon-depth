@@ -51,42 +51,44 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     m_view2.setViewport(FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
 
     //init map
-    for (size_t x = 0; x < 10; x++)
+    for (size_t y = 0; y < 10; y++)
     {
-        for (size_t y = 0; y < 5; y++)
+        for (size_t x = 0; x < 5; x++)
         {
-            map[y][x].setLevel(y);
+            my_map[y][x].setLevel(y);
+            
             if (y == 0)
             {            //surface
 
-                map[x][y].setID(6 + x);
-            }
-            
-            if(x >= 2 && x <5 && y == 2)
+                my_map[y][x].setID(6 + x);
+            }            
+            else if(x >= 2 && x <5 && y == 2)
             {            //metro 3, 4, 5
-                map[x][y].setID(1 + x);
+                my_map[y][x].setID(1 + x);
             }
-             if(x >= 1 && x <4 && y == 3)
+             else if(x >= 1 && x <4 && y == 3)
             {            //soutterrain
 
-                map[x][y].setID(10 + x);
+                my_map[y][x].setID(10 + x);
             }
-             if(x >= 2 && x <5 && y == 1)
+             else if(x >= 2 && x <5 && y == 1)
             {            //egouts
 
-                map[x][y].setID(12 + x);
+                my_map[y][x].setID(12 + x);
             }
-             if(x >= 1 && x <4 && y == 3)
+             else if(x >= 1 && x <4 && y == 3)
             {            //groupe electrogene
 
-                map[x][y].setID(10 + x);
+                my_map[y][x].setID(10 + x);
             }
-             if (x >= 0 && x <5 && y == 4)
+             else
             {
-                map[y][x].setID(0);
+                my_map[y][x].setID(0);
 
             }
+             cout << my_map[y][x].isWalkable() << " ";
         }
+        cout << endl;
     }
 
     //init sprites
@@ -155,7 +157,7 @@ void Game_Manager::update(float timeElapsed)
         m_app->setView(m_view1);
 
         //radiation haldling
-        radio_bar.scale( 1.0f, map[selected_tile.clicked_x][selected_tile.clicked_y].get_radiation(), true);
+        radio_bar.scale(1.0f, my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_radiation(), true);
 
         buttons[0].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size);
         if (buttons[0].is_activated())
@@ -179,9 +181,9 @@ void Game_Manager::update(float timeElapsed)
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
             {
-                character1[i].update(map, timeElapsed);
+                character1[i].update(my_map, timeElapsed);
 
-                //map[character1[i].getY][character1[i].getX].addCharacter(*character1[i]);
+                //my_map[character1[i].getY][character1[i].getX].addCharacter(*character1[i]);
 
                 if (!character1[i].alive())
                 {
@@ -203,7 +205,7 @@ void Game_Manager::update(float timeElapsed)
         {
             for (size_t y = 0; y < 10; y++)
             {
-                map[x][y].update(timeElapsed);
+                my_map[x][y].update(timeElapsed);
             }
         }
         //if the mouse is over the right tile
@@ -346,7 +348,7 @@ void Game_Manager::draw()
     {
         for (size_t y = 0; y < 10; y++)
         {
-            sprites[map[y][x].getId()].draw(tile_size * x, tile_size * y);
+            sprites[my_map[y][x].getId()].draw(tile_size * x, tile_size * y);
         }
     }
 
@@ -474,7 +476,7 @@ void Game_Manager::execute_action(Action action)
         for (size_t i = 0; i < character1.size(); i++)
         {
             if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)) &&
-                (map[selected_tile.goal_y][selected_tile.goal_x].isWalkable()))
+                (my_map[selected_tile.goal_y][selected_tile.goal_x].isWalkable()))
             {               
                 character1[i].newGoal(selected_tile.goal_x, selected_tile.goal_y);
                 cout << "GOAL" << selected_tile.goal_x << " " << selected_tile.goal_y << endl;

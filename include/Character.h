@@ -12,7 +12,7 @@ class Character
 {
 public:
     Character(RenderWindow *app, View *view, int id);
-    void update(Tile map[][5], float timeElapsed);
+    void update(Tile my_map[][5], float timeElapsed);
     void draw();
     bool alive();
     virtual ~Character();
@@ -22,7 +22,7 @@ public:
         int x;
         int y;
     };
-    int pathFinding(Tile map[][5]);
+    int pathFinding(Tile my_map[][5]);
     void setPosition(int x, int y);
     void moving(int x, int y);
     int getX();

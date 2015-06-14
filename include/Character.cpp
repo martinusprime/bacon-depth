@@ -19,6 +19,8 @@ Character::Character(RenderWindow *app, View *view, int id)
     life = 100;
     tile_x = 0;
     tile_y = 0;
+    move_x = 0;
+    move_y = 0;
     tile_size = 384;
     //set initial position
     walking_x = m_id * 10;
@@ -49,8 +51,12 @@ Character::~Character()
 }
 
 
-void Character::update(Tile map[][5], float timeElapsed)
+void Character::update(Tile my_map[][5], float timeElapsed)
 {
+    //cout << "JOUEUR" << status << " " << tile_x << ":" << tile_y << " " << move_x << ":" << move_y << " " << m_goalX << ":" << m_goalY << endl;
+    //system("PAUSE");
+
+
     float new_life = life / 100.0f;
     life_bar.scale(new_life, 1.0f, false);
 
@@ -97,7 +103,7 @@ void Character::update(Tile map[][5], float timeElapsed)
                 walking_x = 0 + sprite.get_w();
             }
 
-            if (walking_x  > tile_size)
+            if (walking_x > tile_size)
             {
                 direction = LEFT;
                 walking_x = tile_size;
@@ -126,30 +132,44 @@ void Character::update(Tile map[][5], float timeElapsed)
         sprite.flip_x(true);
     }
 
-    if (status == MOVING)
+    if ((tile_x == m_goalX) && (tile_y == m_goalY))
     {
-        if ((tile_x == m_goalX) && (tile_y == m_goalY))
+        status = IDLE;
+    }
+    else
+    {
+        status = MOVING;
+        pathFinding(my_map);        
+        m_moving += timeElapsed;
+        cout << " -->" << m_moving << endl;
+        //}
+        if (m_moving >= 1000)
         {
-            status = IDLE;
-        }
-        else
-        {
-            pathFinding(map);
-            /*if (pathFinding(map) == 0)
-            {
-                status == IDLE;
-            }
-            else
-            {*/
-                m_moving += timeElapsed;
-                cout << " -->" << m_moving << endl;
-            //}
-            if (m_moving >= 1)
-            {
-                (*this).setPosition(move_x, move_y);
-            }
+            (*this).setPosition(move_x, move_y);
         }
     }
+}
+
+void Character::setPosition(int x, int y)
+{
+    tile_x = x;
+    tile_y = y;
+
+    m_moving = 0;
+    status = IDLE;
+}
+
+void Character::moving(int x, int y)
+{
+    //cout << "IS MOVING" << endl;
+    //system("PAUSE");
+    //if ((x != move_x) || (y != move_y) || (status != MOVING))
+    //{
+        status = MOVING;
+        move_x = x;
+        move_y = y;
+        //m_moving = 0;
+    //}
 }
 
 bool Character::alive()
@@ -173,11 +193,11 @@ void Character::newGoal(int x, int y)
     m_goalY = y;
 }
 
-int Character::pathFinding(Tile map[][5])
+int Character::pathFinding(Tile my_map[][5])
 {
-    if (map[m_goalY][m_goalX].isWalkable() == 0)
+    if (my_map[m_goalY][m_goalX].isWalkable() == 0)
     {
-        std::cout << "ERROR CASE ISNT WALKABLE" << endl;
+        //std::cout << "ERROR CASE ISNT WALKABLE" << endl;
         return 0;
     }
     //cout << "ENTRER PATHFINDING" << endl;
@@ -186,17 +206,17 @@ int Character::pathFinding(Tile map[][5])
     {
         for (size_t j = 0; j < 5; j++)
         {
-            map[i][j].setNode(0);
+            my_map[i][j].setNode(0);
         }
     }
-    std::cout << "Start case:" << tile_x << tile_y << endl;
-    std::cout << "Goal case:" << m_goalX << m_goalY << endl;
-    int x = tile_y;
-    int y = tile_x;
-    map[y][x].setNode(1);
+    //std::cout << "Start case:" << tile_x << tile_y << endl;
+    //std::cout << "Goal case:" << m_goalX << m_goalY << endl;
+    int y = tile_y;
+    int x = tile_x;
+    my_map[y][x].setNode(1);
     int node = 1;
     int compteur = 0;
-    for (size_t t = 0; t < 500; t++)
+    for (size_t t = 0; t < 50; t++)
     {
         node++;
         //std::cout << endl << "node:" << node << endl;
@@ -204,71 +224,71 @@ int Character::pathFinding(Tile map[][5])
         {
             for (size_t j = 0; j < 5; j++)
             {
-                std::cout << map[j][i].getNode() << " ";
-                if ((map[i][j].getNode() == (node - 1)) && (map[i][j].isWalkable()))
+                //std::cout << my_map[i][j].getNode() << " ";
+                if ((my_map[i][j].getNode() == (node - 1)) && (my_map[i][j].isWalkable()))
                 {
-                    std::cout << endl << "IN " << i << j << endl;
+                    //::cout << endl << "IN " << i << j << endl;
                     if (i > 0)
                     {
                         //std::cout << "Haut" << endl;
-                        if ((map[i - 1][j].getNode() == 0) && (map[i - 1][j].isWalkable()))
+                        if ((my_map[i - 1][j].getNode() == 0) && (my_map[i - 1][j].isWalkable()))
                         {
-                            map[i - 1][j].setNode(node);
+                            my_map[i - 1][j].setNode(node);
                             if ((i == m_goalY) && (j == m_goalX))
                             {
                                 contin = 0;
-                                cout << "FIN";
+                                //cout << "FIN";
                             }
                         }
                     }
                     if (i < 9)
                     {
                         //std::cout << "Bas" << endl;
-                        if (map[i + 1][j].getNode() == 0) //&& (map[j][i + 1].getId() == 2))/////////VERIFICATION OF THE ELEVATOR
+                        if (my_map[i + 1][j].getNode() == 0) //&& (my_map[j][i + 1].getId() == 2))/////////VERIFICATION OF THE ELEVATOR
                         {
-                            map[i + 1][j].setNode(node);
-                            if (((i == m_goalY) && (j == m_goalX)) && (map[i + 1][j].isWalkable()))
+                            my_map[i + 1][j].setNode(node);
+                            if (((i == m_goalY) && (j == m_goalX)) && (my_map[i + 1][j].isWalkable()))
                             {
                                 contin = 0;
-                                cout << "FIN";
+                                //cout << "FIN";
                             }
                         }
                     }
                     if (j > 0)
                     {
                         //std::cout << "Gauche" << endl;
-                        if (map[i][j - 1].getNode() == 0)
+                        if (my_map[i][j - 1].getNode() == 0)
                         {
-                            map[i][j - 1].setNode(node);
-                            if (((i == m_goalY) && (j == m_goalX)) && (map[i][j - 1].isWalkable()))
+                            my_map[i][j - 1].setNode(node);
+                            if (((i == m_goalY) && (j == m_goalX)) && (my_map[i][j - 1].isWalkable()))
                             {
                                 contin = 0;
-                                cout << "FIN";
+                                //cout << "FIN";
                             }
                         }
                     }
                     if (j < 4)
                     {
                         //std::cout << "Droite" << endl;
-                        if (map[i][j + 1].getNode() == 0)
+                        if (my_map[i][j + 1].getNode() == 0)
                         {
-                            map[i][j + 1].setNode(node);
-                            if (((i == m_goalY) && (j == m_goalX)) && (map[i][j + 1].isWalkable()))
+                            my_map[i][j + 1].setNode(node);
+                            if (((i == m_goalY) && (j == m_goalX)) && (my_map[i][j + 1].isWalkable()))
                             {
                                 contin = 0;
-                                cout << "FIN";
+                                //cout << "FIN";
                             }
                         }
                     }
                 }
             }
-            std :: cout << endl;
+            //std :: cout << endl;
         }
-        std::system("PAUSE");
+        //std::system("PAUSE");
     }
-    node = map[m_goalY][m_goalX].getNode();
-    cout << "Start:" << node << endl;
-    system("PAUSE");
+    node = my_map[m_goalY][m_goalX].getNode();
+    //cout << "Start:" << node << endl;
+    //system("PAUSE");
     int meilleur = node;
 
     coord node1;
@@ -289,60 +309,61 @@ int Character::pathFinding(Tile map[][5])
         //compteur++;
         if (node1.y > 0)
         {
-            //std::cout << "Node2 " << map[node1.y - 1][node1.x].getNode() << " " << meilleur << endl;
+            //std::cout << "Node2 " << my_map[node1.y - 1][node1.x].getNode() << " " << meilleur << endl;
             //std::system("PAUSE");
-            if ((map[node1.y - 1][node1.x].getNode() < meilleur) && (map[node1.y - 1][node1.x].getNode() != 0))
+            if ((my_map[node1.y - 1][node1.x].getNode() < meilleur) && (my_map[node1.y - 1][node1.x].getNode() != 0))
             {
                // std::cout << "BINGO" << node1.x << " " << node1.y - 1 << endl;
-                meilleur = map[node1.y - 1][node1.x].getNode();
+                meilleur = my_map[node1.y - 1][node1.x].getNode();
                 node2.x = node1.x;
                 node2.y = node1.y - 1;
             }
         }
         if (node1.y < 9)
         {
-            //std::cout << "Node3 " << map[node1.y + 1][node1.x].getNode() << " " << meilleur << endl;
+            //std::cout << "Node3 " << my_map[node1.y + 1][node1.x].getNode() << " " << meilleur << endl;
             //std::system("PAUSE");
-            if ((map[node1.y + 1][node1.x].getNode() < meilleur) && (map[node1.y + 1][node1.x].getNode() != 0))
+            if ((my_map[node1.y + 1][node1.x].getNode() < meilleur) && (my_map[node1.y + 1][node1.x].getNode() != 0))
             {
                 //std::cout << "BINGO" << node1.x << " " << node1.y + 1 << endl;
-                meilleur = map[node1.y + 1][node1.x].getNode();
+                meilleur = my_map[node1.y + 1][node1.x].getNode();
                 node2.x = node1.x;
                 node2.y = node1.y + 1;
             }
         }
         if (node1.x > 0)
         {
-            //std::cout << "Node4 " << map[node1.y][node1.x - 1].getNode() << " " << meilleur << endl;
+            //std::cout << "Node4 " << my_map[node1.y][node1.x - 1].getNode() << " " << meilleur << endl;
             //std::system("PAUSE");
-            if ((map[node1.y][node1.x - 1].getNode() < meilleur) && (map[node1.y][node1.x - 1].getNode() != 0))
+            if ((my_map[node1.y][node1.x - 1].getNode() < meilleur) && (my_map[node1.y][node1.x - 1].getNode() != 0))
             {
                 //std::cout << "BINGO" << node1.x - 1 << " " << node1.y << endl;
-                meilleur = map[node1.y][node1.x - 1].getNode();
+                meilleur = my_map[node1.y][node1.x - 1].getNode();
                 node2.x = node1.x - 1;
                 node2.y = node1.y;
             }
         }
         if (node1.x < 4)
         {
-            //std::cout << "Node5 " << map[node1.y][node1.x + 1].getNode() << " " << meilleur << endl;
+            //std::cout << "Node5 " << my_map[node1.y][node1.x + 1].getNode() << " " << meilleur << endl;
             //std::system("PAUSE");
-            if ((map[node1.y][node1.x + 1].getNode() < meilleur) && (map[node1.y][node1.x + 1].getNode() != 0))
+            if ((my_map[node1.y][node1.x + 1].getNode() < meilleur) && (my_map[node1.y][node1.x + 1].getNode() != 0))
             {
                 //std::cout << "BINGO" << node1.x + 1 << " " << node1.y << endl;
-                meilleur = map[node1.y][node1.x + 1].getNode();
+                meilleur = my_map[node1.y][node1.x + 1].getNode();
                 node2.x = node1.x + 1;
                 node2.y = node1.y;
             }
         }
         //cout << endl << "test:" << node2.x << m_goal << endl;
-        if ((node2.x == tile_x) && (node2.y == tile_y))
+        //if ((((node1.x) - (tile_x) == 1) || ((node1.x) - (tile_x) == -1)) && (((node1.y) - (tile_y == 1)) || ((node1.y) - (tile_y) == -1)))
+        if ((node2.x == tile_x) && (node1.y == tile_y))
         {
 
             //cout << "TROUVE:!!!!!" << endl;
             //////////////APPEL FONCTION DEPLACEMENT (node1.y, node1.x)
-            cout << "NODE:" << node1.x << node1.y << endl;
-            system("PAUSE");
+            /*cout << "NODE:" << node1.x << node1.y << endl;
+            system("PAUSE");*/
             (*this).moving(node1.x, node1.y);
             
             return 1;
@@ -353,31 +374,10 @@ int Character::pathFinding(Tile map[][5])
             //std::cout << "Transfert" << node2.x << " " << node2.y;
             //cout << endl << "NODE:"<< node1.x << node1.y << endl;
         }
-        node == meilleur;
+        node = meilleur;
     }
     return 0;
 }
-
-void Character::setPosition(int x, int y)
-{
-    tile_x = x;
-    tile_y = y;
-    m_moving = 0;
-}
-
-void Character::moving(int x, int y)
-{
-    cout << "IS MOVING" << endl;
-    system("PAUSE");
-    if ((x != move_x) || (y != move_y))
-    {
-        status = MOVING;
-        move_x = x;
-        move_y = y;
-        m_moving = 0;
-    }
-}
-
 int Character::getX()
 {
     return tile_x;
