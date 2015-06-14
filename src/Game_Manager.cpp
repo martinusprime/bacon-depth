@@ -51,21 +51,12 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     m_view2.setViewport(FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
 
     //init map
-    for (size_t y = 0; y < 10; y++)
+    for (size_t x = 0; x < 10; x++)
     {
-        for (size_t x = 0; x < 5; x++)
+        for (size_t y = 0; y < 5; y++)
         {
             map[y][x].setLevel(y);
             if (y == 0)
-<<<<<<< HEAD
-            {
-                map[y][x].setID(6 + x);
-                //cout << "walkability" << map[y][x].isWalkable() << endl;
-            }
-            if (y == 0)
-            {
-                map[y][x].setID(1);
-=======
             {            //surface
 
                 map[x][y].setID(6 + x);
@@ -73,9 +64,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
             
             if(x >= 2 && x <5 && y == 2)
             {            //metro 3, 4, 5
-
                 map[x][y].setID(1 + x);
->>>>>>> 0b3d5ad5a915ea4ed2cbe983100168fb6e090411
             }
              if(x >= 1 && x <4 && y == 3)
             {            //soutterrain
@@ -94,11 +83,8 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
             }
              if (x >= 0 && x <5 && y == 4)
             {
-<<<<<<< HEAD
                 map[y][x].setID(0);
-=======
-                map[x][y].setID(1);
->>>>>>> 0b3d5ad5a915ea4ed2cbe983100168fb6e090411
+
             }
         }
     }
@@ -177,9 +163,6 @@ void Game_Manager::update(float timeElapsed)
             buttons[0].desactivate();
         }
 
-<<<<<<< HEAD
-
-=======
         buttons[1].update(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size + buttons[1].get_h());
         if (buttons[1].is_activated())
         {
@@ -193,7 +176,6 @@ void Game_Manager::update(float timeElapsed)
             buttons[2].desactivate();
             execute_action(ACT_STOP);
         }
->>>>>>> 0b3d5ad5a915ea4ed2cbe983100168fb6e090411
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
             {
