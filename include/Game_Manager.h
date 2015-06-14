@@ -30,7 +30,7 @@ public:
     void execute_action(Action action);
     void draw();
     void update(float timeElapsed);
-
+    bool Game_Manager::isOccupied(int x, int y);
     void hud();
     virtual ~Game_Manager() = default;
 
@@ -70,6 +70,7 @@ private:
     int m_screen_x; //width of the game window in pixels
     int citizen_number, citizen_max, monster_max; //the number of citizen you have
     int tile_size;
+    int metal_number, food_number;
     bool clicked, glissor_on, cinematic_on;
     Music music;
 

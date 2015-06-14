@@ -6,7 +6,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     : m_view1(view1)
     , radio_icon(app, "resources/radioactive_icon.png", &view1)
     , food_icon(app, "resources/food_icon.png", &view1)
-    , metal_icon(app, "resources/metal_icon.png", &view1)
+    , metal_icon(app, "resources/metal_icon_0.png", &view1)
     , radio_bar(app, "resources/radio_bar.png", &view1)
     , radio_bar_background(app, "resources/radio_bar_background.png", &view1)
     , radio_bar_grad(app, "resources/radio_bar_grad.png", &view1)
@@ -18,6 +18,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     , bomb(app, "resources/bomb.png", &view1)
     , pause_sprite(app, "resources/pause.png", &view1)
     , info_sprite(app, "resources/info.png", &view1)
+    , spriteTile0(app, "resources/invisible.png", &view1)
     , tile_size(384)
     , glissor1(app, 0, 0, 0, 0, &view1)
 {
@@ -32,6 +33,8 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     citizen_max = 10;
     monster_max = 10;
     citizen_number = citizen_max;
+    food_number = 0;
+    metal_number = 0;
     pause = false;
     clicked = false;
     glissor_on = false;
@@ -54,8 +57,10 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     {
         for (size_t x = 0; x < 5; x++)
         {
-            my_map[y][x].setLevel(y);
-            
+
+            my_map[y][x].setLevel(x);
+            my_map[y][x].init_resources(m_app, &view1, x, y);
+
             if (y == 0)
             {            //surface
 
@@ -85,14 +90,14 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
                 my_map[y][x].setID(0);
 
             }
-             cout << my_map[y][x].isWalkable() << " ";
+            // cout << my_map[y][x].isWalkable() << " ";
         }
-        cout << endl;
+     //   cout << endl;
     }
 
     //init sprites
     string path = "";
-    for (int i = 0; i < 60; i++) {
+    for (int i = 0; i < 27; i++) {
         path = "resources/tile" + std::to_string(i) + ".png";
         sprites.push_back(My_Sprite{ m_app, path, &m_view1 });
         //      std::cout << path << endl;
@@ -124,6 +129,8 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
 
     buttons.push_back(Button{ m_app, "Move", 0, 0, 0, 0, &m_view1 });//button of the glissor
     buttons.push_back(Button{ m_app, 0, 0, 0, 0, &m_view1 });//button of the glissor
+
+    buttons.push_back(Button{ m_app, "Take resources",0, 0, 0, 0, &m_view1 });//button of the ressources
     glissor1 = Glissor{ m_app, 0, 0, 0, 0, &m_view1 };
     //music init
 
@@ -176,6 +183,16 @@ void Game_Manager::update(float timeElapsed)
         {
             buttons[2].desactivate();
             execute_action(ACT_STOP);
+        }
+        buttons[3].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size + buttons[1].get_h() * 2);
+        if (buttons[3].is_activated())
+        {
+            buttons[3].desactivate();
+
+            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y) )
+            {
+                metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
+            }
         }
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
@@ -256,7 +273,21 @@ void Game_Manager::update(float timeElapsed)
 
 
         citizen_number_text.refill("Still alive: " + std::to_string(citizen_number));
+         food_number_text.refill("Food: " + std::to_string(food_number));
+        metal_number_text.refill("Metal: " + std::to_string(metal_number));
     }
+}
+
+bool Game_Manager::isOccupied(int x, int y)
+{
+    for (size_t i = 0; i < character1.size(); i++)
+    {
+        if ((character1[i].getX() == x) && (character1[i].getY() == y))
+        {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void Game_Manager::cinematic_update()
@@ -348,6 +379,7 @@ void Game_Manager::draw()
         for (size_t y = 0; y < 10; y++)
         {
             sprites[my_map[y][x].getId()].draw(tile_size * x, tile_size * y);
+            my_map[y][x].draw_tile();
         }
     }
 
@@ -373,6 +405,7 @@ void Game_Manager::draw()
     buttons[0].draw();
     buttons[1].draw();
     buttons[2].draw();
+    buttons[3].draw();
 
     int compteur = 0;
     for (int i = 0; i < character1.size(); i++)
@@ -476,7 +509,7 @@ void Game_Manager::execute_action(Action action)
                 (my_map[selected_tile.goal_y][selected_tile.goal_x].isWalkable()))
             {               
                 character1[i].newGoal(selected_tile.goal_x, selected_tile.goal_y);
-                cout << "GOAL" << selected_tile.goal_x << " " << selected_tile.goal_y << endl;
+            //    cout << "GOAL" << selected_tile.goal_x << " " << selected_tile.goal_y << endl;
                 compteur++;
             }
         }
