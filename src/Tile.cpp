@@ -104,6 +104,13 @@ void Tile::setID(int ID)
         m_maxHp = 0;
         m_Hp = 0;
     }
+    if (ID == 8)
+    {
+        m_prod = 0;
+        m_def = 0;
+        m_maxHp = 100;
+        m_Hp = 1000;
+    }
 }
 
 int Tile::getId()
@@ -152,7 +159,14 @@ void Tile::update(float time)
 
     if (m_Hp < 0)
     {
-        setID(1);
+        if (m_ID == 8)
+        {
+            setID(6);
+        }
+        else
+        {
+            setID(1);
+        }        
         if (m_work == DIGING)
         {
             time_text.refill(std::to_string(m_progress) + "/" + std::to_string(m_progressMax));
@@ -214,7 +228,8 @@ bool Tile::isBuilding()
     }
 }
 
-void Tile::get_damage(int damage)
+void Tile::get_damage(float damage)
 {
     m_Hp -= damage;
+    cout << "mes degats" << damage << endl;
 }
