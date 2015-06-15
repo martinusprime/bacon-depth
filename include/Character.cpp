@@ -498,3 +498,8 @@ void Character::setBattle()
 {
     status = BATTLE;
 }
+
+void Character::setIdle()
+{
+    status = IDLE;
+}

@@ -950,15 +950,28 @@ bool Game_Manager::handle_input_events_key()
 
 void Game_Manager::combat(float time)
 {
+    int combat = 0;
     for (size_t i = 0; i <= character1.size(); i++)
+<<<<<<< HEAD
     {
         if (citizen_state[i])
+=======
+    {        
+        for (size_t j = 0; j <= monster1.size(); j++)
+>>>>>>> 47b9e95e4dba693b452f4757e01f4f4644a6ed7c
         {
-            for (size_t j = 0; j <= monster1.size(); j++)
+            if (monster_state[j])
             {
                 if (monster_state[i])
                 {
+<<<<<<< HEAD
                     if (((monster1[j].getY() > 9) || (monster1[j].getY() < 0)) || ((monster1[j].getX() > 4) || (monster1[j].getX() < 0)))
+=======
+                    combat = 1;
+                    cout << "BASTON" << endl;
+                    character1[i].setBattle();
+                    if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding() == 0)
+>>>>>>> 47b9e95e4dba693b452f4757e01f4f4644a6ed7c
                     {
                         monster1[j].setPosition(0, 0);
                     }
@@ -977,8 +990,18 @@ void Game_Manager::combat(float time)
                         monster1[j].get_damage(0.001*time);
                     }
                 }
+                
             }
+            
         }
         
     }    
+    if (combat == 0)
+    {
+        for (size_t i = 0; i <= character1.size(); i++)
+        {
+            cout << "IDLE" << endl;
+            character1[i].setIdle();
+        }          
+    }
 }

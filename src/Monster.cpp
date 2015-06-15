@@ -141,6 +141,8 @@ void Monster::update(Tile my_map[][5], float timeElapsed)
     if (life < 0)
     {
         is_alive = false;
+        tile_x = 0;
+        tile_y = 0;
     }
 
     if (direction == RIGHT)
