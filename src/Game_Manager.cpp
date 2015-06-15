@@ -933,25 +933,28 @@ void Game_Manager::combat(float time)
 {
     for (size_t i = 0; i <= character1.size(); i++)
     {
-        for (size_t j = 0; j <= monster1.size(); j++)
+        if (monster_state[i])
         {
-            if (((monster1[j].getY() > 9) || (monster1[j].getY() < 0)) || ((monster1[j].getX() > 4) || (monster1[j].getX() < 0)))
+            for (size_t j = 0; j <= monster1.size(); j++)
             {
-                monster1[j].setPosition(0, 0);
-            }
-            if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding())
-            {
-                my_map[monster1[j].getY()][monster1[j].getX()].get_damage(0.001*time);
-            }
-            if ((monster1[j].getY() == character1[i].getY()) && (monster1[j].getX() == character1[i].getX()))
-            {
-                //cout << "BASTON" << endl;
-                character1[i].setBattle();
-                if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding() == 0)
+                if (((monster1[j].getY() > 9) || (monster1[j].getY() < 0)) || ((monster1[j].getX() > 4) || (monster1[j].getX() < 0)))
                 {
-                    character1[i].get_damage(0.001*time);
-                }  
-                monster1[j].get_damage(0.001*time);
+                    monster1[j].setPosition(0, 0);
+                }
+                if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding())
+                {
+                    my_map[monster1[j].getY()][monster1[j].getX()].get_damage(0.001*time);
+                }
+                if ((monster1[j].getY() == character1[i].getY()) && (monster1[j].getX() == character1[i].getX()))
+                {
+                    //cout << "BASTON" << endl;
+                    character1[i].setBattle();
+                    if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding() == 0)
+                    {
+                        character1[i].get_damage(0.001*time);
+                    }
+                    monster1[j].get_damage(0.001*time);
+                }
             }
         }
     }    
