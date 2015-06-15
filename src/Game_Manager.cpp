@@ -281,7 +281,7 @@ void Game_Manager::update(float timeElapsed)
     }
 
 
-    if (citizen_number == 0)
+    if (citizen_number == 0 || oxygen_number == 0.0f)
     {
         fail = true;
         reset();
@@ -303,7 +303,7 @@ void Game_Manager::update(float timeElapsed)
         if (oxygen_clock.getElapsedTime().asSeconds() > 0.5f)
         {
             oxygen_clock.restart();
-            oxygen_number -= 0.00001;
+            oxygen_number -= 0.0008;
         }
         oxygen_bar.scale(oxygen_number, 1.0f, false);
 
