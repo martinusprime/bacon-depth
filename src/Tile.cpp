@@ -176,6 +176,8 @@ int Tile::isWalkable()
 
 void Tile::constru(int newID, int progressMax)
 {
+    /*cout << m_futID << endl;
+    system("PAUSE");*/
     m_progressMax = progressMax;
     m_futID = newID;
     if (m_futID == 1)
