@@ -255,8 +255,14 @@ void My_Sprite::draw_tile(int x, int y, int random)
 
 void My_Sprite::scale(float x_rate, float y_rate, bool is_vertical)
 {
-   
-    m_sprite.setScale(1.0f, 1.0f);
+    if (flip_value == 0)
+    {
+        m_sprite.setScale(1.0f, 1.0f);
+    }
+    else
+    {
+        m_sprite.setScale(-1.0f, 1.0f);
+    }
     m_sprite.scale(Vector2f(x_rate, y_rate));
     FloatRect  a = m_sprite.getGlobalBounds();
     m_w = a.width;

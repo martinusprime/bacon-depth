@@ -43,7 +43,7 @@ private:
     enum Work { NO, DIGING, BUILDING };
     Work m_work;
     vector <Ressource> resource1;
-    My_Sprite life_bar, life_bar_background, life_bar_heart;
+    vector <My_Sprite> life;
     My_Text time_text;
 };
 

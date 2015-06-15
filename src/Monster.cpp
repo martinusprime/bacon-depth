@@ -67,9 +67,6 @@ void Monster::update(Tile my_map[][5], float timeElapsed)
 
 
 
-    float new_life = life / 100.0f;
-    life_bar.scale(new_life, 1.0f, false);
-
 
     if (status == IDLE)
     {
@@ -180,6 +177,10 @@ void Monster::update(Tile my_map[][5], float timeElapsed)
             (*this).setPosition(move_x, move_y);
         }
     }
+
+
+    float new_life = life / 100.0f;
+    life_bar.scale(new_life, 1.0f, false);
 }
 
 void Monster::setPosition(int x, int y)
