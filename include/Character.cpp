@@ -19,7 +19,7 @@ Character::Character(RenderWindow *app, View *view, int id)
 
     m_view1 = view;
     m_app = app;
-    life = 100;
+    life = 130;
     tile_x = 0;
     tile_y = 0;
     move_x = 0;
@@ -72,8 +72,6 @@ void Character::update(Tile my_map[][5], float timeElapsed)
         tile_y = 9;
     }
 
-    float new_life = life / 100.0f;
-    life_bar.scale(new_life, 1.0f, false);
 
 
     if (status == IDLE)
@@ -191,6 +189,9 @@ void Character::update(Tile my_map[][5], float timeElapsed)
             (*this).setPosition(move_x, move_y);
         }
     }
+
+    float new_life = life / 100.0f;
+    life_bar.scale(new_life, 1.0f, false);
 }
 
 void Character::setPosition(int x, int y)

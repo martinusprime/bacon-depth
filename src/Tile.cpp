@@ -44,22 +44,22 @@ int Tile::get_resources_id()
 
 void Tile::init_resources(RenderWindow *app, View *view, int x, int y)
 {
+    srand(time(0));
 
-    resources_id = Random::get_int(0, 5)-4;
-
+    resources_id = rand()%2 ;
+    cout << "random id : " << resources_id << endl;
     int random = Random::get_int(0, 3);
     m_x = x;
     m_y = y;
     for (int i = 0; i < random; i++)
     {
-        cout << "it: " << i << "randomommo :" << random << endl;
         resource1.push_back(Ressource{ app, view, resources_id, resource_number, x, y });
         resource_number++;
     } srand(time(0));
 
-    life_bar = My_Sprite{ app, "resources/life_bar.png", view };
-    life_bar_background = My_Sprite{ app, "resources/life_bar_background.png", view };
-    life_bar_heart = My_Sprite{ app, "resources/life_bar_heart.png", view };
+    life.push_back(My_Sprite{ app, "resources/life_bar.png", view });
+    life.push_back(My_Sprite{ app, "resources/life_bar_background.png", view });
+    life.push_back(My_Sprite{ app, "resources/life_bar_heart.png", view });
     time_text.init(app, "dfsd", 55, 1);
 }
 
@@ -121,9 +121,9 @@ void Tile::draw_tile()
 {
     if (isBuilding())
     {
-        life_bar_background.draw(m_x * tile_size, m_y * tile_size);
-        life_bar.draw(m_x * tile_size, m_y * tile_size);
-        life_bar_heart.draw(m_x * tile_size, m_y * tile_size);
+        life[1].draw(m_x * tile_size, m_y * tile_size - 70);
+        life[0].draw(m_x * tile_size, m_y * tile_size - 70);
+        life[2].draw(m_x * tile_size, m_y * tile_size - 70);
     }
     for (int i = 0; i < resource_number; i++)
     {
@@ -136,9 +136,11 @@ void Tile::draw_tile()
 }
 void Tile::update(float time)
 {
+    float new_life = (m_Hp / m_maxHp)/10.0f;
+    life[0].scale(new_life, 1.0f, false);
     // m_irradiation doit etre comprise entre 0 et 1  a la fin;
-
-    m_irradiation += ((time / 5.0) + (1 / (m_level + 2))) / 100000.0;
+    float level = m_level;
+    m_irradiation += ((time / 5.0f) + (0.5f / ((level + 1.0f) * 2))) / 100000.0;
 
     if (m_irradiation > 1.0f)
     {

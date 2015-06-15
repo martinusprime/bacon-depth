@@ -76,7 +76,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
         for (size_t x = 0; x < 5; x++)
         {
 
-            my_map[y][x].setLevel(x);
+            my_map[y][x].setLevel(y);
             my_map[y][x].init_resources(m_app, &view1, x, y);
 
             if (y == 0)
@@ -148,7 +148,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     //monsters on surface
     for (int i = 0; i < monster_max; i++)
     {
-        citizen_state.push_back(true);
+        monster_state.push_back(true);
         monster1.push_back(Monster{ m_app, &m_view1, i });
     }
     citizen_number_text.init(app, "Still alive: ", 35, 1);
@@ -248,8 +248,14 @@ void Game_Manager::reset()
         //   cout << endl;
     }
 
-
-
+    for (int i = 0; i < monster_max; i++)
+    {
+        monster_state[i] = true;
+    }
+    for (int i = 0; i < citizen_max; i++)
+    {
+        citizen_state[i] = true;
+    }
     update(0);
     cinematic_init();
     oxygen_clock.restart();
@@ -299,7 +305,7 @@ void Game_Manager::update(float timeElapsed)
         m_app->setView(m_view1);
 
         //radiation haldling
-        radio_bar.scale(1.0f, my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_radiation(), true);
+        radio_bar.scale(1.0f, my_map[selected_tile.clicked_y][selected_tile.clicked_x].get_radiation(), true);
         //oxygen_handling
         if (oxygen_clock.getElapsedTime().asSeconds() > 0.5f)
         {
@@ -335,17 +341,17 @@ void Game_Manager::update(float timeElapsed)
         {
             buttons[3].desactivate();
             cout << "caca" << endl;
-            //    if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y) )
-            //  {
-            //   if (my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_resources_id() == 0)
-            // {
-            metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
-            //}
-            if (my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_resources_id() == 1)
-            {
-                food_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
+                if (isOccupied(selected_tile.clicked_x ,selected_tile.clicked_y) )
+              {
+               if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].get_resources_id() == 0)
+             {
+            metal_number += my_map[selected_tile.clicked_y][selected_tile.clicked_x].get_ressources();
             }
-            //}
+            if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].get_resources_id() == 1)
+            {
+                food_number += my_map[selected_tile.clicked_y][selected_tile.clicked_x].get_ressources();
+            }
+            }
         }
 
         buttons[4].update(m_screen_x - buttons[4].get_w() - 30, m_screen_y / 2 + buttons[4].get_h());
@@ -413,7 +419,7 @@ void Game_Manager::update(float timeElapsed)
         }
 
         for (int i = 0; i < monster_max; i++) {
-            if (citizen_state[i])
+            if (monster_state[i])
             {
                 monster1[i].newGoal(character1[1].getX(), character1[1].getY());
                 monster1[i].update(my_map, timeElapsed);
