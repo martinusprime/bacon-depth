@@ -28,7 +28,7 @@ public:
     int isWalkable();
     void constru(int newID, int progressMax);
     int addProgress(float pr);
-    int isBuilding();
+    bool isBuilding();
     void get_damage(int damage);
 
 private:

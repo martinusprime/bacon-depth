@@ -199,7 +199,7 @@ int Tile::addProgress(float pr)
     return 1;
 }
 
-int Tile::isBuilding()
+bool Tile::isBuilding()
 {
     if ((m_ID >= 17) && (m_ID <= 22))
     {
