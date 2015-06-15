@@ -29,15 +29,17 @@ public:
     void constru(int newID, int progressMax);
     int addProgress(float pr);
     bool isBuilding();
-    void get_damage(int damage);
+    void get_damage(float damage);
 
 private:
     int m_level, m_rubble, m_oxygen, m_ID, resource_number;
     float m_irradiation;
-    int m_efRubble, m_prod, m_def, m_maxHp, m_Hp;
+    int m_efRubble, m_prod, m_def;
+    float m_maxHp, m_Hp;
     int walkable;
     int m_node, m_x, m_y, tile_size;
-    int m_progress, m_progressMax, m_futID, resources_id;
+    float m_progress, m_progressMax;
+    int m_futID, resources_id;
     enum Work { NO, DIGING, BUILDING };
     Work m_work;
     vector <Ressource> resource1;

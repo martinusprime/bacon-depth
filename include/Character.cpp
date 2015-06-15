@@ -472,8 +472,8 @@ int Character::isOnPos(int x, int y)
 void Character::stop()
 {
     status = IDLE;
-    m_goalX = 0;
-    m_goalY = 0;
+    m_goalX = tile_x;
+    m_goalY = tile_y;
     m_moving = 0;
     move_x = 0;
     move_y = 0;
