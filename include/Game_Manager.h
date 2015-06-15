@@ -101,7 +101,7 @@ private:
     float zoom_rate;
 
 
-    Clock clock_zoom;
+    Clock clock_zoom, monster_time;
     sf::Time zoom_time;
 
     int bomb_y;

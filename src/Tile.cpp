@@ -21,6 +21,8 @@ Tile::Tile()
     srand(time(0));
     tile_size = 384;
     m_progress = 0;
+    srand(time(0));
+
 }
 
 Tile::~Tile()
@@ -44,7 +46,6 @@ int Tile::get_resources_id()
 
 void Tile::init_resources(RenderWindow *app, View *view, int x, int y)
 {
-    srand(time(0));
 
     resources_id = rand()%2 ;
     cout << "random id : " << resources_id << endl;
@@ -55,7 +56,7 @@ void Tile::init_resources(RenderWindow *app, View *view, int x, int y)
     {
         resource1.push_back(Ressource{ app, view, resources_id, resource_number, x, y });
         resource_number++;
-    } srand(time(0));
+    } 
 
     life.push_back(My_Sprite{ app, "resources/life_bar.png", view });
     life.push_back(My_Sprite{ app, "resources/life_bar_background.png", view });

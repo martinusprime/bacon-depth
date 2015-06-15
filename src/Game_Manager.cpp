@@ -35,6 +35,8 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
 
     sound_combat.setBuffer(buffer_combat);
 
+    monster_time.restart();
+
     //
 
     zoom = 1;
@@ -258,6 +260,7 @@ void Game_Manager::reset()
     }
     update(0);
     cinematic_init();
+    monster_time.restart();
     oxygen_clock.restart();
 }
 
@@ -265,6 +268,22 @@ void Game_Manager::update(float timeElapsed)
 {
     handle_input_events();
     m_view1.zoom(zoom);
+
+
+
+    if (monster_time.getElapsedTime().asSeconds() >= 25)
+    {
+        monster_time.restart();
+        int a = rand() % 5 + 1;
+        for (int i = 0; i <= a; i++)
+        {
+            monster_max++;
+            monster1.push_back(Monster{ m_app, &m_view1, i });
+            monster_state.push_back(true);
+        }
+    }
+
+
 
     zoom_time = clock_zoom.getElapsedTime();
     if (zoom_time.asSeconds() >  0.05  && zoom_change != ZOOM_NO_CHANGE)
@@ -932,34 +951,49 @@ void Game_Manager::combat(float time)
 {
     int combat = 0;
     for (size_t i = 0; i <= character1.size(); i++)
+<<<<<<< HEAD
+    {
+        if (citizen_state[i])
+=======
     {        
         for (size_t j = 0; j <= monster1.size(); j++)
+>>>>>>> 47b9e95e4dba693b452f4757e01f4f4644a6ed7c
         {
             if (monster_state[j])
             {
-                if (((monster1[j].getY() > 9) || (monster1[j].getY() < 0)) || ((monster1[j].getX() > 4) || (monster1[j].getX() < 0)))
+                if (monster_state[i])
                 {
-                    monster1[j].setPosition(0, 0);
-                }
-                if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding())
-                {
-                    my_map[monster1[j].getY()][monster1[j].getX()].get_damage(0.001*time);
-                }
-                if ((monster1[j].getY() == character1[i].getY()) && (monster1[j].getX() == character1[i].getX()))
-                {
+<<<<<<< HEAD
+                    if (((monster1[j].getY() > 9) || (monster1[j].getY() < 0)) || ((monster1[j].getX() > 4) || (monster1[j].getX() < 0)))
+=======
                     combat = 1;
                     cout << "BASTON" << endl;
                     character1[i].setBattle();
                     if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding() == 0)
+>>>>>>> 47b9e95e4dba693b452f4757e01f4f4644a6ed7c
                     {
-                        character1[i].get_damage(0.001*time);
+                        monster1[j].setPosition(0, 0);
                     }
-                    monster1[j].get_damage(0.001*time);
+                    if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding())
+                    {
+                        my_map[monster1[j].getY()][monster1[j].getX()].get_damage(0.001*time);
+                    }
+                    if ((monster1[j].getY() == character1[i].getY()) && (monster1[j].getX() == character1[i].getX()))
+                    {
+                        //cout << "BASTON" << endl;
+                        character1[i].setBattle();
+                        if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding() == 0)
+                        {
+                            character1[i].get_damage(0.001*time);
+                        }
+                        monster1[j].get_damage(0.001*time);
+                    }
                 }
                 
             }
             
         }
+        
     }    
     for (size_t i = 0; i <= character1.size(); i++)
     {
