@@ -33,7 +33,7 @@ public:
     bool Game_Manager::isOccupied(int x, int y);
     void hud();
     virtual ~Game_Manager() = default;
-    void combat();
+    void combat(float time);
 
 private:
     bool handle_input_events();

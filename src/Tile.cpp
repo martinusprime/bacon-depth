@@ -203,7 +203,7 @@ int Tile::addProgress(float pr)
 
 bool Tile::isBuilding()
 {
-    if ((m_ID >= 17) && (m_ID <= 22))
+    if (((m_ID >= 17) && (m_ID <= 22)) || (m_ID == 8))
     {
         return 1;
     }

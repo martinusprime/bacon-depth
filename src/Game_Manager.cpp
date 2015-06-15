@@ -84,24 +84,19 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
 
                 my_map[y][x].setID(6 + x);
             }            
-            else if(x >= 2 && x <5 && y == 2)
+            else if(x >= 2 && x <5 && y == 4)
             {            //metro 3, 4, 5
                 my_map[y][x].setID(1 + x);
             }
-             else if(x >= 1 && x <4 && y == 3)
+             else if(x >= 1 && x <4 && y == 6)
             {            //soutterrain
 
                 my_map[y][x].setID(10 + x);
             }
-             else if(x >= 2 && x <5 && y == 1)
+             else if(x >= 2 && x <5 && y == 2)
             {            //egouts
 
                 my_map[y][x].setID(12 + x);
-            }
-             else if(x >= 1 && x <4 && y == 3)
-            {            //groupe electrogene
-
-                my_map[y][x].setID(10 + x);
             }
              else if (x >= 1 && x <4 && y == 5)
              {           
@@ -211,27 +206,37 @@ void Game_Manager::reset()
             {            //surface
 
                 my_map[y][x].setID(6 + x);
-            }
-            else if (x >= 2 && x <5 && y == 2)
+            }            
+            else if(x >= 2 && x <5 && y == 4)
             {            //metro 3, 4, 5
                 my_map[y][x].setID(1 + x);
             }
-            else if (x >= 1 && x <4 && y == 3)
+             else if(x >= 1 && x <4 && y == 6)
             {            //soutterrain
 
                 my_map[y][x].setID(10 + x);
             }
-            else if (x >= 2 && x <5 && y == 1)
+             else if(x >= 2 && x <5 && y == 2)
             {            //egouts
 
                 my_map[y][x].setID(12 + x);
             }
-            else if (x >= 1 && x <4 && y == 3)
-            {            //groupe electrogene
+             else if (x >= 1 && x <4 && y == 5)
+             {           
 
-                my_map[y][x].setID(10 + x);
-            }
-            else
+                 my_map[y][x].setID(24);
+             }
+             else if (x >= 0 && x <4 && y == 6)
+             {
+
+                 my_map[y][x].setID(24);
+             }
+             else if (x >= 0 && x <3 && y == 4)
+             {            
+
+                 my_map[y][x].setID(23);
+             }
+             else
             {
                 my_map[y][x].setID(0);
 
@@ -464,7 +469,7 @@ void Game_Manager::update(float timeElapsed)
          food_number_text.refill("Food: " + std::to_string(food_number));
         metal_number_text.refill("Metal: " + std::to_string(metal_number));
     }
-    combat();
+    combat(timeElapsed);
 }
 
 bool Game_Manager::isOccupied(int x, int y)
@@ -906,9 +911,8 @@ bool Game_Manager::handle_input_events_key()
     return ret;
 }
 
-void Game_Manager::combat()
+void Game_Manager::combat(float time)
 {
-    /*
     for (size_t i = 0; i <= character1.size(); i++)
     {
         for (size_t j = 0; j <= monster1.size(); j++)
@@ -920,15 +924,15 @@ void Game_Manager::combat()
             if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding())
             {
                 cout << "BASTONBUILDING" << endl;
-                my_map[monster1[j].getY()][monster1[j].getX()].get_damage(10);
+                system("PAUSE");
+                my_map[monster1[j].getY()][monster1[j].getX()].get_damage(0.01*time);
             }
             else if ((monster1[j].getY() == character1[i].getY()) && (monster1[j].getX() == character1[i].getX()))
             {
                 cout << "BASTONCHAR" << endl;
-                character1[i].get_damage(1);
-                monster1[j].get_damage(1);
+                character1[i].get_damage(0.001*time);
+                monster1[j].get_damage(0.001*time);
             }
         }
-    }
-    */
+    }    
 }

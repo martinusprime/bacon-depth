@@ -15,7 +15,7 @@ public:
     void update(Tile my_map[][5], float timeElapsed);
     void draw();
     bool alive();
-    void get_damage(int damage);
+    void get_damage(float damage);
     virtual ~Monster();
     void newGoal(int x, int y);
     struct coord
@@ -44,7 +44,7 @@ private:
     My_Sprite sprite;
     My_Sprite life_bar, life_bar_background, life_bar_heart;
     int m_id, tile_x, tile_y, walking_x, tile_size;
-    int life;
+    float life;
     Clock render_clock, random_clock;
     bool is_alive;
     int m_goalX, m_goalY;

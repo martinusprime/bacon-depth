@@ -180,7 +180,6 @@ void Monster::update(Tile my_map[][5], float timeElapsed)
             (*this).setPosition(move_x, move_y);
         }
     }
-    void combat();
 }
 
 void Monster::setPosition(int x, int y)
@@ -469,7 +468,7 @@ void Monster::build(int x, int y)
     m_buildY = y;
 }
 
-void Monster::get_damage(int damage)
+void Monster::get_damage(float damage)
 {
     life -= damage;
 }

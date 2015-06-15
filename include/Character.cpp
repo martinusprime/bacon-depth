@@ -13,7 +13,7 @@ Character::Character(RenderWindow *app, View *view, int id)
     , is_alive(true)
 {
     srand(time(0));
-    m_goalX = 0;
+    m_goalX = 2;
     m_goalY = 0;
     status = IDLE;
 
@@ -53,7 +53,7 @@ Character::~Character()
 {
 }
 
-void Character::get_damage(int damage)
+void Character::get_damage(float damage)
 {
     life -= damage;
 }
