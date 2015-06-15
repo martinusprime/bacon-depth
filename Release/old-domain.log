@@ -1,4 +1,4 @@
-﻿Build started 15/06/2015 18:36:53.
+﻿Build started 15/06/2015 18:40:52.
      1>Project "C:\Users\marc\Documents\GitHub\GameJame\old-domain.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iinclude /I"SFML-2.2-vs2013\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\Game_Manager.cpp
@@ -13,10 +13,9 @@
      1>src\Game_Manager.cpp(678): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
      1>src\Game_Manager.cpp(679): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
      1>src\Game_Manager.cpp(680): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>src\Game_Manager.cpp(853): warning C4390: ';' : empty controlled statement found; is this the intent?
-     1>src\Game_Manager.cpp(928): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>src\Game_Manager.cpp(933): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>src\Game_Manager.cpp(934): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>src\Game_Manager.cpp(923): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(928): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>src\Game_Manager.cpp(929): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\marc\Documents\GitHub\GameJame\Release\old-domain.exe" /NOLOGO /LIBPATH:"SFML-2.2-vs2013\lib" "sfml-graphics.lib" "sfml-audio.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\marc\Documents\GitHub\GameJame\Release\old-domain.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\marc\Documents\GitHub\GameJame\Release\old-domain.lib" /MACHINE:X86 /SAFESEH "Release\old-domain.res"
          Release\Character.obj
@@ -39,4 +38,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.25
+Time Elapsed 00:00:03.12
