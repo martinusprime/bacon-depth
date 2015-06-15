@@ -321,28 +321,28 @@ void Game_Manager::update(float timeElapsed)
             execute_action(ACT_MOVE);
         }
 
-        buttons[2].update((selected_tile.clicked_x + 1)* tile_size - buttons[2].get_h() , selected_tile.clicked_y * tile_size + buttons[2].get_h());
+        buttons[2].update((selected_tile.clicked_x + 1)* tile_size - buttons[2].get_h(), selected_tile.clicked_y * tile_size + buttons[2].get_h());
         if (buttons[2].is_activated())
         {
             buttons[2].desactivate();
             execute_action(ACT_STOP);
         }
 
-        buttons[3].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size + buttons[1].get_h() );
+        buttons[3].update(selected_tile.clicked_x* tile_size, selected_tile.clicked_y * tile_size + buttons[3].get_h());
         if (buttons[3].is_activated())
         {
             buttons[3].desactivate();
-            cout << "caca"<<endl;
-        //    if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y) )
-          //  {
-                if (my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_resources_id() == 0)
-                {
-                    metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
-                }
-                if (my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_resources_id() == 1)
-                {
-                    food_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
-                }
+            cout << "caca" << endl;
+            //    if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y) )
+            //  {
+            //   if (my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_resources_id() == 0)
+            // {
+            metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
+            //}
+            if (my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_resources_id() == 1)
+            {
+                food_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
+            }
             //}
         }
 
@@ -356,11 +356,11 @@ void Game_Manager::update(float timeElapsed)
             }
         }
 
-        buttons[5].update(m_screen_x - buttons[5].get_w() - 30, (m_screen_y / 2) + (buttons[5].get_h() + 80 ));
+        buttons[5].update(m_screen_x - buttons[5].get_w() - 30, (m_screen_y / 2) + (buttons[5].get_h() + 80));
         if (buttons[5].is_activated())
         {
             buttons[5].desactivate();
-                execute_action(ACT_BUILD_GENERATOR);
+            execute_action(ACT_BUILD_GENERATOR);
 
         }
 
@@ -368,7 +368,7 @@ void Game_Manager::update(float timeElapsed)
         if (buttons[6].is_activated())
         {
             buttons[6].desactivate();
-                execute_action(ACT_BUILD_FARM);
+            execute_action(ACT_BUILD_FARM);
         }
 
         buttons[7].update(m_screen_x - buttons[7].get_w() - 30, (m_screen_y / 2) + (buttons[7].get_h() + 80 * 3));
@@ -376,7 +376,7 @@ void Game_Manager::update(float timeElapsed)
         {
             buttons[7].desactivate();
 
-                execute_action(ACT_BUILD_ARMORY);
+            execute_action(ACT_BUILD_ARMORY);
         }
 
         buttons[8].update(m_screen_x - buttons[8].get_w() - 30, (m_screen_y / 2) + (buttons[8].get_h() + 80 * 4));
@@ -384,7 +384,7 @@ void Game_Manager::update(float timeElapsed)
         {
             buttons[8].desactivate();
 
-                    execute_action(ACT_BUILD_AERATION);
+            execute_action(ACT_BUILD_AERATION);
         }
 
 
@@ -405,7 +405,7 @@ void Game_Manager::update(float timeElapsed)
 
         for (int i = 0; i < monster_max; i++) {
             if (citizen_state[i])
-            {                
+            {
                 monster1[i].newGoal(character1[1].getX(), character1[1].getY());
                 monster1[i].update(my_map, timeElapsed);
             }
@@ -435,41 +435,43 @@ void Game_Manager::update(float timeElapsed)
             selected_tile.y = 0;
         }
 
-        if (clicked)
+        if (mouse_vec.x < m_screen_x - buttons[6].get_w() - 30)
         {
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            if (clicked)
             {
-                if (selected_tile.goal_x != selected_tile.x
-                    || selected_tile.goal_y != selected_tile.y)
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
                 {
-                    selected_tile.previous_clicked_x = selected_tile.clicked_x;
-                    selected_tile.previous_clicked_y = selected_tile.clicked_y;
+                    if (selected_tile.goal_x != selected_tile.x
+                        || selected_tile.goal_y != selected_tile.y)
+                    {
+                        selected_tile.previous_clicked_x = selected_tile.clicked_x;
+                        selected_tile.previous_clicked_y = selected_tile.clicked_y;
 
-                    selected_tile.clicked_x = selected_tile.x;
-                    selected_tile.clicked_y = selected_tile.y;
+                        selected_tile.clicked_x = selected_tile.x;
+                        selected_tile.clicked_y = selected_tile.y;
+                    }
+
+
                 }
-
-
-            }
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
-            {
-
-                if (selected_tile.x != selected_tile.clicked_x
-                    || selected_tile.y != selected_tile.clicked_y)
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
                 {
-                    selected_tile.goal_x = selected_tile.x;
-                    selected_tile.goal_y = selected_tile.y;
-                    glissor_on = true;
+
+                    if (selected_tile.x != selected_tile.clicked_x
+                        || selected_tile.y != selected_tile.clicked_y)
+                    {
+                        selected_tile.goal_x = selected_tile.x;
+                        selected_tile.goal_y = selected_tile.y;
+                        glissor_on = true;
+                    }
                 }
             }
         }
-
 
         citizen_number_text.refill("Still alive: " + std::to_string(citizen_number));
          food_number_text.refill("Food: " + std::to_string(food_number));
         metal_number_text.refill("Metal: " + std::to_string(metal_number));
     }
-    combat(timeElapsed);
+ //   combat(timeElapsed);
 }
 
 bool Game_Manager::isOccupied(int x, int y)
