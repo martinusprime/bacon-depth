@@ -53,7 +53,7 @@ void Glissor::update(int x, int y, int nbChar)
 
     m_mouse_vec = Mouse::getPosition(*m_app);
     m_a = m_app->mapPixelToCoords(m_mouse_vec, *m_view1);
-    if (Mouse::isButtonPressed(Mouse::Left) && m_a.x >= m_x + m_value * 2 && m_a.x <= m_x + m_value * 2 + 20
+    if (Mouse::isButtonPressed(Mouse::Left) && m_a.x >= m_x + m_value * 2 * nbChar && m_a.x <= m_x + m_value * 2 * nbChar  + 20
         && m_a.y >= m_y - 13 && m_a.y <= m_y - 13 + 50)
     {
         m_mouse_on = true;

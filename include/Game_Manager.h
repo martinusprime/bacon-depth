@@ -91,6 +91,7 @@ private:
     vector <My_Sprite> sprites;
     vector <Button> buttons;
     vector <bool> citizen_state;
+    vector <bool> monster_state;
     enum Zoom_change { ZOOM_NO_CHANGE, ZOOM_ADD, ZOOM_LESS };
     Clock cinematic_clock, radiation_time, oxygen_clock;
     float cinematic_time;

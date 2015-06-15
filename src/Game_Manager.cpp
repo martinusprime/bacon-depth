@@ -148,6 +148,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     //monsters on surface
     for (int i = 0; i < monster_max; i++)
     {
+        citizen_state.push_back(true);
         monster1.push_back(Monster{ m_app, &m_view1, i });
     }
     citizen_number_text.init(app, "Still alive: ", 35, 1);
@@ -165,6 +166,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     buttons.push_back(Button{ m_app, "resources/farm_icon.png", true, 0, 0, 0, 0, &m_view2 });//button of the ressources
     buttons.push_back(Button{ m_app, "resources/armory_icon.png", true, 0, 0, 0, 0, &m_view2 });//button of the ressources
     buttons.push_back(Button{ m_app, "resources/oxygen_icon.png", true, 0, 0, 0, 0, &m_view2 });//button of the ressources
+    buttons.push_back(Button{ m_app, "resources/bunker_icon.png", true, 0, 0, 0, 0, &m_view2 });//button of the ressources
 
 
     glissor1.push_back(Glissor{ m_app, 0, 0, 0, 0, &m_view1 });
@@ -280,7 +282,7 @@ void Game_Manager::update(float timeElapsed)
     }
 
 
-    if (citizen_number == 0)
+    if (citizen_number == 0 || oxygen_number == 0.0f)
     {
         fail = true;
         reset();
@@ -302,7 +304,7 @@ void Game_Manager::update(float timeElapsed)
         if (oxygen_clock.getElapsedTime().asSeconds() > 0.5f)
         {
             oxygen_clock.restart();
-            oxygen_number -= 0.00001;
+            oxygen_number -= 0.0008;
         }
         oxygen_bar.scale(oxygen_number, 1.0f, false);
 
@@ -387,6 +389,13 @@ void Game_Manager::update(float timeElapsed)
             execute_action(ACT_BUILD_AERATION);
         }
 
+        buttons[9].update(m_screen_x - buttons[9].get_w() - 30, (m_screen_y / 2) + (buttons[9].get_h() + 80 * 5));
+        if (buttons[9].is_activated())
+        {
+            buttons[9].desactivate();
+
+            execute_action(ACT_BUILD_BUNKER);
+        }
 
         for (int i = 0; i < citizen_max; i++) {
             if (citizen_state[i])
@@ -408,6 +417,10 @@ void Game_Manager::update(float timeElapsed)
             {
                 monster1[i].newGoal(character1[1].getX(), character1[1].getY());
                 monster1[i].update(my_map, timeElapsed);
+                if (!monster1[i].alive())
+                {
+                    monster_state[i] = false;
+                }
             }
         }
 
@@ -602,9 +615,10 @@ void Game_Manager::draw()
 
     for (int i = 0; i < monster_max; i++)
     {
-
-        monster1[i].draw();
-
+        if (monster_state[i])
+        {
+            monster1[i].draw();
+        }
     }
     goal_border.draw(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);/////////////////////////////////////////////////////
     selection_border.draw(selected_tile.clicked_x * tile_size, selected_tile.clicked_y * tile_size);
@@ -675,6 +689,7 @@ void Game_Manager::hud()
     buttons[6].draw();
     buttons[7].draw();
     buttons[8].draw();
+    buttons[9].draw();
 
 
     citizen_number_text.draw(m_screen_x - (head_icon.get_w() * 2.5), 0, 35);
