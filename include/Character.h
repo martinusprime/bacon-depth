@@ -34,6 +34,7 @@ public:
     void dig(int x, int y);
     void build(int x, int y);
     void setBattle();
+    void setIdle();
 
 private:
     View *m_view1;
