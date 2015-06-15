@@ -1,0 +1,92 @@
+﻿Build started 15/06/2015 13:28:37.
+     1>Project "D:\gamebacon\old-domain.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Iinclude /I"SFML-2.2-vs2013\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\mac\\" /Fd"x64\mac\vc120.pdb" /Gd /TP /errorReport:prompt include\Character.cpp main.cpp src\Button.cpp src\File_Loader.cpp src\Game_Manager.cpp src\Glissor.cpp src\Key_event.cpp src\Monster.cpp src\My_Sprite.cpp src\My_Text.cpp src\Ressource.cpp src\Tile.cpp src\Timer.cpp
+         Character.cpp
+     1>include\Character.cpp(15): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>include\Character.cpp(134): warning C4553: '==' : operator has no effect; did you intend '='?
+     1>include\Character.cpp(143): warning C4553: '==' : operator has no effect; did you intend '='?
+         main.cpp
+     1>main.cpp(19): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>main.cpp(12): warning C4101: 'time' : unreferenced local variable
+         Button.cpp
+         File_Loader.cpp
+         Game_Manager.cpp
+     1>src\Game_Manager.cpp(80): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(81): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(86): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(90): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(95): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(100): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(105): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(208): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(209): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(214): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(218): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(223): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(228): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(233): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(301): warning C4305: '-=' : truncation from 'double' to 'float'
+     1>src\Game_Manager.cpp(420): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(421): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(488): warning C4305: '+=' : truncation from 'double' to 'float'
+     1>src\Game_Manager.cpp(489): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(582): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(634): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(569): warning C4101: 'Id' : unreferenced local variable
+     1>src\Game_Manager.cpp(675): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(676): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>src\Game_Manager.cpp(677): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+         Glissor.cpp
+     1>src\Glissor.cpp(63): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         Key_event.cpp
+         Monster.cpp
+     1>src\Monster.cpp(12): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>src\Monster.cpp(129): warning C4553: '==' : operator has no effect; did you intend '='?
+     1>src\Monster.cpp(138): warning C4553: '==' : operator has no effect; did you intend '='?
+         My_Sprite.cpp
+     1>src\My_Sprite.cpp(58): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(59): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(101): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(102): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(119): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(121): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(122): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(240): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>src\My_Sprite.cpp(251): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>src\My_Sprite.cpp(262): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(263): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\My_Sprite.cpp(273): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         My_Text.cpp
+     1>src\My_Text.cpp(73): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Ressource.cpp
+     1>src\Ressource.cpp(7): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+         Tile.cpp
+     1>src\Tile.cpp(21): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>src\Tile.cpp(58): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>src\Tile.cpp(133): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>src\Tile.cpp(197): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+         Timer.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"x64\mac\old-domain.res" old-domain.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\gamebacon\x64\mac\old-domain.exe" /NOLOGO /LIBPATH:"SFML-2.2-vs2013\lib" "sfml-graphics.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\gamebacon\x64\mac\old-domain.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\gamebacon\x64\mac\old-domain.lib" /MACHINE:X64 "x64\mac\old-domain.res"
+         x64\mac\Character.obj
+         x64\mac\main.obj
+         x64\mac\Button.obj
+         x64\mac\File_Loader.obj
+         x64\mac\Game_Manager.obj
+         x64\mac\Glissor.obj
+         x64\mac\Key_event.obj
+         x64\mac\Monster.obj
+         x64\mac\My_Sprite.obj
+         x64\mac\My_Text.obj
+         x64\mac\Ressource.obj
+         x64\mac\Tile.obj
+         x64\mac\Timer.obj
+     1>sfml-graphics.lib(sfml-graphics-2.dll) : fatal error LNK1112: module machine type 'X86' conflicts with target machine type 'x64'
+     1>Done Building Project "D:\gamebacon\old-domain.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:24.22

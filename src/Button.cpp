@@ -30,8 +30,8 @@ Button::Button(RenderWindow *app_get, string name_get, bool a_file, int x_get, i
     m_app = app_get;
     m_view1 = view1_get;
     cross = true;
-
-    m_name.init(m_app, name_get, 75, 1);
+    m_name2 = name_get;
+    cout << " name: " << name_get <<" "<< m_w<<" "<<m_h<<  endl;
     mouse_on = false;
     mouse_click = false;
     activation = false;
@@ -40,6 +40,7 @@ Button::Button(RenderWindow *app_get, string name_get, bool a_file, int x_get, i
 Button::Button(RenderWindow *app,  int x, int y, int window_x, int window_y, View *view1)
     : button_sprite(app, "resources/button_stop.png", view1)
 {
+
     m_x = x;
     m_y = y;
     m_w = button_sprite.get_w();
@@ -57,6 +58,8 @@ Button::Button(RenderWindow *app,  int x, int y, int window_x, int window_y, Vie
 }
 void Button::draw()
 {
+ //   cout<< " name: " << m_name2<<" " << m_w << " " << m_h << " "<<m_x<< " "<< m_y<< endl;
+
     button_sprite.draw(m_x, m_y);
     if (!cross)
     {

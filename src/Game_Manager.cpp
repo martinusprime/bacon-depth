@@ -24,7 +24,6 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     , info_sprite(app, "resources/info.png", &view1)
     , spriteTile0(app, "resources/invisible.png", &view1)
     , tile_size(384)
-    , glissor1(app, 0, 0, 0, 0, &view1)
 {
 
     //sounds
@@ -162,7 +161,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
 
     buttons.push_back(Button{ m_app, "Dig", 0, 0, 0, 0, &m_view1 });
     buttons.push_back(Button{ m_app, "Move", 0, 0, 0, 0, &m_view1 });//button of the glissor
-    buttons.push_back(Button{ m_app, 0, 0, 0, 0, &m_view1 });//button of the glissor
+    buttons.push_back(Button{ m_app, 0, 0, 0, 0, &m_view1 });
     buttons.push_back(Button{ m_app, "Take resources", 0, 0, 0, 0, &m_view1 });//button of the ressources
 
     //buttons of buildings
@@ -173,7 +172,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     buttons.push_back(Button{ m_app, "resources/oxygen_icon.png", true, 0, 0, 0, 0, &m_view2 });//button of the ressources
 
 
-    glissor1 = Glissor{ m_app, 0, 0, 0, 0, &m_view1 };
+    glissor1.push_back(Glissor{ m_app, 0, 0, 0, 0, &m_view1 });
  
     update(0);
     cinematic_init();
@@ -342,11 +341,10 @@ void Game_Manager::update(float timeElapsed)
             }
         }
 
-        buttons[4].update(m_screen_x - buttons[4].get_w() - 30, m_screen_y / 2 + buttons[5].get_h());
+        buttons[4].update(m_screen_x - buttons[4].get_w() - 30, m_screen_y / 2 + buttons[4].get_h());
         if (buttons[4].is_activated())
         {
             buttons[4].desactivate();
-
             if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y))
             {
                 execute_action(ACT_BUILD_WORKBENCH);
@@ -358,6 +356,7 @@ void Game_Manager::update(float timeElapsed)
         {
             buttons[5].desactivate();
                 execute_action(ACT_BUILD_GENERATOR);
+
         }
 
         buttons[6].update(m_screen_x - buttons[5].get_w() - 30, (m_screen_y / 2) + (buttons[6].get_h() + 80 * 2));
@@ -372,7 +371,7 @@ void Game_Manager::update(float timeElapsed)
         {
             buttons[7].desactivate();
 
-                execute_action(ACT_BUILD_WORKBENCH);
+                execute_action(ACT_BUILD_ARMORY);
         }
 
         buttons[8].update(m_screen_x - buttons[8].get_w() - 30, (m_screen_y / 2) + (buttons[8].get_h() + 80 * 4));
@@ -416,7 +415,6 @@ void Game_Manager::update(float timeElapsed)
         }
         //if the mouse is over the right tile
 
-        // cout << "selec " << selected_tile.x << " " << selected_tile.y << endl;
         selected_tile.x = m_selection_vector.x / tile_size;
         selected_tile.y = m_selection_vector.y / tile_size;
         if (selected_tile.x < 0)
@@ -630,8 +628,8 @@ void Game_Manager::draw()
 
     if (glissor_on)
     {
-        glissor1.update(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size, compteur);
-        glissor1.draw(character1.size());
+        glissor1[0].update(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size, compteur);
+        glissor1[0].draw(character1.size());
     }
     //pause handling
 
@@ -688,7 +686,7 @@ void Game_Manager::execute_action(Action action)
         m_y_offset -= tile_size / 4;
         break;
     case ACT_GO_RIGHT:
-        //m_x_offset += tile_size;
+        m_x_offset += tile_size;
 
         break;
     case ACT_GO_DOWN:
@@ -720,7 +718,7 @@ void Game_Manager::execute_action(Action action)
     case ACT_MOVE:       
         for (size_t i = 0; i < character1.size(); i++)
         {
-            if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)) &&
+            if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)) &&
                 (my_map[selected_tile.goal_y][selected_tile.goal_x].isWalkable()))
             {               
                 character1[i].newGoal(selected_tile.goal_x, selected_tile.goal_y);
@@ -748,7 +746,7 @@ void Game_Manager::execute_action(Action action)
                 my_map[selected_tile.goal_y][selected_tile.goal_x].constru(1, 10);
                 for (size_t i = 0; i < character1.size(); i++)
                 {
-                    if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                    if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                     {
                         character1[i].dig(selected_tile.goal_x, selected_tile.goal_y);
                         compteur++;
@@ -761,9 +759,10 @@ void Game_Manager::execute_action(Action action)
         if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
         {            
             my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(17, 10);
+
             for (size_t i = 0; i < character1.size(); i++)
             {
-                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
                     character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
                     compteur++;
@@ -777,7 +776,7 @@ void Game_Manager::execute_action(Action action)
             my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(18, 1000000);
             for (size_t i = 0; i < character1.size(); i++)
             {
-                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
                     character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
                     compteur++;
@@ -791,7 +790,7 @@ void Game_Manager::execute_action(Action action)
             my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(19, 1000000);
             for (size_t i = 0; i < character1.size(); i++)
             {
-                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
                     character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
                     compteur++;
@@ -805,7 +804,7 @@ void Game_Manager::execute_action(Action action)
             my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(20, 1000000);
             for (size_t i = 0; i < character1.size(); i++)
             {
-                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
                     character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
                     compteur++;
@@ -819,7 +818,7 @@ void Game_Manager::execute_action(Action action)
             my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(21, 1000000);
             for (size_t i = 0; i < character1.size(); i++)
             {
-                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
                     character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
                     compteur++;
@@ -833,7 +832,7 @@ void Game_Manager::execute_action(Action action)
             my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(22, 10000000);
             for (size_t i = 0; i < character1.size(); i++)
             {
-                if ((compteur < glissor1.get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
+                if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
                     character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
                     compteur++;
@@ -845,9 +844,9 @@ void Game_Manager::execute_action(Action action)
         break;
     }
 
-    if (m_x_offset < tile_size * 2 + (tile_size / 2))
+    if (m_x_offset < (tile_size * 2 + (tile_size / 2)) - tile_size);
     {
-        m_x_offset = tile_size * 2 + (tile_size / 2);
+        m_x_offset = (tile_size * 2 + (tile_size / 2) - tile_size);
     }
     
     if (m_y_offset < (tile_size / 2))
