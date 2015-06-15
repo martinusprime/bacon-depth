@@ -172,21 +172,22 @@ void Monster::update(Tile my_map[][5], float timeElapsed)
         status = MOVING;
         pathFinding(my_map);
         m_moving += timeElapsed;
-        //cout << " -->" << m_moving << endl;
+        cout << " -->" << m_moving << endl;
         //}
-        if (m_moving >= 4000)
+        if (m_moving >= 1000)
         {
-            (*this).setPosition(move_x, move_y);
+            setPosition(move_x, move_y);
         }
     }
 
-
+    cout << move_y << move_x << endl;
     float new_life = life / 100.0f;
     life_bar.scale(new_life, 1.0f, false);
 }
 
 void Monster::setPosition(int x, int y)
 {
+    //cout << "BINGO" << endl;
     tile_x = x;
     tile_y = y;
 

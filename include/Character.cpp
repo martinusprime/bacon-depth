@@ -503,7 +503,7 @@ void Character::build(int x, int y)
 
 void Character::setBattle()
 {
-    cout << "8" << endl;
+    //cout << "8" << endl;
     status = BATTLE;
 }
 

@@ -270,8 +270,8 @@ void Game_Manager::update(float timeElapsed)
     m_view1.zoom(zoom);
 
 
-
-    if (monster_time.getElapsedTime().asSeconds() >= 25)
+    
+    if (monster_time.getElapsedTime().asSeconds() >= 45)
     {
         monster_time.restart();
         int a = rand() % 5 + 1;
@@ -359,7 +359,6 @@ void Game_Manager::update(float timeElapsed)
         if (buttons[3].is_activated())
         {
             buttons[3].desactivate();
-            cout << "caca" << endl;
                 if (isOccupied(selected_tile.clicked_x ,selected_tile.clicked_y) )
               {
                if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].get_resources_id() == 0)
@@ -782,6 +781,7 @@ void Game_Manager::execute_action(Action action)
                 character1[i].stop();
             }
         }
+        break;
     case ACT_DIGING:
         if (((selected_tile.goal_y == selected_tile.clicked_y) && (selected_tile.goal_x == (selected_tile.clicked_x) + 1)) ||
             ((selected_tile.goal_y == selected_tile.clicked_y) && (selected_tile.goal_x == (selected_tile.clicked_x) - 1)) ||
@@ -790,7 +790,7 @@ void Game_Manager::execute_action(Action action)
         {
             if (my_map[selected_tile.goal_y][selected_tile.goal_x].isWalkable() == 0)
             {
-                my_map[selected_tile.goal_y][selected_tile.goal_x].constru(1, 10);
+                my_map[selected_tile.goal_y][selected_tile.goal_x].constru(1, 1000000);
                 for (size_t i = 0; i < character1.size(); i++)
                 {
                     if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
@@ -805,12 +805,12 @@ void Game_Manager::execute_action(Action action)
     case ACT_BUILD_GENERATOR:
         if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
         {    
-            my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(17, 10);            
+            my_map[selected_tile.clicked_y][selected_tile.clicked_x].constru(17, 100000);            
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
-                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    character1[i].build(selected_tile.clicked_x, selected_tile.clicked_y);
                     compteur++;
                 }
             }
@@ -819,12 +819,12 @@ void Game_Manager::execute_action(Action action)
     case ACT_BUILD_AERATION:
         if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
         {
-            my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(18, 10);
+            my_map[selected_tile.clicked_y][selected_tile.clicked_x].constru(18, 100000);
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
-                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    character1[i].build(selected_tile.clicked_x, selected_tile.clicked_y);
                     compteur++;
                 }
             }
@@ -833,12 +833,12 @@ void Game_Manager::execute_action(Action action)
     case ACT_BUILD_FARM:
         if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
         {
-            my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(19, 10);
+            my_map[selected_tile.clicked_y][selected_tile.clicked_x].constru(19, 100000);
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
-                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    character1[i].build(selected_tile.clicked_x, selected_tile.clicked_y);
                     compteur++;
                 }
             }
@@ -847,12 +847,12 @@ void Game_Manager::execute_action(Action action)
     case ACT_BUILD_ARMORY:
         if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
         {
-            my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(20, 10);
+            my_map[selected_tile.clicked_y][selected_tile.clicked_x].constru(20, 100000);
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
-                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    character1[i].build(selected_tile.clicked_x, selected_tile.clicked_y);
                     compteur++;
                 }
             }
@@ -861,12 +861,12 @@ void Game_Manager::execute_action(Action action)
     case ACT_BUILD_WORKBENCH:
         if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
         {
-            my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(21, 10);
+            my_map[selected_tile.clicked_y][selected_tile.clicked_x].constru(21, 100000);
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
-                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    character1[i].build(selected_tile.clicked_x, selected_tile.clicked_y);
                     compteur++;
                 }
             }
@@ -875,12 +875,12 @@ void Game_Manager::execute_action(Action action)
     case ACT_BUILD_BUNKER:
         if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
         {
-            my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(22, 10);
+            my_map[selected_tile.clicked_y][selected_tile.clicked_x].constru(22, 1000000);
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
                 {
-                    character1[i].build(selected_tile.goal_x, selected_tile.goal_y);
+                    character1[i].build(selected_tile.clicked_x, selected_tile.clicked_y);
                     compteur++;
                 }
             }
@@ -951,50 +951,36 @@ void Game_Manager::combat(float time)
 {
     int combat = 0;
     for (size_t i = 0; i <= character1.size(); i++)
-<<<<<<< HEAD
     {
-        if (citizen_state[i])
-=======
-    {        
         for (size_t j = 0; j <= monster1.size(); j++)
->>>>>>> 47b9e95e4dba693b452f4757e01f4f4644a6ed7c
         {
             if (monster_state[j])
             {
-                if (monster_state[i])
+                //cout << "BASTON" << endl;
+                if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding())
                 {
-<<<<<<< HEAD
-                    if (((monster1[j].getY() > 9) || (monster1[j].getY() < 0)) || ((monster1[j].getX() > 4) || (monster1[j].getX() < 0)))
-=======
+                    my_map[monster1[j].getY()][monster1[j].getX()].get_damage(0.001*time);
+                }
+                if ((monster1[j].getY() == character1[i].getY()) && (monster1[j].getX() == character1[i].getX()))
+                {
                     combat = 1;
-                    cout << "BASTON" << endl;
+                    //cout << "BASTON2" << endl;
                     character1[i].setBattle();
                     if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding() == 0)
->>>>>>> 47b9e95e4dba693b452f4757e01f4f4644a6ed7c
                     {
-                        monster1[j].setPosition(0, 0);
+                        character1[i].get_damage(0.001*time);
                     }
-                    if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding())
-                    {
-                        my_map[monster1[j].getY()][monster1[j].getX()].get_damage(0.001*time);
-                    }
-                    if ((monster1[j].getY() == character1[i].getY()) && (monster1[j].getX() == character1[i].getX()))
-                    {
-                        //cout << "BASTON" << endl;
-                        character1[i].setBattle();
-                        if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding() == 0)
-                        {
-                            character1[i].get_damage(0.001*time);
-                        }
-                        monster1[j].get_damage(0.001*time);
-                    }
+                    monster1[j].get_damage(0.001*time);
                 }
-                
             }
-            
+
         }
-        
-    }    
+
+
+
+
+    }
+
     for (size_t i = 0; i <= character1.size(); i++)
     {
         if ((combat == 0) && (character1[i].isBattle()))

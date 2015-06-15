@@ -137,6 +137,7 @@ void Tile::draw_tile()
 }
 void Tile::update(float time)
 {
+
     float new_life = (m_Hp / m_maxHp)/10.0f;
     life[0].scale(new_life, 1.0f, false);
     // m_irradiation doit etre comprise entre 0 et 1  a la fin;
@@ -154,6 +155,8 @@ void Tile::update(float time)
 
     if ((m_progress >= m_progressMax) && (m_work != NO))
     {
+        /*cout << "CHANGE" << m_ID << " -> " << m_futID;
+        system("PAUSE");*/
         m_work = NO;
         setID(m_futID);
         m_futID = 0;
