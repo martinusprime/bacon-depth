@@ -231,5 +231,5 @@ bool Tile::isBuilding()
 void Tile::get_damage(float damage)
 {
     m_Hp -= damage;
-    cout << "mes degats" << damage << endl;
+    //cout << "mes degats" << damage << endl;
 }

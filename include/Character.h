@@ -33,6 +33,7 @@ public:
     void stop();
     void dig(int x, int y);
     void build(int x, int y);
+    void setBattle();
 
 private:
     View *m_view1;

@@ -471,7 +471,7 @@ void Game_Manager::update(float timeElapsed)
          food_number_text.refill("Food: " + std::to_string(food_number));
         metal_number_text.refill("Metal: " + std::to_string(metal_number));
     }
- //   combat(timeElapsed);
+    combat(timeElapsed);
 }
 
 bool Game_Manager::isOccupied(int x, int y)
@@ -920,14 +920,16 @@ void Game_Manager::combat(float time)
             }
             if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding())
             {
-                /*cout << "BASTONBUILDING" << endl;
-                system("PAUSE");*/
-                my_map[monster1[j].getY()][monster1[j].getX()].get_damage(0.01*time);
+                my_map[monster1[j].getY()][monster1[j].getX()].get_damage(0.001*time);
             }
-            else if ((monster1[j].getY() == character1[i].getY()) && (monster1[j].getX() == character1[i].getX()))
+            if ((monster1[j].getY() == character1[i].getY()) && (monster1[j].getX() == character1[i].getX()))
             {
-                cout << "BASTONCHAR" << endl;
-                character1[i].get_damage(0.001*time);
+                //cout << "BASTON" << endl;
+                character1[i].setBattle();
+                if (my_map[monster1[j].getY()][monster1[j].getX()].isBuilding() == 0)
+                {
+                    character1[i].get_damage(0.001*time);
+                }  
                 monster1[j].get_damage(0.001*time);
             }
         }

@@ -141,7 +141,7 @@ void Monster::update(Tile my_map[][5], float timeElapsed)
         }
     }
 
-    if (life <= 0)
+    if (life < 0)
     {
         is_alive = false;
     }
@@ -470,5 +470,6 @@ void Monster::build(int x, int y)
 
 void Monster::get_damage(float damage)
 {
+    //cout << "DEGATS MONSTER" << life << " - " << damage << endl;
     life -= damage;
 }

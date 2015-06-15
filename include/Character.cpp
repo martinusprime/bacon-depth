@@ -492,3 +492,8 @@ void Character::build(int x, int y)
     m_buildX = x;
     m_buildY = y;
 }
+
+void Character::setBattle()
+{
+    status = BATTLE;
+}
