@@ -222,23 +222,23 @@ bool Character::alive()
 
 void Character::draw()
 {
-    sprite.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h());
-    life_bar_background.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 50);
-    life_bar.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 50);
-    life_bar_heart.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 50);
+    sprite.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h() - 10);
+    life_bar_background.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 60);
+    life_bar.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 60);
+    life_bar_heart.draw(tile_x * tile_size + walking_x, tile_y * tile_size + (tile_size - sprite.get_h()) - 60);
 
     if (status == BUILDING)
     {
-        hammer.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h());
+        hammer.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h() - 10);
     }
 
     if (status == DIGING)
     {
-        pike.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h());
+        pike.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h() - 10);
     }
     if (status == BATTLE)
     {
-        sword.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h());
+        sword.draw(tile_x * tile_size + walking_x, tile_y * tile_size + tile_size - sprite.get_h() - 10);
     }
 }
 

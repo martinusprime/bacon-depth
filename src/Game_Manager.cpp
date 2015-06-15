@@ -5,7 +5,7 @@
 Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int screen_y)
     : m_view1(view1)
     , radio_icon(app, "resources/radioactive_icon.png", &view1)
-    , food_icon(app, "resources/food_icon.png", &view1)
+    , food_icon(app, "resources/food_icon0.png", &view1)
     , metal_icon(app, "resources/iron_icon0.png", &view1)
     , radio_bar(app, "resources/radio_bar.png", &view1)
     , radio_bar_background(app, "resources/radio_bar_background.png", &view1)
@@ -99,7 +99,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
                 my_map[y][x].setID(12 + x);
             }
              else if(x >= 1 && x <4 && y == 3)
-            {            //groupe electrogene
+            {         
 
                 my_map[y][x].setID(10 + x);
             }
@@ -327,9 +327,9 @@ void Game_Manager::update(float timeElapsed)
         if (buttons[3].is_activated())
         {
             buttons[3].desactivate();
-
-            if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y) )
-            {
+            cout << "caca"<<endl;
+        //    if (isOccupied(selected_tile.clicked_x, selected_tile.clicked_y) )
+          //  {
                 if (my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_resources_id() == 0)
                 {
                     metal_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
@@ -338,7 +338,7 @@ void Game_Manager::update(float timeElapsed)
                 {
                     food_number += my_map[selected_tile.clicked_x][selected_tile.clicked_y].get_ressources();
                 }
-            }
+            //}
         }
 
         buttons[4].update(m_screen_x - buttons[4].get_w() - 30, m_screen_y / 2 + buttons[4].get_h());
@@ -686,7 +686,7 @@ void Game_Manager::execute_action(Action action)
         m_y_offset -= tile_size / 4;
         break;
     case ACT_GO_RIGHT:
-        m_x_offset += tile_size;
+        m_x_offset += tile_size/4;
 
         break;
     case ACT_GO_DOWN:
@@ -842,11 +842,6 @@ void Game_Manager::execute_action(Action action)
         break;
     default:
         break;
-    }
-
-    if (m_x_offset < (tile_size * 2 + (tile_size / 2)) - tile_size);
-    {
-        m_x_offset = (tile_size * 2 + (tile_size / 2) - tile_size);
     }
     
     if (m_y_offset < (tile_size / 2))

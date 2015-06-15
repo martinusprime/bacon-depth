@@ -68,6 +68,7 @@ int Tile::get_ressources()
     int total;
     total = resource_number;
     resource_number = 0;
+    cout << total << endl;
     return total;
 }
 void Tile::setID(int ID)
@@ -130,7 +131,7 @@ void Tile::update(float time)
 {
     // m_irradiation doit etre comprise entre 0 et 1  a la fin;
 
-    m_irradiation += (time / 5.0) / 100000.0 - m_level * 0.1;
+    m_irradiation += ((time / 5.0) + (1 / (m_level + 2))) / 100000.0;
 
     if (m_irradiation > 1.0f)
     {
