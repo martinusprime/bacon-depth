@@ -85,7 +85,7 @@ private:
     My_Sprite metal_icon;
     My_Sprite selection_border, goal_border, radio_icon, radio_bar, radio_bar_background, radio_bar_grad, oxygen_bar, oxygen_bar_background, oxygen_bar_grad, head_icon;
     My_Text citizen_number_text, food_number_text, metal_number_text;
-    Glissor glissor1;
+    vector <Glissor> glissor1;
     vector <Character> character1;
     vector <Monster> monster1;
     vector <My_Sprite> sprites;

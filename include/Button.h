@@ -27,6 +27,7 @@ public:
 private:
     View *m_view1;
     RenderWindow *m_app;
+    string m_name2;
     My_Sprite button_sprite;
     int m_w, m_h, m_window_x, m_window_y, m_window_w, m_x, m_y;
     My_Text m_name;

@@ -1,0 +1,8 @@
+﻿Build started 15/06/2015 13:28:24.
+     1>Project "D:\gamebacon\old-domain.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Platforms\ARM\PlatformToolsets\v120\Toolset.targets(36,5): error MSB8022: Compiling Desktop applications for the ARM platform is not supported.
+     1>Done Building Project "D:\gamebacon\old-domain.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.64

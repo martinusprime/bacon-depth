@@ -184,7 +184,7 @@ void Character::update(Tile my_map[][5], float timeElapsed)
         status = MOVING;
         pathFinding(my_map);        
         m_moving += timeElapsed;
-        cout << " -->" << m_moving << endl;
+     //   cout << " -->" << m_moving << endl;
         //}
         if (m_moving >= 2000)
         {
