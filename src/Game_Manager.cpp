@@ -148,6 +148,7 @@ Game_Manager::Game_Manager(RenderWindow *app, View &view1, int screen_x, int scr
     //monsters on surface
     for (int i = 0; i < monster_max; i++)
     {
+        citizen_state.push_back(true);
         monster1.push_back(Monster{ m_app, &m_view1, i });
     }
     citizen_number_text.init(app, "Still alive: ", 35, 1);
@@ -416,6 +417,10 @@ void Game_Manager::update(float timeElapsed)
             {
                 monster1[i].newGoal(character1[1].getX(), character1[1].getY());
                 monster1[i].update(my_map, timeElapsed);
+                if (!monster1[i].alive())
+                {
+                    monster_state[i] = false;
+                }
             }
         }
 
@@ -610,9 +615,10 @@ void Game_Manager::draw()
 
     for (int i = 0; i < monster_max; i++)
     {
-
-        monster1[i].draw();
-
+        if (monster_state[i])
+        {
+            monster1[i].draw();
+        }
     }
     goal_border.draw(selected_tile.goal_x* tile_size, selected_tile.goal_y * tile_size);/////////////////////////////////////////////////////
     selection_border.draw(selected_tile.clicked_x * tile_size, selected_tile.clicked_y * tile_size);
