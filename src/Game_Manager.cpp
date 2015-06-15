@@ -786,8 +786,7 @@ void Game_Manager::execute_action(Action action)
     case ACT_BUILD_GENERATOR:
         if (my_map[selected_tile.clicked_y][selected_tile.clicked_x].getId() != 0)
         {    
-            my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(17, 10);
-
+            my_map[selected_tile.clicked_y][selected_tile.clicked_y].constru(17, 10);            
             for (size_t i = 0; i < character1.size(); i++)
             {
                 if ((compteur < glissor1[0].get_value()) && (character1[i].isOnPos(selected_tile.clicked_x, selected_tile.clicked_y)))
@@ -962,12 +961,12 @@ void Game_Manager::combat(float time)
             
         }
     }    
-    if (combat == 0)
+    for (size_t i = 0; i <= character1.size(); i++)
     {
-        for (size_t i = 0; i <= character1.size(); i++)
+        if ((combat == 0) && (character1[i].isBattle()))
         {
             cout << "IDLE" << endl;
             character1[i].setIdle();
-        }          
+        }
     }
 }

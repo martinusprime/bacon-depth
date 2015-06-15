@@ -35,6 +35,7 @@ public:
     void build(int x, int y);
     void setBattle();
     void setIdle();
+    int isBattle();
 
 private:
     View *m_view1;

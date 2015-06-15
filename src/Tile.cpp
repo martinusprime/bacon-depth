@@ -209,6 +209,7 @@ void Tile::constru(int newID, int progressMax)
 
 int Tile::addProgress(float pr)
 {
+    cout << "ADDPROGRESS" << pr << endl;
     if (m_futID == 0)
     {
         return 0;

@@ -174,11 +174,13 @@ void Character::update(Tile my_map[][5], float timeElapsed)
     {
         if (status == MOVING)
         {
+            cout << "1" << endl;
             status = IDLE;
         }        
     }
     else
     {
+        cout << "10" << endl;
         status = MOVING;
         pathFinding(my_map);        
         m_moving += timeElapsed;
@@ -198,7 +200,7 @@ void Character::setPosition(int x, int y)
 {
     tile_x = x;
     tile_y = y;
-
+    cout << "2" << endl;
     m_moving = 0;
     status = IDLE;
 }
@@ -209,6 +211,7 @@ void Character::moving(int x, int y)
     //system("PAUSE");
     //if ((x != move_x) || (y != move_y) || (status != MOVING))
     //{
+    cout << "3" << endl;
         status = MOVING;
         move_x = x;
         move_y = y;
@@ -245,6 +248,7 @@ void Character::draw()
 
 void Character::newGoal(int x, int y)
 {
+    cout << "4" << endl;
     status = MOVING;
 
     m_goalX = x;
@@ -472,6 +476,7 @@ int Character::isOnPos(int x, int y)
 
 void Character::stop()
 {
+    cout << "5" << endl;
     status = IDLE;
     m_goalX = tile_x;
     m_goalY = tile_y;
@@ -482,6 +487,7 @@ void Character::stop()
 
 void Character::dig(int x, int y)
 {
+    cout << "6" << endl;
     status = DIGING;
     m_digX = x;
     m_digY = y;
@@ -489,6 +495,7 @@ void Character::dig(int x, int y)
 
 void Character::build(int x, int y)
 {
+    cout << "7" << endl;
     status = BUILDING;
     m_buildX = x;
     m_buildY = y;
@@ -496,10 +503,21 @@ void Character::build(int x, int y)
 
 void Character::setBattle()
 {
+    cout << "8" << endl;
     status = BATTLE;
 }
 
 void Character::setIdle()
 {
+    cout << "9" << endl;
     status = IDLE;
+}
+
+int Character::isBattle()
+{
+    if (status == BATTLE)
+    {
+        return 1;
+    }
+    return 0;
 }
